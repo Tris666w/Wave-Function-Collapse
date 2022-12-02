@@ -3,22 +3,27 @@ using UnityEngine;
 
 public class WFCCell2D : MonoBehaviour
 {
-    private List<Sprite> _possibleNeighbours = new();
+    public List<Sprite> _possibleTiles = new();
+    private Sprite _collapsedTile = null;
 
-
-    public WFCCell2D(List<Sprite> possibleNeighbours)
+    public Sprite CollapsedTile
     {
-        _possibleNeighbours = possibleNeighbours;
+        get => _collapsedTile;
     }
 
     public int GetEntropy()
     {
-        return _possibleNeighbours.Count;
+        return _possibleTiles.Count;
     }
 
     public void CollapseCell()
     {
+        //Get random tile from the remaining ones
+        int randomIndex = Random.Range(0, _possibleTiles.Count);
+        _collapsedTile = _possibleTiles[randomIndex];
 
+        //Since the cell is collapsed
+        _possibleTiles.Clear();
     }
 
 }
