@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,17 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     private WFCCell2D[,] _cells;
 
+    public void Update()
+    {
+        if (_generate)
+        {
+            _generate = false;
+            InitializeWave();
+            CollapseWave();
+        }
+    }
 
-    private void Start()
+    private void InitializeWave()
     {
         _cells = new WFCCell2D[_mapSize.x, _mapSize.y];
         for (int col = 0; col < _mapSize.x; col++)
@@ -20,15 +30,6 @@ public class WaveFunctionCollapse : MonoBehaviour
                 _cells[col, row] = gameObject.AddComponent<WFCCell2D>();
                 _cells[col, row]._possibleTiles = new List<Sprite>(_tiles);
             }
-    }
-
-    public void Update()
-    {
-        if (_generate)
-        {
-            _generate = false;
-            CollapseWave();
-        }
     }
 
     public void CollapseWave()
@@ -55,6 +56,17 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
 
         GenerateSpritesInWorld();
+
+        CleanUp();
+    }
+
+    private void CleanUp()
+    {
+        for (int col = 0; col < _mapSize.x; col++)
+            for (int row = 0; row < _mapSize.y; row++)
+            {
+                Destroy(_cells[col, row]);
+            }
     }
 
     private Vector2Int GetLowestEntropyCell()
@@ -143,7 +155,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             samplePoint2.y = 10 * sampleStep;
             samplePoint3.y = 15 * sampleStep;
 
-            neighbourSamplePoint1.y = 5  * sampleStep;
+            neighbourSamplePoint1.y = 5 * sampleStep;
             neighbourSamplePoint2.y = 10 * sampleStep;
             neighbourSamplePoint3.y = 15 * sampleStep;
 
@@ -236,7 +248,7 @@ public class WaveFunctionCollapse : MonoBehaviour
 
             }
 
-            foreach(var sprite in compatibleSprite)
+            foreach (var sprite in compatibleSprite)
             {
                 tilesCopy.Remove(sprite);
             }
@@ -274,9 +286,11 @@ public class WaveFunctionCollapse : MonoBehaviour
 
                 var pos = new Vector3(x * _tileSize / 100.0f, y * _tileSize / 100.0f, 0);
                 go.transform.position = pos;
-
+                go.transform.name = $"Tile x:{x} y:{y}";
                 go.transform.parent = parent.transform;
             }
+
+        transform.parent = null;
     }
 
     List<Vector2Int> GetNeighbours(Vector2Int cellCoords)
