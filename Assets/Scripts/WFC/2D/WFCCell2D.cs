@@ -5,11 +5,17 @@ public class WFCCell2D : MonoBehaviour
 {
     public List<Sprite> _possibleTiles = new();
     private Sprite _collapsedTile = null;
-
     public Sprite CollapsedTile
     {
         get => _collapsedTile;
     }
+
+    private bool _isCollapsed = false;
+    public bool IsCollapsed
+    {
+        get => _isCollapsed;
+    }
+
 
     public int GetEntropy()
     {
@@ -22,8 +28,11 @@ public class WFCCell2D : MonoBehaviour
         int randomIndex = Random.Range(0, _possibleTiles.Count);
         _collapsedTile = _possibleTiles[randomIndex];
 
+        _isCollapsed = true;
+
         //Since the cell is collapsed
         _possibleTiles.Clear();
+        _possibleTiles.Add(CollapsedTile);
     }
 
 }
