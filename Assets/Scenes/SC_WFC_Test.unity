@@ -194,6 +194,42 @@ PrefabInstance:
       propertyPath: _mapSize.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 442962ba6590d844ab6256879e550575, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: cceb56dc4ba029a469bd2951a79402e8, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c69ceffd9a358ec4b8cbd0050a14435b, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31df6811b3aaf7e4eb53d069f6b60d70, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 08f6060a7be758147b81aa1ce13b5db7, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 600542c66ba6b9741803b7df3fd3800e, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c394fc762a551840b6402b654691a90, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a410c77c6e3fc04ab29e83b020df049, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
 --- !u!1 &705507993
