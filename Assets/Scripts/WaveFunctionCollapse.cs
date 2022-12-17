@@ -7,20 +7,15 @@ public class WaveFunctionCollapse : MonoBehaviour
     [SerializeField] private Vector2Int _mapSize = new(10, 10);
     [SerializeField] private float _tileSize = 256f;
     [SerializeField] private List<Sprite> _tiles = new();
-    [SerializeField] private bool _generate = false;
 
     private WFCCell2D[,] _cells;
 
-    public void Update()
+    [ContextMenu("Click me to generate a map!")]
+    public void GenerateLevel()
     {
-        if (_generate)
-        {
-            _generate = false;
-            InitializeWave();
-            CollapseWave();
-        }
+        InitializeWave();
+        CollapseWave();
     }
-
     private void InitializeWave()
     {
         _cells = new WFCCell2D[_mapSize.x, _mapSize.y];
@@ -34,26 +29,31 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     public void CollapseWave()
     {
-        //While the wave is not yet collapsed
-        while (true)
+        Vector2Int cell = new(-1, -1);
+
+        //Get the cell with the lowest entropy to start the algorithm
+        cell = GetLowestEntropyCell();
+        if (cell.x == -1 || cell.y == -1)
         {
-            //Get the cell with the lowest entropy
-            var cell = GetLowestEntropyCell();
+            Debug.LogError("No cell with entropy found, before algorithm start?");
+            return;
+        }
 
-            //If there is no cell with a low entropy that is not equal to 0,
-            // The wave has collapsed, break the loop
-            if (cell.x == -1 || cell.y == -1)
-            {
-                break;
-            }
-
+        //Start collapsing the wave
+        do
+        {
             //Collapse the cell
             _cells[cell.x, cell.y].CollapseCell();
 
             //Propogate the changes to the other cells
             PropogateChanges(cell);
 
-        }
+            //Get the next cell with the lowest entropy
+            cell = GetLowestEntropyCell();
+
+            //If there is no cell with a low entropy that is not equal to 0,
+            // The wave has collapsed, break the loop
+        } while (cell.x != -1 || cell.y != -1);
 
         GenerateSpritesInWorld();
 
@@ -65,7 +65,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         for (int col = 0; col < _mapSize.x; col++)
             for (int row = 0; row < _mapSize.y; row++)
             {
-                Destroy(_cells[col, row]);
+                DestroyImmediate(_cells[col, row]);
             }
     }
 
@@ -272,8 +272,10 @@ public class WaveFunctionCollapse : MonoBehaviour
 
     void GenerateSpritesInWorld()
     {
-        var parent = new GameObject();
-        parent.name = "Result";
+        var parent = new GameObject
+        {
+            name = "Result"
+        };
 
         for (int x = 0; x < _mapSize.x; x++)
             for (int y = 0; y < _mapSize.y; y++)

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapSize: {x: 10, y: 10}
+  _tileSize: 256
   _tiles:
   - {fileID: 21300000, guid: 0a197a24ed251d14bb510d5c0a9b7033, type: 3}
   - {fileID: 21300000, guid: 7ea784d8bf77fea4ba7a1476cbd03572, type: 3}
@@ -62,3 +63,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f421e803619e1e040b0ee70a555bce99, type: 3}
   - {fileID: 21300000, guid: 2352c9c34586b5c418ff739e8ae455d3, type: 3}
   - {fileID: 21300000, guid: f1a9e284d1e70244791491a66a9ea65d, type: 3}
+  _generate: 0
