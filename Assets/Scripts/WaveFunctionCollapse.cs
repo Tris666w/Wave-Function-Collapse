@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class WaveFunctionCollapse : MonoBehaviour
     [SerializeField] private float _tileSize = 256f;
     [SerializeField] private List<Sprite> _tiles = new();
 
-    private WFCCell2D[,] _cells;
+    private WFCCell2D[,] _cells2D;
 
     [ContextMenu("Click me to generate a map!")]
     public void GenerateLevel()
@@ -16,14 +15,15 @@ public class WaveFunctionCollapse : MonoBehaviour
         InitializeWave();
         CollapseWave();
     }
+
     private void InitializeWave()
     {
-        _cells = new WFCCell2D[_mapSize.x, _mapSize.y];
+        _cells2D = new WFCCell2D[_mapSize.x, _mapSize.y];
         for (int col = 0; col < _mapSize.x; col++)
             for (int row = 0; row < _mapSize.y; row++)
             {
-                _cells[col, row] = gameObject.AddComponent<WFCCell2D>();
-                _cells[col, row]._possibleTiles = new List<Sprite>(_tiles);
+                _cells2D[col, row] = gameObject.AddComponent<WFCCell2D>();
+                _cells2D[col, row]._possibleTiles = new List<Sprite>(_tiles);
             }
     }
 
@@ -43,7 +43,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         do
         {
             //Collapse the cell
-            _cells[cell.x, cell.y].CollapseCell();
+            _cells2D[cell.x, cell.y].CollapseCell();
 
             //Propogate the changes to the other cells
             PropogateChanges(cell);
@@ -65,7 +65,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         for (int col = 0; col < _mapSize.x; col++)
             for (int row = 0; row < _mapSize.y; row++)
             {
-                DestroyImmediate(_cells[col, row]);
+                DestroyImmediate(_cells2D[col, row]);
             }
     }
 
@@ -77,7 +77,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         for (int x = 0; x < _mapSize.x; x++)
             for (int y = 0; y < _mapSize.y; y++)
             {
-                float newEntropy = _cells[x, y].GetEntropy();
+                float newEntropy = _cells2D[x, y].GetEntropy();
 
                 //If the entropy is 1, the cell has been collapsed, so we disregard it
                 if (Mathf.Approximately(newEntropy, 1f))
@@ -110,7 +110,7 @@ public class WaveFunctionCollapse : MonoBehaviour
             foreach (var neighbour in neighbourList)
             {
                 //Disregard cells that have already been collapsed
-                if (_cells[neighbour.x, neighbour.y].IsCollapsed)
+                if (_cells2D[neighbour.x, neighbour.y].IsCollapsed)
                     continue;
 
                 //Detect the compatibilities and checked if something changed
@@ -222,10 +222,10 @@ public class WaveFunctionCollapse : MonoBehaviour
 
 
         //Make a copy of the neighbours possible tiles
-        var tilesCopy = new List<Sprite>(_cells[neighbour.x, neighbour.y]._possibleTiles);
+        var tilesCopy = new List<Sprite>(_cells2D[neighbour.x, neighbour.y]._possibleTiles);
 
         //Loop over the possible tiles of the current tile
-        foreach (var tile in _cells[currentCell.x, currentCell.y]._possibleTiles)
+        foreach (var tile in _cells2D[currentCell.x, currentCell.y]._possibleTiles)
         {
             //Sample the colors
             var color1 = tile.texture.GetPixel(samplePoint1.x, samplePoint1.y);
@@ -263,7 +263,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         //Delete them from the neighbour 
         foreach (var neighbourTile in tilesCopy)
         {
-            _cells[neighbour.x, neighbour.y]._possibleTiles.Remove(neighbourTile);
+            _cells2D[neighbour.x, neighbour.y]._possibleTiles.Remove(neighbourTile);
         }
 
 
@@ -282,9 +282,9 @@ public class WaveFunctionCollapse : MonoBehaviour
             {
                 var go = new GameObject();
                 var spriteRenderer = go.AddComponent<SpriteRenderer>();
-                spriteRenderer.sprite = _cells[x, y].CollapsedTile;
+                spriteRenderer.sprite = _cells2D[x, y].CollapsedTile;
 
-                _cells[x, y].transform.parent = go.transform;
+                _cells2D[x, y].transform.parent = go.transform;
 
                 var pos = new Vector3(x * _tileSize / 100.0f, y * _tileSize / 100.0f, 0);
                 go.transform.position = pos;
