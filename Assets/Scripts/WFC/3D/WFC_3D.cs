@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -9,13 +10,38 @@ public class WFC_3D : MonoBehaviour
     [SerializeField] private float _tileSize = 2f;
     [SerializeField] private List<TileData> _tiles = new();
 
+    [SerializeField] private float _stepTime = 1f;
+
     private WFCCell3D[,,] _cells3D;
+    private GameObject _generatedMap = null;
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log($"Generating map of size: {_mapSize.ToString()}");
+            AttemptDestroyResult();
+            GenerateLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("Destroying generated level");
+            AttemptDestroyResult();
+        }
+    }
+
+    private void AttemptDestroyResult()
+    {
+        if (_generatedMap != null)
+            Destroy(_generatedMap);
+    }
 
     [ContextMenu("Click me to generate a map!")]
     public void GenerateLevel()
     {
         InitializeWave();
-        CollapseWave();
+        StartCoroutine(CollapseWave());
     }
 
     private void InitializeWave()
@@ -24,6 +50,7 @@ public class WFC_3D : MonoBehaviour
         var originalPos = transform.position;
         var resultObject = new GameObject("Result");
         resultObject.transform.parent = gameObject.transform;
+        _generatedMap = resultObject;
 
         for (int col = 0; col < _mapSize.x; col++)
             for (int row = 0; row < _mapSize.y; row++)
@@ -46,7 +73,7 @@ public class WFC_3D : MonoBehaviour
                 }
     }
 
-    public void CollapseWave()
+    public IEnumerator CollapseWave()
     {
         Vector3Int cell = new(-1, -1, -1);
 
@@ -55,7 +82,7 @@ public class WFC_3D : MonoBehaviour
         if (cell.x == -1 || cell.y == -1 || cell.z == -1)
         {
             Debug.LogError("No cell with entropy found, before algorithm start?");
-            return;
+            yield break;
         }
 
         //Start collapsing the wave
@@ -69,6 +96,10 @@ public class WFC_3D : MonoBehaviour
 
             //Get the next cell with the lowest entropy
             cell = GetLowestEntropyCell();
+
+            //Wait the coroutine
+            yield return new WaitForSeconds(_stepTime);
+
 
             //If there is no cell with a low entropy that is not equal to 0,
             // The wave has collapsed, break the loop
@@ -101,6 +132,9 @@ public class WFC_3D : MonoBehaviour
                     //If the entropy is 1, the cell has been collapsed, so we disregard it
                     if (Mathf.Approximately(newEntropy, 1f))
                         continue;
+
+                    //Add some randomness in case there would be multiple cells with the same entropy
+                    newEntropy += Random.Range(-0.1f, 0.1f);
 
                     if (newEntropy < _minEntropy)
                     {
@@ -151,8 +185,6 @@ public class WFC_3D : MonoBehaviour
         PosZ,
         NegZ,
 
-
-
         None
     }
 
@@ -176,23 +208,23 @@ public class WFC_3D : MonoBehaviour
         {
             //Pos Z
             compareDirection = CompareDirection.PosZ;
-            horizontalCompare = false;
         }
         else if (neighbourIdx.z - currentIdx.z == -1)
         {
             //Neg Z
             compareDirection = CompareDirection.NegZ;
-            horizontalCompare = false;
         }
         else if (neighbourIdx.y - currentIdx.y == 1)
         {
             //Pos Y
             compareDirection = CompareDirection.PosY;
+            horizontalCompare = false;
         }
         else if (neighbourIdx.y - currentIdx.y == -1)
         {
             //Neg Y
             compareDirection = CompareDirection.NegY;
+            horizontalCompare = false;
         }
 
         if (compareDirection == CompareDirection.None)
@@ -290,7 +322,81 @@ public class WFC_3D : MonoBehaviour
         }
         else
         {
+            WFCCell3D currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
 
+            WFCCell3D neighbourCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
+            var neighbourTilesCopy = new List<TileData>(neighbourCell._possibleTiles);
+
+
+            foreach (var tile in currentCell._possibleTiles)
+            {
+                List<TileData> compatibleTiles = new();
+
+                VerticalFaceData currentCellFace;
+                switch (compareDirection)
+                {
+                    case CompareDirection.PosY:
+                        currentCellFace = tile._posY;
+                        break;
+                    case CompareDirection.NegY:
+                        currentCellFace = tile._negY;
+                        break;
+
+                    default:
+                        continue;
+                }
+
+                foreach (var neighbourTile in neighbourTilesCopy)
+                {
+                    VerticalFaceData neighbourCellFace;
+                    switch (compareDirection)
+                    {
+                        case CompareDirection.PosY:
+                            neighbourCellFace = neighbourTile._negY;
+                            break;
+                        case CompareDirection.NegY:
+                            neighbourCellFace = neighbourTile._posY;
+                            break;
+                        default:
+                            continue;
+                    }
+
+                    //Compare the tiles
+                    //Vertical tiles match if:
+                    //  -> The socket id's match
+                    //
+                    //  -> Both are rotationally invariant
+                    //   OR
+                    //  -> Both have the same rotation index
+
+                    if (currentCellFace._socketID != neighbourCellFace._socketID)
+                        continue;
+                    if ((currentCellFace._isInvariant && neighbourCellFace._isInvariant) ||
+                        (currentCellFace._rotationIndex == neighbourCellFace._rotationIndex))
+                    {
+                        compatibleTiles.Add(neighbourTile);
+                    }
+                }
+
+                //Remove all compatible tiles as to not double check them
+                foreach (var compatibleTile in compatibleTiles)
+                {
+                    neighbourTilesCopy.Remove(compatibleTile);
+                }
+
+            }
+
+            //If there are tiles remaining in tilecopy
+            //then the propogation changed something in this neighbour
+            if (neighbourTilesCopy.Count > 0)
+                changed = true;
+
+            //All the tiles that remain in the copy are not correct anymore
+            //Delete them from the neighbour 
+            foreach (var neighbourTile in neighbourTilesCopy)
+            {
+                _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z]._possibleTiles.Remove(neighbourTile);
+            }
         }
 
 

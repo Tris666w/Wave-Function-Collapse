@@ -360,13 +360,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simple Tiles
       objectReference: {fileID: 0}
-    - target: {fileID: 5748931166997775654, guid: d841c228f8874a544840015d6242d4e8, type: 3}
-      propertyPath: _negY._isInvariant
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5748931166997775654, guid: d841c228f8874a544840015d6242d4e8, type: 3}
-      propertyPath: _posY._isInvariant
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d841c228f8874a544840015d6242d4e8, type: 3}
