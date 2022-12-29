@@ -123,63 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &212993832
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.636168
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.51341
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
-      propertyPath: m_Name
-      value: SM_SimpleTiles
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 24264af2e1036434e9b5079f6aa90825, type: 3}
 --- !u!1 &679331847
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1854810005
 GameObject:
@@ -365,9 +308,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5748931166077222995, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: m_Name
+      value: Walled Floor 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5748931166660033462, guid: d841c228f8874a544840015d6242d4e8, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5748931166660033462, guid: d841c228f8874a544840015d6242d4e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -412,6 +359,14 @@ PrefabInstance:
     - target: {fileID: 5748931166660033463, guid: d841c228f8874a544840015d6242d4e8, type: 3}
       propertyPath: m_Name
       value: Simple Tiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748931166997775654, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _negY._isInvariant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748931166997775654, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _posY._isInvariant
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d841c228f8874a544840015d6242d4e8, type: 3}

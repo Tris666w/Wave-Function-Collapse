@@ -100,7 +100,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minX:
+  _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minZ:
+  _negZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
     _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 4
     _isInvariant: 1
     _rotationIndex: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minX:
+  _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minZ:
+  _negZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
     _socketID: 4
     _isInvariant: 1
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 4
     _isInvariant: 1
     _rotationIndex: 0
@@ -343,15 +343,15 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minX:
-    _socketID: 6
+  _negX:
+    _socketID: 2
     _isFlipped: 0
     _isSymmetric: 0
   _posZ:
-    _socketID: 6
+    _socketID: 2
     _isFlipped: 1
     _isSymmetric: 0
-  _minZ:
+  _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
@@ -359,7 +359,7 @@ MonoBehaviour:
     _socketID: 0
     _isInvariant: 0
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 5
     _isInvariant: 1
     _rotationIndex: 0
@@ -464,7 +464,7 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minX:
+  _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
@@ -472,7 +472,7 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minZ:
+  _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
@@ -480,7 +480,7 @@ MonoBehaviour:
     _socketID: 4
     _isInvariant: 1
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 5
     _isInvariant: 1
     _rotationIndex: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minX:
+  _negX:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 1
@@ -594,7 +594,7 @@ MonoBehaviour:
     _socketID: 2
     _isFlipped: 1
     _isSymmetric: 0
-  _minZ:
+  _negZ:
     _socketID: 2
     _isFlipped: 0
     _isSymmetric: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
     _socketID: 7
     _isInvariant: 0
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 5
     _isInvariant: 1
     _rotationIndex: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minX:
+  _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
-  _minZ:
+  _negZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
@@ -671,9 +671,9 @@ MonoBehaviour:
     _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 0
-    _isInvariant: 1
+    _isInvariant: 0
     _rotationIndex: 0
   _tileSize: 2
 --- !u!1 &5748931166660033463
@@ -815,7 +815,7 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minX:
+  _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
@@ -823,17 +823,17 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
-  _minZ:
+  _negZ:
     _socketID: 1
-    _isFlipped: 0
-    _isSymmetric: 1
+    _isFlipped: 1
+    _isSymmetric: 0
   _posY:
     _socketID: 0
     _isInvariant: 0
     _rotationIndex: 0
-  _minY:
-    _socketID: 5
-    _isInvariant: 1
+  _negY:
+    _socketID: 0
+    _isInvariant: 0
     _rotationIndex: 0
   _tileSize: 2
 --- !u!1 &5748931167001943986
@@ -937,7 +937,7 @@ MonoBehaviour:
     _socketID: 2
     _isFlipped: 1
     _isSymmetric: 0
-  _minX:
+  _negX:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 1
@@ -945,7 +945,7 @@ MonoBehaviour:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 1
-  _minZ:
+  _negZ:
     _socketID: 2
     _isFlipped: 0
     _isSymmetric: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
     _socketID: 8
     _isInvariant: 0
     _rotationIndex: 0
-  _minY:
+  _negY:
     _socketID: 5
     _isInvariant: 1
     _rotationIndex: 0

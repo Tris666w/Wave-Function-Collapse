@@ -35,11 +35,11 @@ public class TileData : MonoBehaviour
     }
 
     public HorizontalFaceData _posX;
-    public HorizontalFaceData _minX;
+    public HorizontalFaceData _negX;
     public HorizontalFaceData _posZ;
-    public HorizontalFaceData _minZ;
+    public HorizontalFaceData _negZ;
     public VerticalFaceData _posY;
-    public VerticalFaceData _minY;
+    public VerticalFaceData _negY;
 
     public float _tileSize = 2.0f;
 
@@ -85,14 +85,14 @@ public class TileData : MonoBehaviour
         style.normal.textColor = Color.black;
 
         var currentDrawPos = transform.position;
-        Handles.Label(currentDrawPos, _minY.ToString(), style);
+        Handles.Label(currentDrawPos, _negY.ToString(), style);
 
         currentDrawPos.y += _tileSize;
         Handles.Label(currentDrawPos, _posY.ToString(), style);
 
         currentDrawPos.y -= _tileSize / 2f;
         currentDrawPos.x -= _tileSize / 2f;
-        Handles.Label(currentDrawPos, _minX.ToString(), style);
+        Handles.Label(currentDrawPos, _negX.ToString(), style);
 
         currentDrawPos.x += _tileSize;
         Handles.Label(currentDrawPos, _posX.ToString(), style);
@@ -102,7 +102,7 @@ public class TileData : MonoBehaviour
         Handles.Label(currentDrawPos, _posZ.ToString(), style);
 
         currentDrawPos.z -= _tileSize;
-        Handles.Label(currentDrawPos, _minZ.ToString(), style);
+        Handles.Label(currentDrawPos, _negZ.ToString(), style);
     }
 #endif
 }

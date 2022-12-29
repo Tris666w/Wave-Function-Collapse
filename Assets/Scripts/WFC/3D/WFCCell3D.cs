@@ -5,6 +5,14 @@ using UnityEngine;
 public class WFCCell3D : MonoBehaviour
 {
     public List<TileData> _possibleTiles = new();
+    private TileData _collapsedData = null;
+    public TileData CollapsedData
+    {
+        get
+        {
+            return _collapsedData;
+        }
+    }
     private bool _isCollapsed = false;
     public bool IsCollapsed
     {
@@ -37,5 +45,6 @@ public class WFCCell3D : MonoBehaviour
         _isCollapsed = true;
 
         _possibleTiles.Clear();
+        _possibleTiles.Add(chosenTile);
     }
 }

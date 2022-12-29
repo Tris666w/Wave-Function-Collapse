@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using static TileData;
 
 public class WFC_3D : MonoBehaviour
 {
@@ -96,8 +98,8 @@ public class WFC_3D : MonoBehaviour
                 {
                     float newEntropy = _cells3D[x, y, z].GetEntropy();
 
-                    //If the entropy is 0, the cell has been collapsed, so we disregard it
-                    if (Mathf.Approximately(newEntropy, 0f))
+                    //If the entropy is 1, the cell has been collapsed, so we disregard it
+                    if (Mathf.Approximately(newEntropy, 1f))
                         continue;
 
                     if (newEntropy < _minEntropy)
@@ -120,7 +122,6 @@ public class WFC_3D : MonoBehaviour
             //Get the current cell
             var currentCell = changedCells.Pop();
 
-
             //Get it's neighbours
             var neighbourList = GetNeighbours(currentCell);
 
@@ -141,11 +142,156 @@ public class WFC_3D : MonoBehaviour
         }
     }
 
-    bool CompareCells(Vector3Int currentCell, Vector3Int neighbour)
+    private enum CompareDirection
+    {
+        PosX,
+        NegX,
+        PosY,
+        NegY,
+        PosZ,
+        NegZ,
+
+
+
+        None
+    }
+
+    bool CompareCells(Vector3Int currentIdx, Vector3Int neighbourIdx)
     {
         bool changed = false;
+        bool horizontalCompare = true;
+        CompareDirection compareDirection = CompareDirection.None;
+
+        if (neighbourIdx.x - currentIdx.x == 1)
+        {
+            //Pos X 
+            compareDirection = CompareDirection.PosX;
+        }
+        else if (neighbourIdx.x - currentIdx.x == -1)
+        {
+            //Neg X
+            compareDirection = CompareDirection.NegX;
+        }
+        else if (neighbourIdx.z - currentIdx.z == 1)
+        {
+            //Pos Z
+            compareDirection = CompareDirection.PosZ;
+            horizontalCompare = false;
+        }
+        else if (neighbourIdx.z - currentIdx.z == -1)
+        {
+            //Neg Z
+            compareDirection = CompareDirection.NegZ;
+            horizontalCompare = false;
+        }
+        else if (neighbourIdx.y - currentIdx.y == 1)
+        {
+            //Pos Y
+            compareDirection = CompareDirection.PosY;
+        }
+        else if (neighbourIdx.y - currentIdx.y == -1)
+        {
+            //Neg Y
+            compareDirection = CompareDirection.NegY;
+        }
+
+        if (compareDirection == CompareDirection.None)
+            return false;
+
+        if (horizontalCompare)
+        {
+            WFCCell3D currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
+
+            WFCCell3D neighbourCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
+            var neighbourTilesCopy = new List<TileData>(neighbourCell._possibleTiles);
 
 
+            foreach (var tile in currentCell._possibleTiles)
+            {
+                List<TileData> compatibleTiles = new();
+
+                HorizontalFaceData currentCellFace;
+                switch (compareDirection)
+                {
+                    case CompareDirection.PosX:
+                        currentCellFace = tile._posX;
+                        break;
+                    case CompareDirection.NegX:
+                        currentCellFace = tile._negX;
+                        break;
+                    case CompareDirection.PosZ:
+                        currentCellFace = tile._posZ;
+                        break;
+                    case CompareDirection.NegZ:
+                        currentCellFace = tile._negZ;
+                        break;
+                    default:
+                        continue;
+                }
+
+                foreach (var neighbourTile in neighbourTilesCopy)
+                {
+                    HorizontalFaceData neighbourCellFace;
+                    switch (compareDirection)
+                    {
+                        case CompareDirection.PosX:
+                            neighbourCellFace = neighbourTile._negX;
+                            break;
+                        case CompareDirection.NegX:
+                            neighbourCellFace = neighbourTile._posX;
+                            break;
+                        case CompareDirection.PosZ:
+                            neighbourCellFace = neighbourTile._negZ;
+                            break;
+                        case CompareDirection.NegZ:
+                            neighbourCellFace = neighbourTile._posZ;
+                            break;
+                        default:
+                            continue;
+                    }
+
+                    //Compare the tiles
+                    //Horizontal tiles match if:
+                    //  -> The socket id's match
+                    //
+                    //  -> Both are symmetrical
+                    //   OR
+                    //  -> The sockets are one is flipped and one is normal
+
+                    if (currentCellFace._socketID != neighbourCellFace._socketID)
+                        continue;
+                    if ((currentCellFace._isSymmetric && neighbourCellFace._isSymmetric) ||
+                        (currentCellFace._isFlipped != neighbourCellFace._isFlipped))
+                    {
+                        compatibleTiles.Add(neighbourTile);
+                    }
+                }
+
+                //Remove all compatible tiles as to not double check them
+                foreach (var compatibleTile in compatibleTiles)
+                {
+                    neighbourTilesCopy.Remove(compatibleTile);
+                }
+
+            }
+
+            //If there are tiles remaining in tilecopy
+            //then the propogation changed something in this neighbour
+            if (neighbourTilesCopy.Count > 0)
+                changed = true;
+
+            //All the tiles that remain in the copy are not correct anymore
+            //Delete them from the neighbour 
+            foreach (var neighbourTile in neighbourTilesCopy)
+            {
+                _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z]._possibleTiles.Remove(neighbourTile);
+            }
+
+        }
+        else
+        {
+
+        }
 
 
         return changed;
