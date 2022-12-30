@@ -41,10 +41,9 @@ public class WFCCell3D : MonoBehaviour
         var materials = chosenTile.GetMaterials();
         if (materials != null)
             GetComponent<MeshRenderer>().materials = materials;
-        Debug.Log(chosenTile.transform.name);
         _isCollapsed = true;
+        _collapsedData = chosenTile;
 
         _possibleTiles.Clear();
-        _possibleTiles.Add(chosenTile);
     }
 }

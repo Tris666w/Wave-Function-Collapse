@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 using static TileData;
 
 public class WFC_3D : MonoBehaviour
@@ -20,15 +20,26 @@ public class WFC_3D : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
+            ClearLog();
             Debug.Log($"Generating map of size: {_mapSize.ToString()}");
             AttemptDestroyResult();
+            StopAllCoroutines();
             GenerateLevel();
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("Destroying generated level");
             AttemptDestroyResult();
+            StopAllCoroutines();
         }
+    }
+
+    public void ClearLog()
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
     }
 
     private void AttemptDestroyResult()
@@ -100,12 +111,11 @@ public class WFC_3D : MonoBehaviour
             //Wait the coroutine
             yield return new WaitForSeconds(_stepTime);
 
-
             //If there is no cell with a low entropy that is not equal to 0,
             // The wave has collapsed, break the loop
         } while (cell.x != -1 || cell.y != -1);
 
-        CleanUp();
+        //CleanUp();
     }
 
     private void CleanUp()
@@ -129,8 +139,8 @@ public class WFC_3D : MonoBehaviour
                 {
                     float newEntropy = _cells3D[x, y, z].GetEntropy();
 
-                    //If the entropy is 1, the cell has been collapsed, so we disregard it
-                    if (Mathf.Approximately(newEntropy, 1f))
+                    //If the entropy is 0, the cell has been collapsed, so we disregard it
+                    if (Mathf.Approximately(newEntropy, 0f))
                         continue;
 
                     //Add some randomness in case there would be multiple cells with the same entropy
@@ -237,74 +247,15 @@ public class WFC_3D : MonoBehaviour
             WFCCell3D neighbourCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
             var neighbourTilesCopy = new List<TileData>(neighbourCell._possibleTiles);
 
-
-            foreach (var tile in currentCell._possibleTiles)
+            if (!currentCell.IsCollapsed)
+                neighbourTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCell._possibleTiles, neighbourTilesCopy, compareDirection);
+            else
             {
-                List<TileData> compatibleTiles = new();
-
-                HorizontalFaceData currentCellFace;
-                switch (compareDirection)
+                var currentCellList = new List<TileData>
                 {
-                    case CompareDirection.PosX:
-                        currentCellFace = tile._posX;
-                        break;
-                    case CompareDirection.NegX:
-                        currentCellFace = tile._negX;
-                        break;
-                    case CompareDirection.PosZ:
-                        currentCellFace = tile._posZ;
-                        break;
-                    case CompareDirection.NegZ:
-                        currentCellFace = tile._negZ;
-                        break;
-                    default:
-                        continue;
-                }
-
-                foreach (var neighbourTile in neighbourTilesCopy)
-                {
-                    HorizontalFaceData neighbourCellFace;
-                    switch (compareDirection)
-                    {
-                        case CompareDirection.PosX:
-                            neighbourCellFace = neighbourTile._negX;
-                            break;
-                        case CompareDirection.NegX:
-                            neighbourCellFace = neighbourTile._posX;
-                            break;
-                        case CompareDirection.PosZ:
-                            neighbourCellFace = neighbourTile._negZ;
-                            break;
-                        case CompareDirection.NegZ:
-                            neighbourCellFace = neighbourTile._posZ;
-                            break;
-                        default:
-                            continue;
-                    }
-
-                    //Compare the tiles
-                    //Horizontal tiles match if:
-                    //  -> The socket id's match
-                    //
-                    //  -> Both are symmetrical
-                    //   OR
-                    //  -> The sockets are one is flipped and one is normal
-
-                    if (currentCellFace._socketID != neighbourCellFace._socketID)
-                        continue;
-                    if ((currentCellFace._isSymmetric && neighbourCellFace._isSymmetric) ||
-                        (currentCellFace._isFlipped != neighbourCellFace._isFlipped))
-                    {
-                        compatibleTiles.Add(neighbourTile);
-                    }
-                }
-
-                //Remove all compatible tiles as to not double check them
-                foreach (var compatibleTile in compatibleTiles)
-                {
-                    neighbourTilesCopy.Remove(compatibleTile);
-                }
-
+                    currentCell.CollapsedData
+                };
+                neighbourTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCellList, neighbourTilesCopy, compareDirection);
             }
 
             //If there are tiles remaining in tilecopy
@@ -403,21 +354,94 @@ public class WFC_3D : MonoBehaviour
         return changed;
     }
 
+    private List<TileData> GetDeprecatedNeighbourTilesHorizontal(List<TileData> currentCellTiles, List<TileData> neighbourTilesCopy, CompareDirection compareDirection)
+    {
+        foreach (var tile in currentCellTiles)
+        {
+            List<TileData> compatibleTiles = new();
+
+            HorizontalFaceData currentCellFace;
+            switch (compareDirection)
+            {
+                case CompareDirection.PosX:
+                    currentCellFace = tile._posX;
+                    break;
+                case CompareDirection.NegX:
+                    currentCellFace = tile._negX;
+                    break;
+                case CompareDirection.PosZ:
+                    currentCellFace = tile._posZ;
+                    break;
+                case CompareDirection.NegZ:
+                    currentCellFace = tile._negZ;
+                    break;
+                default:
+                    continue;
+            }
+
+            foreach (var neighbourTile in neighbourTilesCopy)
+            {
+                HorizontalFaceData neighbourCellFace;
+                switch (compareDirection)
+                {
+                    case CompareDirection.PosX:
+                        neighbourCellFace = neighbourTile._negX;
+                        break;
+                    case CompareDirection.NegX:
+                        neighbourCellFace = neighbourTile._posX;
+                        break;
+                    case CompareDirection.PosZ:
+                        neighbourCellFace = neighbourTile._negZ;
+                        break;
+                    case CompareDirection.NegZ:
+                        neighbourCellFace = neighbourTile._posZ;
+                        break;
+                    default:
+                        continue;
+                }
+
+                //Compare the tiles
+                //Horizontal tiles match if:
+                //  -> The socket id's match
+                //
+                //  -> Both are symmetrical
+                //   OR
+                //  -> The sockets are one is flipped and one is normal
+
+                if (currentCellFace._socketID != neighbourCellFace._socketID)
+                    continue;
+                if ((currentCellFace._isSymmetric && neighbourCellFace._isSymmetric) ||
+                    (currentCellFace._isFlipped != neighbourCellFace._isFlipped))
+                {
+                    compatibleTiles.Add(neighbourTile);
+                }
+            }
+
+            //Remove all compatible tiles as to not double check them
+            foreach (var compatibleTile in compatibleTiles)
+            {
+                neighbourTilesCopy.Remove(compatibleTile);
+            }
+
+        }
+
+        return neighbourTilesCopy;
+    }
 
     List<Vector3Int> GetNeighbours(Vector3Int cellCoords)
     {
         List<Vector3Int> neighbours = new();
 
 
-        if (cellCoords.x - 1 > 0)
+        if (cellCoords.x - 1 >= 0)
             neighbours.Add(new Vector3Int(cellCoords.x - 1, cellCoords.y, cellCoords.z));
         if (cellCoords.x + 1 < _mapSize.x)
             neighbours.Add(new Vector3Int(cellCoords.x + 1, cellCoords.y, cellCoords.z));
-        if (cellCoords.y - 1 > 0)
+        if (cellCoords.y - 1 >= 0)
             neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y - 1, cellCoords.z));
         if (cellCoords.y + 1 < _mapSize.y)
             neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y + 1, cellCoords.z));
-        if (cellCoords.z - 1 > 0)
+        if (cellCoords.z - 1 >= 0)
             neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z - 1));
         if (cellCoords.z + 1 < _mapSize.z)
             neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z + 1));

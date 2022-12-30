@@ -206,17 +206,6 @@ Material:
     - _Color: {r: 0.48235294, g: 0.94509804, b: 0.48235294, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &211841678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5748931167001943998, guid: d841c228f8874a544840015d6242d4e8, type: 3}
-  m_PrefabInstance: {fileID: 1482731890}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &301473215
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,13 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51366520b865b7244b33f561faebac5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapSize: {x: 2, y: 1, z: 2}
+  _mapSize: {x: 10, y: 1, z: 10}
   _tileSize: 2
   _tiles:
   - {fileID: 415289851}
   - {fileID: 690693207}
-  - {fileID: 211841678}
-  - {fileID: 2021233265}
   _stepTime: 0.5
 --- !u!4 &301473217
 Transform:
@@ -392,6 +379,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5748931165490267233, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _posY._isInvariant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748931166077223007, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _negX._isSymmetric
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748931166077223007, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _posX._isSymmetric
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5748931166660033462, guid: d841c228f8874a544840015d6242d4e8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -448,6 +447,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 68007849}
+    - target: {fileID: 5748931167001943998, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _negX._isSymmetric
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748931167001943998, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+      propertyPath: _posZ._isSymmetric
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d841c228f8874a544840015d6242d4e8, type: 3}
 --- !u!1 &1550280164
@@ -528,14 +535,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550280164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.0755346, y: -0, z: -0, w: 0.9971432}
+  m_LocalPosition: {x: 0, y: 6, z: 19.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.664, y: 0, z: 0}
 --- !u!114 &1550280168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,14 +573,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2021233265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5748931165490267233, guid: d841c228f8874a544840015d6242d4e8, type: 3}
-  m_PrefabInstance: {fileID: 1482731890}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
