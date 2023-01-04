@@ -1,8 +1,12 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+[Serializable]
 public class TileData : MonoBehaviour
 {
     public class FaceData
@@ -19,6 +23,7 @@ public class TileData : MonoBehaviour
         {
             return this._socketID.ToString() + (this._isFlipped ? "f" : (this._isSymmetric ? "s" : ""));
         }
+
     }
 
     [Serializable]
@@ -28,10 +33,25 @@ public class TileData : MonoBehaviour
 
         [Range(0, 3)]
         public int _rotationIndex = 0;
+
         public override string ToString()
         {
             return this._socketID.ToString() + (this._isInvariant ? "i" : "abcd".ElementAt(this._rotationIndex).ToString());
         }
+    }
+
+    public TileData Clone()
+    {
+        MemoryStream ms = new MemoryStream();
+        BinaryFormatter bf = new BinaryFormatter();
+
+        bf.Serialize(ms, this);
+
+        ms.Position = 0;
+        object obj = bf.Deserialize(ms);
+        ms.Close();
+
+        return obj as TileData;
     }
 
     public HorizontalFaceData _posX;

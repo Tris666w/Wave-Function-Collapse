@@ -115,7 +115,7 @@ public class WFC_3D : MonoBehaviour
             // The wave has collapsed, break the loop
         } while (cell.x != -1 || cell.y != -1);
 
-        //CleanUp();
+        CleanUp();
     }
 
     private void CleanUp()
@@ -124,7 +124,7 @@ public class WFC_3D : MonoBehaviour
             for (int row = 0; row < _mapSize.y; row++)
                 for (int layer = 0; layer < _mapSize.z; layer++)
                 {
-                    DestroyImmediate(_cells3D[col, row, layer]);
+                    Destroy(_cells3D[col, row, layer]);
                 }
     }
 
@@ -279,62 +279,15 @@ public class WFC_3D : MonoBehaviour
             var neighbourTilesCopy = new List<TileData>(neighbourCell._possibleTiles);
 
 
-            foreach (var tile in currentCell._possibleTiles)
+            if (!currentCell.IsCollapsed)
+                neighbourTilesCopy = GetDeprecatedNeighbourTilesVertical(currentCell._possibleTiles, neighbourTilesCopy, compareDirection);
+            else
             {
-                List<TileData> compatibleTiles = new();
-
-                VerticalFaceData currentCellFace;
-                switch (compareDirection)
+                var currentCellList = new List<TileData>
                 {
-                    case CompareDirection.PosY:
-                        currentCellFace = tile._posY;
-                        break;
-                    case CompareDirection.NegY:
-                        currentCellFace = tile._negY;
-                        break;
-
-                    default:
-                        continue;
-                }
-
-                foreach (var neighbourTile in neighbourTilesCopy)
-                {
-                    VerticalFaceData neighbourCellFace;
-                    switch (compareDirection)
-                    {
-                        case CompareDirection.PosY:
-                            neighbourCellFace = neighbourTile._negY;
-                            break;
-                        case CompareDirection.NegY:
-                            neighbourCellFace = neighbourTile._posY;
-                            break;
-                        default:
-                            continue;
-                    }
-
-                    //Compare the tiles
-                    //Vertical tiles match if:
-                    //  -> The socket id's match
-                    //
-                    //  -> Both are rotationally invariant
-                    //   OR
-                    //  -> Both have the same rotation index
-
-                    if (currentCellFace._socketID != neighbourCellFace._socketID)
-                        continue;
-                    if ((currentCellFace._isInvariant && neighbourCellFace._isInvariant) ||
-                        (currentCellFace._rotationIndex == neighbourCellFace._rotationIndex))
-                    {
-                        compatibleTiles.Add(neighbourTile);
-                    }
-                }
-
-                //Remove all compatible tiles as to not double check them
-                foreach (var compatibleTile in compatibleTiles)
-                {
-                    neighbourTilesCopy.Remove(compatibleTile);
-                }
-
+                    currentCell.CollapsedData
+                };
+                neighbourTilesCopy = GetDeprecatedNeighbourTilesVertical(currentCellList, neighbourTilesCopy, compareDirection);
             }
 
             //If there are tiles remaining in tilecopy
@@ -428,6 +381,68 @@ public class WFC_3D : MonoBehaviour
         return neighbourTilesCopy;
     }
 
+    private List<TileData> GetDeprecatedNeighbourTilesVertical(List<TileData> currentCellTiles, List<TileData> neighbourTilesCopy, CompareDirection compareDirection)
+    {
+        foreach (var tile in currentCellTiles)
+        {
+            List<TileData> compatibleTiles = new();
+
+            VerticalFaceData currentCellFace;
+            switch (compareDirection)
+            {
+                case CompareDirection.PosY:
+                    currentCellFace = tile._posY;
+                    break;
+                case CompareDirection.NegY:
+                    currentCellFace = tile._negY;
+                    break;
+
+                default:
+                    continue;
+            }
+
+            foreach (var neighbourTile in neighbourTilesCopy)
+            {
+                VerticalFaceData neighbourCellFace;
+                switch (compareDirection)
+                {
+                    case CompareDirection.PosY:
+                        neighbourCellFace = neighbourTile._negY;
+                        break;
+                    case CompareDirection.NegY:
+                        neighbourCellFace = neighbourTile._posY;
+                        break;
+                    default:
+                        continue;
+                }
+
+                //Compare the tiles
+                //Vertical tiles match if:
+                //  -> The socket id's match
+                //
+                //  -> Both are rotationally invariant
+                //   OR
+                //  -> Both have the same rotation index
+
+                if (currentCellFace._socketID != neighbourCellFace._socketID)
+                    continue;
+                if ((currentCellFace._isInvariant && neighbourCellFace._isInvariant) ||
+                    (currentCellFace._rotationIndex == neighbourCellFace._rotationIndex))
+                {
+                    compatibleTiles.Add(neighbourTile);
+                }
+            }
+
+            //Remove all compatible tiles as to not double check them
+            foreach (var compatibleTile in compatibleTiles)
+            {
+                neighbourTilesCopy.Remove(compatibleTile);
+            }
+        }
+
+        return neighbourTilesCopy;
+    }
+
     List<Vector3Int> GetNeighbours(Vector3Int cellCoords)
     {
         List<Vector3Int> neighbours = new();
@@ -447,4 +462,5 @@ public class WFC_3D : MonoBehaviour
             neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z + 1));
         return neighbours;
     }
+
 }

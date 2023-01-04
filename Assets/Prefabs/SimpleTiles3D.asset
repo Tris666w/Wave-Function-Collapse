@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ac27f2e40bfd544848a35a706a8028, type: 3}
+  m_Name: SimpleTiles3D
+  m_EditorClassIdentifier: 
+  _tilesPrefab: {fileID: 5748931166660033463, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+  modules: []
