@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: SimpleTiles3D
   m_EditorClassIdentifier: 
   _tilesPrefab: {fileID: 5748931166660033463, guid: d841c228f8874a544840015d6242d4e8, type: 3}
-  modules: []
+  _modules:
+  - name: Walled Floor_1
+    _tile: {fileID: 0}
+    _prefab: {fileID: 5748931166077222995, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+  - name: Walled Floor_2
+    _tile: {fileID: 0}
+    _prefab: {fileID: 5748931166077222995, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+  - name: Walled Floor_3
+    _tile: {fileID: 0}
+    _prefab: {fileID: 5748931166077222995, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+  - name: Walled Floor_0
+    _tile: {fileID: 5748931166077223007, guid: d841c228f8874a544840015d6242d4e8, type: 3}
+    _prefab: {fileID: 5748931166077222995, guid: d841c228f8874a544840015d6242d4e8, type: 3}

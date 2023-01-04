@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class WFCCell3D : MonoBehaviour
 {
-    public List<TileData> _possibleTiles = new();
-    private TileData _collapsedData = null;
-    public TileData CollapsedData
+    public List<Module> _modules = new();
+
+    private Module _collapsedModule = null;
+    public Module CollapsedData
     {
         get
         {
-            return _collapsedData;
+            return _collapsedModule;
         }
     }
+
     private bool _isCollapsed = false;
     public bool IsCollapsed
     {
@@ -24,26 +26,32 @@ public class WFCCell3D : MonoBehaviour
 
     public int GetEntropy()
     {
-        return _possibleTiles.Count;
+        return _modules.Count;
     }
 
     public void CollapseCell()
     {
-        if (_possibleTiles.Count <= 0)
+        if (_modules.Count <= 0)
+        {
             throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
+        }
 
         //Get random tile from the remaining ones
-        int randomIndex = Random.Range(0, _possibleTiles.Count);
-        var chosenTile = _possibleTiles[randomIndex];
+        int randomIndex = Random.Range(0, _modules.Count);
+        var chosenTile = _modules[randomIndex];
 
 
-        GetComponent<MeshFilter>().mesh = chosenTile.GetMesh();
-        var materials = chosenTile.GetMaterials();
-        if (materials != null)
-            GetComponent<MeshRenderer>().materials = materials;
+        //Instantiate prefab
+        var spawnedTile = Instantiate(chosenTile._prefab, this.transform);
+        spawnedTile.transform.localPosition = Vector3.zero;
+
+        //Add local rotation
+        Quaternion newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex* 90, 0);
+        spawnedTile.transform.localRotation = newRot;
+
+        _collapsedModule = chosenTile;
         _isCollapsed = true;
-        _collapsedData = chosenTile;
 
-        _possibleTiles.Clear();
+        _modules.Clear();
     }
 }

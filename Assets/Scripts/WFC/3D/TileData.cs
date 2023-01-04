@@ -24,6 +24,15 @@ public class TileData : MonoBehaviour
             return this._socketID.ToString() + (this._isFlipped ? "f" : (this._isSymmetric ? "s" : ""));
         }
 
+        public HorizontalFaceData Clone()
+        {
+            HorizontalFaceData clone = new();
+            clone._isFlipped = this._isFlipped;
+            clone._isSymmetric = this._isSymmetric;
+            clone._socketID = this._socketID;
+            return clone;
+        }
+
     }
 
     [Serializable]
@@ -38,20 +47,28 @@ public class TileData : MonoBehaviour
         {
             return this._socketID.ToString() + (this._isInvariant ? "i" : "abcd".ElementAt(this._rotationIndex).ToString());
         }
+
+        public VerticalFaceData Clone()
+        {
+            VerticalFaceData clone = new();
+            clone._isInvariant = this._isInvariant;
+            clone._rotationIndex = this._rotationIndex;
+            clone._socketID = this._socketID;
+            return clone;
+        }
     }
 
     public TileData Clone()
     {
-        MemoryStream ms = new MemoryStream();
-        BinaryFormatter bf = new BinaryFormatter();
-
-        bf.Serialize(ms, this);
-
-        ms.Position = 0;
-        object obj = bf.Deserialize(ms);
-        ms.Close();
-
-        return obj as TileData;
+        TileData clone = gameObject.AddComponent<TileData>();
+        clone._posX = this._posX.Clone();
+        clone._negX = this._negX.Clone();
+        clone._posZ = this._posZ.Clone();
+        clone._negZ = this._negZ.Clone();
+        clone._posY = this._posY.Clone();
+        clone._negY = this._negY.Clone();
+        clone._tileSize = this._tileSize;
+        return clone;
     }
 
     public HorizontalFaceData _posX;
