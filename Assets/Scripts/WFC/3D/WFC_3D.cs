@@ -1,4 +1,3 @@
-using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,12 +7,14 @@ using static TileData;
 
 public class WFC_3D : MonoBehaviour
 {
+    [Header("Wave parameters")]
     [SerializeField] private Vector3Int _mapSize = new(10, 10, 10);
-    [SerializeField] private float _tileSize = 2f;
     [SerializeField] private ModuleCollection3D _modules;
+    [SerializeField] private float _tileSize = 2f;
+    [SerializeField] private bool _addEmptyBorder = true;
 
+    [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
-
     private WFCCell3D[,,] _cells3D;
     private GameObject _generatedMap = null;
 
@@ -90,15 +91,15 @@ public class WFC_3D : MonoBehaviour
 
     public IEnumerator CollapseWave()
     {
-        Vector3Int cell;
-       
         //Get the cell with the lowest entropy to start the algorithm
-        cell = GetLowestEntropyCell();
+        var cell = GetLowestEntropyCell();
         if (cell.x == -1 || cell.y == -1 || cell.z == -1)
         {
             Debug.LogError("No cell with entropy found, before algorithm start?");
             yield break;
         }
+
+        //Add a border of empty tiles around the generated map
 
         //Start collapsing the wave
         do
@@ -116,10 +117,6 @@ public class WFC_3D : MonoBehaviour
             if (!Mathf.Approximately(_stepTime, 0))
                 yield return new WaitForSeconds(_stepTime);
 
-            //If there is no cell with a low entropy that is not equal to 0,
-            // The wave has collapsed, break the loop
-            if (cell.x != -1 || cell.y != -1 || cell.z != -1)
-                Debug.Log("No cell with entropy higher than 0 found, breaking the loop");
         } while (cell.x != -1 || cell.y != -1 || cell.z != -1);
 
         Debug.Log("Outside wave Loop");
@@ -253,28 +250,28 @@ public class WFC_3D : MonoBehaviour
         {
             WFCCell3D currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
 
-            WFCCell3D neighbourCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
-            var neighbourTilesCopy = new List<Module>(neighbourCell._modules);
+            WFCCell3D neighborCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
+            var neighborTilesCopy = new List<Module>(neighborCell._modules);
 
             if (!currentCell.IsCollapsed)
-                neighbourTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCell._modules, neighbourTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCell._modules, neighborTilesCopy, compareDirection);
             else
             {
                 var currentCellList = new List<Module>
                 {
                     currentCell.CollapsedData
                 };
-                neighbourTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCellList, neighbourTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCellList, neighborTilesCopy, compareDirection);
             }
 
-            //If there are tiles remaining in tilecopy
-            //then the propogation changed something in this neighbour
-            if (neighbourTilesCopy.Count > 0)
+            //If there are tiles remaining in tile copy
+            //then the propagation changed something in this neighbor
+            if (neighborTilesCopy.Count > 0)
                 changed = true;
 
             //All the tiles that remain in the copy are not correct anymore
             //Delete them from the neighbour 
-            foreach (var neighbourTile in neighbourTilesCopy)
+            foreach (var neighbourTile in neighborTilesCopy)
             {
                 _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z]._modules.Remove(neighbourTile);
             }
@@ -369,6 +366,8 @@ public class WFC_3D : MonoBehaviour
                 //  -> Both are symmetrical
                 //   OR
                 //  -> The sockets are one is flipped and one is normal
+                //   OR
+                //  -> Both socket id's are 0 (empty faces)
 
                 if (currentCellFace._socketID != neighbourCellFace._socketID)
                     continue;
@@ -377,6 +376,9 @@ public class WFC_3D : MonoBehaviour
                 {
                     compatibleTiles.Add(neighbourModule);
                 }
+                if (currentCellFace._socketID == 0 && neighbourCellFace._socketID == 0)
+                    compatibleTiles.Add(neighbourModule);
+
             }
 
             //Remove all compatible tiles as to not double check them

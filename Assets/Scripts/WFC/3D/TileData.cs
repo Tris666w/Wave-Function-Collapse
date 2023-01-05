@@ -80,6 +80,8 @@ public class TileData : MonoBehaviour
 
     public float _tileSize = 2.0f;
 
+    [Tooltip("This assures that rotated variants of this tile are generated, even if both vertical faces are invariant.")]
+    public bool _generateRotatedVariants = false;
     public Mesh GetMesh()
     {
         var _tileMesh = GetComponent<MeshFilter>();

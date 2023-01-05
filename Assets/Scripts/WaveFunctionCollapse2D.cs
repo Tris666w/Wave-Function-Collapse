@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveFunctionCollapse : MonoBehaviour
+public class WaveFunctionCollapse2D : MonoBehaviour
 {
     [SerializeField] private Vector2Int _mapSize = new(10, 10);
     [SerializeField] private float _tileSize = 256f;

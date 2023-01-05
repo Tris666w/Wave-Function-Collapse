@@ -1,11 +1,11 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "new collection", menuName = "WFC/ 3D Module collection")]
 public class ModuleCollection3D : ScriptableObject
 {
-    [Tooltip("This prefab should contain all preferred tiles and eacht tile should have filled in TileData!")]
+    [Tooltip("This prefab should contain all preferred tiles and each tile should have filled in TileData!")]
     [SerializeField] private GameObject _tilesPrefab;
 
     [SerializeField] private List<Module> _modules;
@@ -16,6 +16,9 @@ public class ModuleCollection3D : ScriptableObject
 
     public void CreateModules()
     {
+        //Reset modules to assure there are no duplicates form previous generating
+        ResetModules();
+
         if (_tilesPrefab == null)
             return;
 
@@ -28,17 +31,22 @@ public class ModuleCollection3D : ScriptableObject
                 continue;
 
             var tileDataArray = child.GetComponents<TileData>().ToList();
-            if(tileDataArray.Count > 1)
+            if (tileDataArray.Count > 1)
             {
                 tileDataArray.RemoveRange(1, tileDataArray.Count - 1);
             }
 
             string name;
 
-            if (tileData._negY._isInvariant && tileData._posY._isInvariant)
+            // Generate rotational variants if
+            //  -> a vertical tile face is invariant
+            //  OR
+            //  -> Generate Rotated Variant is true
+            if ((tileData._negY._isInvariant && tileData._posY._isInvariant) && !tileData._generateRotatedVariants)
             {
                 //Generate a name and an i to indicate it's invariant
                 name = tileData.name + "_i";
+
                 //Create a new module for this invariant tile
                 _modules.Add(new Module(name, tileData, child.gameObject));
             }
@@ -56,7 +64,6 @@ public class ModuleCollection3D : ScriptableObject
         }
 
     }
-
 
     private void GenerateRotationVariants(string name, TileData originalTileData, GameObject prefab)
     {
