@@ -29,8 +29,36 @@ public class WFCCell3D : MonoBehaviour
         return _modules.Count;
     }
 
+    public void CollapseCell(string moduleName)
+    {
+        var desiredModule = _modules.Find(x => moduleName == x.name);
+
+        if (desiredModule == null)
+            return;
+
+        //Instantiate prefab
+        var spawnedTile = Instantiate(desiredModule._prefab, this.transform);
+        spawnedTile.transform.localPosition = Vector3.zero;
+
+        //Add local rotation
+        Quaternion newRot = Quaternion.Euler(0, desiredModule._tile._negY._rotationIndex * 90, 0);
+        spawnedTile.transform.localRotation = newRot;
+
+        _collapsedModule = desiredModule;
+        _isCollapsed = true;
+
+        _modules.Clear();
+
+    }
+
     public void CollapseCell()
     {
+        if (_isCollapsed)
+        {
+            Debug.LogWarning($"{nameof(WFCCell3D)}, CollapseCell(): Trying to collapse an already collapsed cell!!");
+            return;
+        }
+
         if (_modules.Count <= 0)
         {
             throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
@@ -46,7 +74,7 @@ public class WFCCell3D : MonoBehaviour
         spawnedTile.transform.localPosition = Vector3.zero;
 
         //Add local rotation
-        Quaternion newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex* 90, 0);
+        Quaternion newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex * 90, 0);
         spawnedTile.transform.localRotation = newRot;
 
         _collapsedModule = chosenTile;

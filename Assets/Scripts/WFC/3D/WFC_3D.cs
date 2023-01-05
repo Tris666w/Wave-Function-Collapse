@@ -11,7 +11,9 @@ public class WFC_3D : MonoBehaviour
     [SerializeField] private Vector3Int _mapSize = new(10, 10, 10);
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
+    [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result. ")]
     [SerializeField] private bool _addEmptyBorder = true;
+    [SerializeField] private string _emptyTileName = "Empty_i";
 
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
@@ -99,7 +101,12 @@ public class WFC_3D : MonoBehaviour
             yield break;
         }
 
-        //Add a border of empty tiles around the generated map
+        // Add a border of empty tiles around the generated map, if preferred
+        // This makes the outside of the generated map better
+        if (_addEmptyBorder)
+        {
+            AddEmptyBorder();
+        }
 
         //Start collapsing the wave
         do
@@ -122,6 +129,83 @@ public class WFC_3D : MonoBehaviour
         Debug.Log("Outside wave Loop");
 
         CleanUp();
+    }
+
+    private void AddEmptyBorder()
+    {
+        //1. Collapse all cells along the X faces to empty
+        for (int y = 0; y < _mapSize.y; y++)
+            for (int z = 0; z < _mapSize.z; z++)
+            {
+                var cellIdx = new Vector3Int(0, y, z);
+                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+                if (!cell.IsCollapsed)
+                    cell.CollapseCell(_emptyTileName);
+
+                PropogateChanges(cellIdx);
+            }
+
+        for (int y = 0; y < _mapSize.y; y++)
+            for (int z = 0; z < _mapSize.z; z++)
+            {
+                var cellIdx = new Vector3Int(_mapSize.x - 1, y, z);
+                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+                if (!cell.IsCollapsed)
+                    cell.CollapseCell(_emptyTileName);
+                PropogateChanges(cellIdx);
+            }
+
+        //2. Collapse all cells along the Y faces to empty
+        for (int x = 0; x < _mapSize.x; x++)
+            for (int z = 0; z < _mapSize.z; z++)
+        {
+            var cellIdx = new Vector3Int(x, 0, z);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (!cell.IsCollapsed)
+                cell.CollapseCell(_emptyTileName);
+
+            PropogateChanges(cellIdx);
+        }
+
+        for (int x = 0; x < _mapSize.x; x++)
+            for (int z = 0; z < _mapSize.z; z++)
+        {
+            var cellIdx = new Vector3Int(x, _mapSize.y - 1, z);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (!cell.IsCollapsed)
+                cell.CollapseCell(_emptyTileName);
+
+            PropogateChanges(cellIdx);
+        }
+
+        //3. Collapse all cells along the Z faces to empty
+        for (int x = 0; x < _mapSize.x; x++)
+            for (int y = 0; y < _mapSize.z; y++)
+        {
+            var cellIdx = new Vector3Int(x, y, 0);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (!cell.IsCollapsed)
+                cell.CollapseCell(_emptyTileName);
+
+            PropogateChanges(cellIdx);
+        }
+
+        for (int x = 0; x < _mapSize.x; x++)
+        for (int y = 0; y < _mapSize.z; y++)
+        {
+            var cellIdx = new Vector3Int(x, y, _mapSize.z - 1);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (!cell.IsCollapsed)
+                cell.CollapseCell(_emptyTileName);
+
+            PropogateChanges(cellIdx);
+        }
     }
 
     private void CleanUp()

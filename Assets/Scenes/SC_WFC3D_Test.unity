@@ -155,6 +155,8 @@ MonoBehaviour:
   _mapSize: {x: 5, y: 5, z: 5}
   _modules: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
   _tileSize: 2
+  _addEmptyBorder: 1
+  _emptyTileName: Empty_i
   _stepTime: 0.5
 --- !u!4 &301473217
 Transform:
