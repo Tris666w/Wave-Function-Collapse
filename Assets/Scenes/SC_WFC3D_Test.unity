@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51366520b865b7244b33f561faebac5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapSize: {x: 5, y: 5, z: 5}
-  _modules: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
+  _mapSize: {x: 12, y: 3, z: 12}
+  _modules: {fileID: 11400000, guid: 6f6e19dcec936984dbc562bdd8346653, type: 2}
   _tileSize: 2
   _addEmptyBorder: 1
   _emptyTileName: Empty_i
-  _stepTime: 0.5
+  _stepTime: 0.05
 --- !u!4 &301473217
 Transform:
   m_ObjectHideFlags: 0
