@@ -29,13 +29,11 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
     public void CollapseWave()
     {
-        Vector2Int cell = new(-1, -1);
-
         //Get the cell with the lowest entropy to start the algorithm
-        cell = GetLowestEntropyCell();
+        var cell = GetLowestEntropyCell();
         if (cell.x == -1 || cell.y == -1)
         {
-            Debug.LogError("No cell with entropy found, before algorithm start?");
+            Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
             return;
         }
 
@@ -45,8 +43,8 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             //Collapse the cell
             _cells2D[cell.x, cell.y].CollapseCell();
 
-            //Propogate the changes to the other cells
-            PropogateChanges(cell);
+            //Propagate the changes to the other cells
+            PropagateChanges(cell);
 
             //Get the next cell with the lowest entropy
             cell = GetLowestEntropyCell();
@@ -71,7 +69,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
     private Vector2Int GetLowestEntropyCell()
     {
-        float _minEntropy = float.MaxValue;
+        var _minEntropy = float.MaxValue;
         var lowestEntropyCell = new Vector2Int(-1, -1);
 
         for (int x = 0; x < _mapSize.x; x++)
@@ -79,8 +77,8 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             {
                 float newEntropy = _cells2D[x, y].GetEntropy();
 
-                //If the entropy is 1, the cell has been collapsed, so we disregard it
-                if (Mathf.Approximately(newEntropy, 1f))
+                //If the entropy is 0, the cell has been collapsed, so we disregard it
+                if (Mathf.Approximately(newEntropy, 0f))
                     continue;
 
                 if (newEntropy < _minEntropy)
@@ -93,7 +91,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         return lowestEntropyCell;
     }
 
-    private void PropogateChanges(Vector2Int originalCell)
+    private void PropagateChanges(Vector2Int originalCell)
     {
         Stack<Vector2Int> changedCells = new();
         changedCells.Push(originalCell);
@@ -105,26 +103,26 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
 
             //Get it's neighbours
-            var neighbourList = GetNeighbours(currentCell);
+            var neighborList = GetNeighbors(currentCell);
 
-            foreach (var neighbour in neighbourList)
+            foreach (var neighbor in neighborList)
             {
                 //Disregard cells that have already been collapsed
-                if (_cells2D[neighbour.x, neighbour.y].IsCollapsed)
+                if (_cells2D[neighbor.x, neighbor.y].IsCollapsed)
                     continue;
 
                 //Detect the compatibilities and checked if something changed
-                var somethingChanged = CompareCells(currentCell, neighbour);
+                var somethingChanged = CompareCells(currentCell, neighbor);
 
                 if (somethingChanged)
                 {
-                    changedCells.Push(neighbour);
+                    changedCells.Push(neighbor);
                 }
             }
         }
     }
 
-    bool CompareCells(Vector2Int currentCell, Vector2Int neighbour)
+    bool CompareCells(Vector2Int currentCellIdx, Vector2Int neighborIdx)
     {
         bool changed = false;
 
@@ -135,32 +133,32 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         Vector2Int samplePoint2 = new();
         Vector2Int samplePoint3 = new();
 
-        Vector2Int neighbourSamplePoint1 = new();
-        Vector2Int neighbourSamplePoint2 = new();
-        Vector2Int neighbourSamplePoint3 = new();
+        Vector2Int neighborSamplePoint1 = new();
+        Vector2Int neighborSamplePoint2 = new();
+        Vector2Int neighborSamplePoint3 = new();
 
         //Get the direction that needs to be checked
-        if (neighbour.x - currentCell.x == 1)
+        if (neighborIdx.x - currentCellIdx.x == 1)
         {
             //RIGHT 
             samplePoint1.x = 19 * sampleStep;
             samplePoint2.x = 19 * sampleStep;
             samplePoint3.x = 19 * sampleStep;
 
-            neighbourSamplePoint1.x = sampleStep;
-            neighbourSamplePoint2.x = sampleStep;
-            neighbourSamplePoint3.x = sampleStep;
+            neighborSamplePoint1.x = sampleStep;
+            neighborSamplePoint2.x = sampleStep;
+            neighborSamplePoint3.x = sampleStep;
 
             samplePoint1.y = 5 * sampleStep;
             samplePoint2.y = 10 * sampleStep;
             samplePoint3.y = 15 * sampleStep;
 
-            neighbourSamplePoint1.y = 5 * sampleStep;
-            neighbourSamplePoint2.y = 10 * sampleStep;
-            neighbourSamplePoint3.y = 15 * sampleStep;
+            neighborSamplePoint1.y = 5 * sampleStep;
+            neighborSamplePoint2.y = 10 * sampleStep;
+            neighborSamplePoint3.y = 15 * sampleStep;
 
         }
-        else if (neighbour.x - currentCell.x == -1)
+        else if (neighborIdx.x - currentCellIdx.x == -1)
         {
             //LEFT 
 
@@ -168,64 +166,72 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             samplePoint2.x = sampleStep;
             samplePoint3.x = sampleStep;
 
-            neighbourSamplePoint1.x = 3 * sampleStep;
-            neighbourSamplePoint2.x = 3 * sampleStep;
-            neighbourSamplePoint3.x = 3 * sampleStep;
+            neighborSamplePoint1.x = 3 * sampleStep;
+            neighborSamplePoint2.x = 3 * sampleStep;
+            neighborSamplePoint3.x = 3 * sampleStep;
 
             samplePoint1.y = 1 * sampleStep;
             samplePoint2.y = 2 * sampleStep;
             samplePoint3.y = 3 * sampleStep;
 
-            neighbourSamplePoint1.y = 1 * sampleStep;
-            neighbourSamplePoint2.y = 2 * sampleStep;
-            neighbourSamplePoint3.y = 3 * sampleStep;
+            neighborSamplePoint1.y = 1 * sampleStep;
+            neighborSamplePoint2.y = 2 * sampleStep;
+            neighborSamplePoint3.y = 3 * sampleStep;
         }
 
-        if (neighbour.y - currentCell.y == 1)
+        if (neighborIdx.y - currentCellIdx.y == 1)
         {
             //UP 
             samplePoint1.y = 19 * sampleStep;
             samplePoint2.y = 19 * sampleStep;
             samplePoint3.y = 19 * sampleStep;
 
-            neighbourSamplePoint1.y = sampleStep;
-            neighbourSamplePoint2.y = sampleStep;
-            neighbourSamplePoint3.y = sampleStep;
+            neighborSamplePoint1.y = sampleStep;
+            neighborSamplePoint2.y = sampleStep;
+            neighborSamplePoint3.y = sampleStep;
 
             samplePoint1.x = 5 * sampleStep;
             samplePoint2.x = 10 * sampleStep;
             samplePoint3.x = 15 * sampleStep;
 
-            neighbourSamplePoint1.x = 5 * sampleStep;
-            neighbourSamplePoint2.x = 10 * sampleStep;
-            neighbourSamplePoint3.x = 15 * sampleStep;
+            neighborSamplePoint1.x = 5 * sampleStep;
+            neighborSamplePoint2.x = 10 * sampleStep;
+            neighborSamplePoint3.x = 15 * sampleStep;
         }
-        else if (neighbour.y - currentCell.y == -1)
+        else if (neighborIdx.y - currentCellIdx.y == -1)
         {
             //DOWN
             samplePoint1.y = sampleStep;
             samplePoint2.y = sampleStep;
             samplePoint3.y = sampleStep;
 
-            neighbourSamplePoint1.y = 19 * sampleStep;
-            neighbourSamplePoint2.y = 19 * sampleStep;
-            neighbourSamplePoint3.y = 19 * sampleStep;
+            neighborSamplePoint1.y = 19 * sampleStep;
+            neighborSamplePoint2.y = 19 * sampleStep;
+            neighborSamplePoint3.y = 19 * sampleStep;
 
             samplePoint1.x = 5 * sampleStep;
             samplePoint2.x = 10 * sampleStep;
             samplePoint3.x = 15 * sampleStep;
 
-            neighbourSamplePoint1.x = 5 * sampleStep;
-            neighbourSamplePoint2.x = 10 * sampleStep;
-            neighbourSamplePoint3.x = 15 * sampleStep;
+            neighborSamplePoint1.x = 5 * sampleStep;
+            neighborSamplePoint2.x = 10 * sampleStep;
+            neighborSamplePoint3.x = 15 * sampleStep;
         }
 
 
-        //Make a copy of the neighbours possible tiles
-        var tilesCopy = new List<Sprite>(_cells2D[neighbour.x, neighbour.y]._possibleTiles);
+        //Make a copy of the neighbors possible tiles
+        var tilesCopy = new List<Sprite>(_cells2D[neighborIdx.x, neighborIdx.y]._possibleTiles);
+
+        var currentCell = _cells2D[currentCellIdx.x, currentCellIdx.y];
+        var currentCellTiles = new List<Sprite>();
+
+        if (!currentCell.IsCollapsed)
+            currentCellTiles = currentCell._possibleTiles;
+        else
+            currentCellTiles.Add(currentCell.CollapsedTile);
 
         //Loop over the possible tiles of the current tile
-        foreach (var tile in _cells2D[currentCell.x, currentCell.y]._possibleTiles)
+        foreach (var tile in currentCellTiles)
         {
             //Sample the colors
             var color1 = tile.texture.GetPixel(samplePoint1.x, samplePoint1.y);
@@ -234,17 +240,17 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
             List<Sprite> compatibleSprite = new();
 
-            //Loop over the remaining tiles in the copy of neighbour
-            foreach (var neighbourTile in tilesCopy)
+            //Loop over the remaining tiles in the copy of neighborIdx
+            foreach (var neighborTile in tilesCopy)
             {
                 //Sample the colors
-                var neighbourColor1 = neighbourTile.texture.GetPixel(neighbourSamplePoint1.x, neighbourSamplePoint1.y);
-                var neighbourColor2 = neighbourTile.texture.GetPixel(neighbourSamplePoint2.x, neighbourSamplePoint2.y);
-                var neighbourColor3 = neighbourTile.texture.GetPixel(neighbourSamplePoint3.x, neighbourSamplePoint3.y);
+                var neighborColor1 = neighborTile.texture.GetPixel(neighborSamplePoint1.x, neighborSamplePoint1.y);
+                var neighborColor2 = neighborTile.texture.GetPixel(neighborSamplePoint2.x, neighborSamplePoint2.y);
+                var neighborColor3 = neighborTile.texture.GetPixel(neighborSamplePoint3.x, neighborSamplePoint3.y);
 
-                //If the colours match, delete the tile from the copy
-                if (color1 == neighbourColor1 && color2 == neighbourColor2 && color3 == neighbourColor3)
-                    compatibleSprite.Add(neighbourTile);
+                //If the colors match, delete the tile from the copy
+                if (color1 == neighborColor1 && color2 == neighborColor2 && color3 == neighborColor3)
+                    compatibleSprite.Add(neighborTile);
 
             }
 
@@ -254,23 +260,23 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             }
 
         }
-        //If there are tiles remaining in tilecopy
-        //then the propogation changed something in this neighbour
+        //If there are tiles remaining in tile copy
+        //then the propagation changed something in this neighborIdx
         if (tilesCopy.Count > 0)
             changed = true;
 
         //All the tiles that remain in the copy are not correct anymore
-        //Delete them from the neighbour 
-        foreach (var neighbourTile in tilesCopy)
+        //Delete them from the neighborIdx 
+        foreach (var neighborTile in tilesCopy)
         {
-            _cells2D[neighbour.x, neighbour.y]._possibleTiles.Remove(neighbourTile);
+            _cells2D[neighborIdx.x, neighborIdx.y]._possibleTiles.Remove(neighborTile);
         }
 
 
         return changed;
     }
 
-    void GenerateSpritesInWorld()
+    private void GenerateSpritesInWorld()
     {
         var parent = new GameObject
         {
@@ -295,20 +301,20 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         transform.parent = null;
     }
 
-    List<Vector2Int> GetNeighbours(Vector2Int cellCoords)
+    private List<Vector2Int> GetNeighbors(Vector2Int cellCoords)
     {
-        List<Vector2Int> neighbours = new();
+        List<Vector2Int> neighbors = new();
 
 
         if (cellCoords.x - 1 > 0)
-            neighbours.Add(new Vector2Int(cellCoords.x - 1, cellCoords.y));
+            neighbors.Add(new Vector2Int(cellCoords.x - 1, cellCoords.y));
         if (cellCoords.x + 1 < _mapSize.x)
-            neighbours.Add(new Vector2Int(cellCoords.x + 1, cellCoords.y));
+            neighbors.Add(new Vector2Int(cellCoords.x + 1, cellCoords.y));
         if (cellCoords.y - 1 > 0)
-            neighbours.Add(new Vector2Int(cellCoords.x, cellCoords.y - 1));
+            neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y - 1));
         if (cellCoords.y + 1 < _mapSize.y)
-            neighbours.Add(new Vector2Int(cellCoords.x, cellCoords.y + 1));
+            neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y + 1));
 
-        return neighbours;
+        return neighbors;
     }
 }

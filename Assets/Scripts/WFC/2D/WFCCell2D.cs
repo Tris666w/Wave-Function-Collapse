@@ -30,9 +30,8 @@ public class WFCCell2D : MonoBehaviour
 
         _isCollapsed = true;
 
-        //Since the cell is collapsed
+        //Clear the possible tiles list as the cell has been collapsed
         _possibleTiles.Clear();
-        _possibleTiles.Add(CollapsedTile);
     }
 
 }
