@@ -1,47 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// A generator for 2D map using the Wave Function Collapse Algorithm, using 2D sprites an input.
+/// </summary>
 public class WaveFunctionCollapse2D : MonoBehaviour
 {
-    [SerializeField] private Vector2Int _mapSize = new(10, 10);
-
+    [Header("Output Parameters")]
+    [Tooltip("Desired output size.")][SerializeField] private Vector2Int _mapSize = new(10, 10);
     public Vector2Int MapSize
     {
         set => _mapSize = value;
     }
 
-    [SerializeField] private float _tileSize = 256f;
-    [SerializeField] private List<Sprite> _tiles = new();
-    [SerializeField] private float _stepTime = 1f;
+    [Space(10f)]
+    [Header("Input parameters")]
+    [Tooltip(" The size of a tile sprite in pixels.")][SerializeField] private float _tileSizePx = 1024;
+    [Tooltip("The list of tiles to use with WFC.")][SerializeField] private List<Sprite> _tiles = new();
+
+    [Space(10f)]
+    [Header("Visualization parameters")]
+    [Tooltip("The minimum time it takes to perform 1 loop of WFC.")][SerializeField] private float _stepTime = 1f;
     public float StepTime
     {
         set => _stepTime = value;
     }
 
-
     private GameObject _generatedMap;
     private WFCCell2D[,] _cells2D;
 
+    /// <summary>
+    /// Deletes the previously generated level (if any), stops current co routines and start the generation of a new level.
+    /// </summary>
     public void GenerateLevel()
     {
         Debug.Log($"Generating 2D map of size: {_mapSize}");
-        StopAllCoroutines();
+
+        //Reset the script
         AttemptDestroyResult();
 
+        //Start the generation of the new map
         InitializeWave();
         StartCoroutine(CollapseWave());
     }
-
+    /// <summary>
+    /// Stop any running co routines on this script and delete a generated map (if any).
+    /// </summary>
     public void AttemptDestroyResult()
     {
-        Debug.Log("Destroying generated 2D level");
         StopAllCoroutines();
         if (_generatedMap != null)
             Destroy(_generatedMap);
     }
 
+    /// <summary>
+    /// Initialize the wave object with WFCCell3D components and make the result game object.
+    /// </summary>
     private void InitializeWave()
     {
         //Create the wave
@@ -74,16 +89,20 @@ public class WaveFunctionCollapse2D : MonoBehaviour
                 //Translate the cell to the correct position
                 var targetPos = transform.position;
                 var scale = 100;
-                targetPos.x += col * _tileSize / scale;
-                targetPos.y += row * _tileSize / scale;
+                targetPos.x += col * _tileSizePx / scale;
+                targetPos.y += row * _tileSizePx / scale;
                 go.transform.position = targetPos;
 
                 //Add the cell class, save the component in the wave and add all the possible sprites
                 _cells2D[col, row] = go.AddComponent<WFCCell2D>();
-                _cells2D[col, row]._possibleTiles = new List<Sprite>(_tiles);
+                _cells2D[col, row].PossibleTiles = new List<Sprite>(_tiles);
             }
     }
 
+    /// <summary>
+    /// Collapses the wave and generates the map. This is a co routine!
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator CollapseWave()
     {
         //Get the cell with the lowest entropy to start the algorithm
@@ -117,42 +136,57 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         CleanUp();
     }
 
+    /// <summary>
+    /// This function destroys all WFCCell2D components. 
+    /// </summary>
     private void CleanUp()
     {
-        for (int col = 0; col < _mapSize.x; col++)
-            for (int row = 0; row < _mapSize.y; row++)
+        for (var col = 0; col < _mapSize.x; col++)
+            for (var row = 0; row < _mapSize.y; row++)
             {
                 DestroyImmediate(_cells2D[col, row]);
             }
     }
 
+    /// <summary>
+    /// This function loops over all cells in the wave and looks for the cell with the lowest, non 0 entropy.
+    /// </summary>
+    /// <returns>Cell indices for the cell with the lowest entropy.</returns>
     private Vector2Int GetLowestEntropyCell()
     {
+        //These objects will hold the cell with the lowest entropy
         var minEntropy = float.MaxValue;
         var lowestEntropyCell = new Vector2Int(-1, -1);
 
+        //Loop over all the cells in the wave
         for (var x = 0; x < _mapSize.x; x++)
             for (var y = 0; y < _mapSize.y; y++)
             {
-                float newEntropy = _cells2D[x, y].GetEntropy();
-
-                //If the entropy is 0, the cell has been collapsed, so we disregard it
-                if (Mathf.Approximately(newEntropy, 0f))
+                //Ignore collapsed cells
+                if (_cells2D[x, y].IsCollapsed)
                     continue;
+
+                //Get the entropy of this cell
+                float newEntropy = _cells2D[x, y].GetEntropy();
 
                 //Add some randomness in case there would be multiple cells with the same entropy
                 newEntropy += Random.Range(0f, 0.1f);
 
+                //Replace the lowest entropy cell if the new cell has a lower one
                 if (newEntropy < minEntropy)
                 {
                     minEntropy = newEntropy;
                     lowestEntropyCell = new Vector2Int(x, y);
                 }
             }
-
         return lowestEntropyCell;
     }
 
+    /// <summary>
+    /// This function propagates the collapsed cell to it's neighbors and removes impossible states from them.
+    /// This loop repeats until all necessary cells have been notified of the collapsing of the original cell.
+    /// </summary>
+    /// <param name="originalCell">The array indices of the cell that has been collapsed.</param>
     private void PropagateChanges(Vector2Int originalCell)
     {
         Stack<Vector2Int> changedCells = new();
@@ -163,7 +197,6 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             //Get the current cell
             var currentCell = changedCells.Pop();
 
-
             //Get it's neighbors
             var neighborList = GetNeighbors(currentCell);
 
@@ -173,7 +206,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
                 if (_cells2D[neighbor.x, neighbor.y].IsCollapsed)
                     continue;
 
-                //Detect the compatibilities and checked if something changed
+                //Detect the compatibilities and check if something changed
                 var somethingChanged = CompareCells(currentCell, neighbor);
 
                 if (somethingChanged)
@@ -184,10 +217,17 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         }
     }
 
-    bool CompareCells(Vector2Int currentCellIdx, Vector2Int neighborIdx)
+    /// <summary>
+    /// This function compares all possible states of both cells and removes impossible states from the neighboring cell.
+    /// </summary>
+    /// <param name="currentCellIdx">Vector2Int representing the array indices of the original cell.</param>
+    /// <param name="neighborIdx">Vector2Int representing the array indices of the neighboring cell.</param>
+    /// <returns>A bool representing whether or not the neighbors possible states have changed.</returns>
+    private bool CompareCells(Vector2Int currentCellIdx, Vector2Int neighborIdx)
     {
         var changed = false;
 
+        //Sample points are the points on sprites which get color checked and compared.
         Vector2Int samplePoint1 = new();
         Vector2Int samplePoint2 = new();
         Vector2Int samplePoint3 = new();
@@ -197,24 +237,25 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         Vector2Int neighborSamplePoint3 = new();
 
         //Get the direction that needs to be checked
+        //Set the sample points
         if (neighborIdx.x - currentCellIdx.x == 1)
         {
             //RIGHT 
-            samplePoint1.x = (int)_tileSize - 1;
-            samplePoint2.x = (int)_tileSize - 1;
-            samplePoint3.x = (int)_tileSize - 1;
+            samplePoint1.x = (int)_tileSizePx - 1;
+            samplePoint2.x = (int)_tileSizePx - 1;
+            samplePoint3.x = (int)_tileSizePx - 1;
 
             neighborSamplePoint1.x = 1;
             neighborSamplePoint2.x = 1;
             neighborSamplePoint3.x = 1;
 
-            samplePoint1.y = 1 * (int)_tileSize / 4;
-            samplePoint2.y = 2 * (int)_tileSize / 4;
-            samplePoint3.y = 3 * (int)_tileSize / 4;
+            samplePoint1.y = 1 * (int)_tileSizePx / 4;
+            samplePoint2.y = 2 * (int)_tileSizePx / 4;
+            samplePoint3.y = 3 * (int)_tileSizePx / 4;
 
-            neighborSamplePoint1.y = 1 * (int)_tileSize / 4;
-            neighborSamplePoint2.y = 2 * (int)_tileSize / 4;
-            neighborSamplePoint3.y = 3 * (int)_tileSize / 4;
+            neighborSamplePoint1.y = 1 * (int)_tileSizePx / 4;
+            neighborSamplePoint2.y = 2 * (int)_tileSizePx / 4;
+            neighborSamplePoint3.y = 3 * (int)_tileSizePx / 4;
 
         }
         else if (neighborIdx.x - currentCellIdx.x == -1)
@@ -225,37 +266,36 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             samplePoint2.x = 1;
             samplePoint3.x = 1;
 
-            neighborSamplePoint1.x = (int)_tileSize - 1;
-            neighborSamplePoint2.x = (int)_tileSize - 1;
-            neighborSamplePoint3.x = (int)_tileSize - 1;
+            neighborSamplePoint1.x = (int)_tileSizePx - 1;
+            neighborSamplePoint2.x = (int)_tileSizePx - 1;
+            neighborSamplePoint3.x = (int)_tileSizePx - 1;
 
-            samplePoint1.y = 1 * (int)_tileSize / 4;
-            samplePoint2.y = 2 * (int)_tileSize / 4;
-            samplePoint3.y = 3 * (int)_tileSize / 4;
+            samplePoint1.y = 1 * (int)_tileSizePx / 4;
+            samplePoint2.y = 2 * (int)_tileSizePx / 4;
+            samplePoint3.y = 3 * (int)_tileSizePx / 4;
 
-            neighborSamplePoint1.y = 1 * (int)_tileSize / 4;
-            neighborSamplePoint2.y = 2 * (int)_tileSize / 4;
-            neighborSamplePoint3.y = 3 * (int)_tileSize / 4;
+            neighborSamplePoint1.y = 1 * (int)_tileSizePx / 4;
+            neighborSamplePoint2.y = 2 * (int)_tileSizePx / 4;
+            neighborSamplePoint3.y = 3 * (int)_tileSizePx / 4;
         }
-
-        if (neighborIdx.y - currentCellIdx.y == 1)
+        else if (neighborIdx.y - currentCellIdx.y == 1)
         {
             //UP 
-            samplePoint1.y = (int)_tileSize - 1;
-            samplePoint2.y = (int)_tileSize - 1;
-            samplePoint3.y = (int)_tileSize - 1;
+            samplePoint1.y = (int)_tileSizePx - 1;
+            samplePoint2.y = (int)_tileSizePx - 1;
+            samplePoint3.y = (int)_tileSizePx - 1;
 
             neighborSamplePoint1.y = 1;
             neighborSamplePoint2.y = 1;
             neighborSamplePoint3.y = 1;
 
-            samplePoint1.x = 1 * (int)_tileSize / 4;
-            samplePoint2.x = 2 * (int)_tileSize / 4;
-            samplePoint3.x = 3 * (int)_tileSize / 4;
+            samplePoint1.x = 1 * (int)_tileSizePx / 4;
+            samplePoint2.x = 2 * (int)_tileSizePx / 4;
+            samplePoint3.x = 3 * (int)_tileSizePx / 4;
 
-            neighborSamplePoint1.x = 1 * (int)_tileSize / 4;
-            neighborSamplePoint2.x = 2 * (int)_tileSize / 4;
-            neighborSamplePoint3.x = 3 * (int)_tileSize / 4;
+            neighborSamplePoint1.x = 1 * (int)_tileSizePx / 4;
+            neighborSamplePoint2.x = 2 * (int)_tileSizePx / 4;
+            neighborSamplePoint3.x = 3 * (int)_tileSizePx / 4;
         }
         else if (neighborIdx.y - currentCellIdx.y == -1)
         {
@@ -264,28 +304,27 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             samplePoint2.y = 1;
             samplePoint3.y = 1;
 
-            neighborSamplePoint1.y = (int)_tileSize - 1;
-            neighborSamplePoint2.y = (int)_tileSize - 1;
-            neighborSamplePoint3.y = (int)_tileSize - 1;
+            neighborSamplePoint1.y = (int)_tileSizePx - 1;
+            neighborSamplePoint2.y = (int)_tileSizePx - 1;
+            neighborSamplePoint3.y = (int)_tileSizePx - 1;
 
-            samplePoint1.x = 1 * (int)_tileSize / 4;
-            samplePoint2.x = 2 * (int)_tileSize / 4;
-            samplePoint3.x = 3 * (int)_tileSize / 4;
+            samplePoint1.x = 1 * (int)_tileSizePx / 4;
+            samplePoint2.x = 2 * (int)_tileSizePx / 4;
+            samplePoint3.x = 3 * (int)_tileSizePx / 4;
 
-            neighborSamplePoint1.x = 1 * (int)_tileSize / 4;
-            neighborSamplePoint2.x = 2 * (int)_tileSize / 4;
-            neighborSamplePoint3.x = 3 * (int)_tileSize / 4;
+            neighborSamplePoint1.x = 1 * (int)_tileSizePx / 4;
+            neighborSamplePoint2.x = 2 * (int)_tileSizePx / 4;
+            neighborSamplePoint3.x = 3 * (int)_tileSizePx / 4;
         }
 
-
         //Make a copy of the neighbors possible tiles
-        var tilesCopy = new List<Sprite>(_cells2D[neighborIdx.x, neighborIdx.y]._possibleTiles);
+        var tilesCopy = new List<Sprite>(_cells2D[neighborIdx.x, neighborIdx.y].PossibleTiles);
 
         var currentCell = _cells2D[currentCellIdx.x, currentCellIdx.y];
         var currentCellTiles = new List<Sprite>();
 
         if (!currentCell.IsCollapsed)
-            currentCellTiles = currentCell._possibleTiles;
+            currentCellTiles = currentCell.PossibleTiles;
         else
             currentCellTiles.Add(currentCell.CollapsedTile);
 
@@ -328,13 +367,18 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         //Delete them from the neighborIdx 
         foreach (var neighborTile in tilesCopy)
         {
-            _cells2D[neighborIdx.x, neighborIdx.y]._possibleTiles.Remove(neighborTile);
+            _cells2D[neighborIdx.x, neighborIdx.y].PossibleTiles.Remove(neighborTile);
         }
 
 
         return changed;
     }
 
+    /// <summary>
+    /// Get all neighbors of the given cell.
+    /// </summary>
+    /// <param name="cellCoords">Vector2Int representing the array indices of the original cell.</param>
+    /// <returns>A list containing the array indices of the neighboring cells.</returns>
     private List<Vector2Int> GetNeighbors(Vector2Int cellCoords)
     {
         List<Vector2Int> neighbors = new();

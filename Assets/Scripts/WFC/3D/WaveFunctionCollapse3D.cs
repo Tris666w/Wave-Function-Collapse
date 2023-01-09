@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Assertions;
+using System.Collections.Generic;
 using static TileData;
 
-public class WFC_3D : MonoBehaviour
+public class WaveFunctionCollapse3D : MonoBehaviour
 {
     [Header("Wave parameters")]
     [SerializeField] private Vector3Int _mapSize = new(10, 10, 10);
     public Vector3Int MapSize
     {
-        set=> _mapSize = value;
+        set => _mapSize = value;
     }
 
     [SerializeField] private ModuleCollection3D _modules;
@@ -37,6 +35,11 @@ public class WFC_3D : MonoBehaviour
         Assert.AreNotEqual(null, _modules, "3D WFC: Module Collection not assigned!");
     }
 
+    private void Start()
+    {
+        _modules.CreateModules();
+    }
+
     public void AttemptDestroyResult()
     {
         Debug.Log("Destroying generated level");
@@ -58,8 +61,13 @@ public class WFC_3D : MonoBehaviour
     {
         _cells3D = new WFCCell3D[_mapSize.x, _mapSize.y, _mapSize.z];
         var originalPos = transform.position;
-        var resultObject = new GameObject("Result");
-        resultObject.transform.parent = gameObject.transform;
+        var resultObject = new GameObject("Result")
+        {
+            transform =
+            {
+                parent = gameObject.transform
+            }
+        };
         _generatedMap = resultObject;
 
         for (var col = 0; col < _mapSize.x; col++)

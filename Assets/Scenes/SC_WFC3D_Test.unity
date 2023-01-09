@@ -202,6 +202,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tileSizePx
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
       propertyPath: _tiles.Array.size
       value: 8
       objectReference: {fileID: 0}
@@ -306,10 +310,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
-      propertyPath: _modules
-      value: 
-      objectReference: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
-    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _mapSize.x
       value: 12
       objectReference: {fileID: 0}
@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _addEmptyBorder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
@@ -592,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2100407981}
   - component: {fileID: 2100407980}
+  - component: {fileID: 2100407982}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -613,6 +614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _2DGenerator: {fileID: 851397181}
   _3DGenerator: {fileID: 374240804}
+  _windowOffset: {x: 10, y: 10}
+  _windowHeightPercentage: 0.55
 --- !u!4 &2100407981
 Transform:
   m_ObjectHideFlags: 0
@@ -628,3 +631,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100407982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100407979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e424844e9040de4a99ac3cdca07def9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowWidth: 200
+  _windowOffset: {x: 10, y: 10}
+  _windowHeightPercentage: 0.45

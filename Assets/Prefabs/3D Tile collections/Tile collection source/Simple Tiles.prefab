@@ -280,6 +280,9 @@ GameObject:
   - component: {fileID: 3620231625080582371}
   - component: {fileID: -5322239000113147558}
   - component: {fileID: -5747715809799761116}
+  - component: {fileID: -5488620341695974727}
+  - component: {fileID: -4159891740772598569}
+  - component: {fileID: -6777834620459416683}
   m_Layer: 0
   m_Name: Outer Corner
   m_TagString: Untagged
@@ -1303,6 +1306,120 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+--- !u!114 &-5488620341695974727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931165490267237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posY:
+    _socketID: 0
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-4159891740772598569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931165490267237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negZ:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posY:
+    _socketID: 0
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-6777834620459416683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931165490267237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negX:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _posY:
+    _socketID: 0
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
 --- !u!1 &5748931165836136384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1578,9 @@ GameObject:
   - component: {fileID: -4646814573328772187}
   - component: {fileID: -4628833744505941746}
   - component: {fileID: -8807155748139730203}
+  - component: {fileID: 24928733013134580}
+  - component: {fileID: -5260923949802709409}
+  - component: {fileID: -3685488801546251979}
   m_Layer: 0
   m_Name: Walled Floor
   m_TagString: Untagged
@@ -2484,6 +2604,120 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+--- !u!114 &24928733013134580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931166077222995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _negX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _posZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-5260923949802709409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931166077222995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negZ:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-3685488801546251979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931166077222995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negX:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
 --- !u!1 &5748931166204658032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,6 +2985,9 @@ GameObject:
   - component: {fileID: 4511242120226840219}
   - component: {fileID: 812263877873802028}
   - component: {fileID: -2220191957978429287}
+  - component: {fileID: -6390574591144155800}
+  - component: {fileID: -4385831909485179517}
+  - component: {fileID: -4241059431490182175}
   m_Layer: 0
   m_Name: Inner Corner
   m_TagString: Untagged
@@ -3737,6 +3974,120 @@ MonoBehaviour:
   _tileSize: 2
   _generateRotatedVariants: 0
 --- !u!114 &-2220191957978429287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931167001943986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posZ:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _negZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-6390574591144155800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931167001943986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _posZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negZ:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-4385831909485179517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748931167001943986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _negX:
+    _socketID: 2
+    _isFlipped: 1
+    _isSymmetric: 0
+  _posZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 0
+  _negZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 5
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+--- !u!114 &-4241059431490182175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

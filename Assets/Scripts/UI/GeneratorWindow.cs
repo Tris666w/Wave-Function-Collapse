@@ -1,17 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class GeneratorWindow : MonoBehaviour
 {
-    [SerializeField] private WaveFunctionCollapse2D _2DGenerator;
-    [SerializeField] private WFC_3D _3DGenerator;
-    [SerializeField] private Vector2Int _windowOffset = new Vector2Int(10,10);
-    private float _stepTime = 0.5f;
+    [SerializeField] private WaveFunctionCollapse2D _2DGenerator = null;
+    [SerializeField] private WaveFunctionCollapse3D _3DGenerator = null;
+    [SerializeField] private Vector2Int _windowOffset = new Vector2Int(10, 10);
+    [SerializeField][Range(0f, 1f)] private float _windowHeightPercentage = 0.55f;
+
+    private float _stepTime = 0.25f;
     private string _2DSizeX = "10";
     private string _2DSizeY = "10";
 
@@ -21,21 +18,30 @@ public class GeneratorWindow : MonoBehaviour
 
     private void OnValidate()
     {
-        Assert.AreNotEqual(null,_2DGenerator,"GeneratorWindow: no 2D generator linked!");
-        Assert.AreNotEqual(null,_2DGenerator, "GeneratorWindow: no 3D generator linked!");
+        Assert.AreNotEqual(null, _2DGenerator, "GeneratorWindow: no 2D generator linked!");
+        Assert.AreNotEqual(null, _2DGenerator, "GeneratorWindow: no 3D generator linked!");
     }
 
     private void OnGUI()
     {
-        var targetRect = new Rect(_windowOffset.x, _windowOffset.y, 160, Screen.height- 2 * _windowOffset.y);
-        var titleStyle = new GUIStyle();
-
+        var targetRect = new Rect(_windowOffset.x, _windowOffset.y, 200, _windowHeightPercentage * Screen.height - 2 * _windowOffset.y);
+        var titleStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold,
+            normal =
+            {
+                textColor = Color.white
+            }
+        };
 
         GUI.Box(targetRect, "");
 
         GUILayout.BeginArea(targetRect);
         GUILayout.BeginVertical();
-        GUILayout.Label("Generator");
+        GUILayout.Space(15);
+
+        GUILayout.Label("2D Wave Function Collapse", titleStyle);
 
         if (GUILayout.Button("Generate 2D level"))
         {
@@ -49,8 +55,8 @@ public class GeneratorWindow : MonoBehaviour
 
         _2DSizeX = GUILayout.TextField(_2DSizeX);
         _2DSizeY = GUILayout.TextField(_2DSizeY);
-        
-        if(_2DSizeX.Length > 0 && _2DSizeY.Length > 0) 
+
+        if (_2DSizeX.Length > 0 && _2DSizeY.Length > 0)
             _2DGenerator.MapSize = new Vector2Int(int.Parse(_2DSizeX), int.Parse(_2DSizeY));
 
         GUILayout.EndHorizontal();
@@ -58,7 +64,7 @@ public class GeneratorWindow : MonoBehaviour
 
         GUILayout.Space(10);
 
-        GUILayout.Label("3D Wave Function Collapse");
+        GUILayout.Label("3D Wave Function Collapse", titleStyle);
         if (GUILayout.Button("Generate 3D level"))
         {
             _3DGenerator.GenerateLevel();
@@ -74,34 +80,21 @@ public class GeneratorWindow : MonoBehaviour
         _3DSizeY = GUILayout.TextField(_3DSizeY);
         _3DSizeZ = GUILayout.TextField(_3DSizeZ);
 
-        if(_3DSizeX.Length > 0 && _3DSizeY.Length > 0 && _3DSizeZ.Length > 0)
-            _3DGenerator.MapSize = new Vector3Int(int.Parse(_3DSizeX), int.Parse(_3DSizeY),int.Parse(_3DSizeZ));
+        if (_3DSizeX.Length > 0 && _3DSizeY.Length > 0 && _3DSizeZ.Length > 0)
+            _3DGenerator.MapSize = new Vector3Int(int.Parse(_3DSizeX), int.Parse(_3DSizeY), int.Parse(_3DSizeZ));
 
         GUILayout.EndHorizontal();
 
         GUILayout.Space(10);
-        GUILayout.Label("StepTime");
-        _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 2f);
+        GUILayout.Label("StepTime", titleStyle);
+        _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 1f);
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
         GUILayout.Label($"Current:{_stepTime}");
-
-        if (GUILayout.Button("Clear console"))
-        {
-            ClearLog();
-        }
 
         GUILayout.EndVertical();
         GUILayout.EndArea();
 
     }
 
-
-    public void ClearLog()
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
-    }
 }
