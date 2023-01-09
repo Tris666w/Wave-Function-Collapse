@@ -1,40 +1,97 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class WaveFunctionCollapse2D : MonoBehaviour
 {
     [SerializeField] private Vector2Int _mapSize = new(10, 10);
+
+    public Vector2Int MapSize
+    {
+        set => _mapSize = value;
+    }
+
     [SerializeField] private float _tileSize = 256f;
     [SerializeField] private List<Sprite> _tiles = new();
+    [SerializeField] private float _stepTime = 1f;
+    public float StepTime
+    {
+        set => _stepTime = value;
+    }
 
+
+    private GameObject _generatedMap;
     private WFCCell2D[,] _cells2D;
 
-    [ContextMenu("Click me to generate a map!")]
     public void GenerateLevel()
     {
+        Debug.Log($"Generating 2D map of size: {_mapSize}");
+        StopAllCoroutines();
+        AttemptDestroyResult();
+
         InitializeWave();
-        CollapseWave();
+        StartCoroutine(CollapseWave());
+    }
+
+    public void AttemptDestroyResult()
+    {
+        Debug.Log("Destroying generated 2D level");
+        StopAllCoroutines();
+        if (_generatedMap != null)
+            Destroy(_generatedMap);
     }
 
     private void InitializeWave()
     {
+        //Create the wave
         _cells2D = new WFCCell2D[_mapSize.x, _mapSize.y];
-        for (int col = 0; col < _mapSize.x; col++)
-            for (int row = 0; row < _mapSize.y; row++)
+
+        //Make a game object to hold the generated result and make it a child object of the wave
+        var resultObject = new GameObject("Result")
+        {
+            transform =
             {
-                _cells2D[col, row] = gameObject.AddComponent<WFCCell2D>();
+                parent = gameObject.transform
+            }
+        };
+
+        //Save the game object in the generated map field
+        _generatedMap = resultObject;
+
+        for (var col = 0; col < _mapSize.x; col++)
+            for (var row = 0; row < _mapSize.y; row++)
+            {
+                //Create the game object that will hold this cell and parent it's transform to the result
+                var go = new GameObject($"x = {col}, y = {row}")
+                {
+                    transform =
+                    {
+                        parent = resultObject.transform
+                    }
+                };
+
+                //Translate the cell to the correct position
+                var targetPos = transform.position;
+                var scale = 100;
+                targetPos.x += col * _tileSize / scale;
+                targetPos.y += row * _tileSize / scale;
+                go.transform.position = targetPos;
+
+                //Add the cell class, save the component in the wave and add all the possible sprites
+                _cells2D[col, row] = go.AddComponent<WFCCell2D>();
                 _cells2D[col, row]._possibleTiles = new List<Sprite>(_tiles);
             }
     }
 
-    public void CollapseWave()
+    public IEnumerator CollapseWave()
     {
         //Get the cell with the lowest entropy to start the algorithm
         var cell = GetLowestEntropyCell();
         if (cell.x == -1 || cell.y == -1)
         {
             Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
-            return;
+            yield break;
         }
 
         //Start collapsing the wave
@@ -49,11 +106,13 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             //Get the next cell with the lowest entropy
             cell = GetLowestEntropyCell();
 
+            //Wait the co routine
+            if (!Mathf.Approximately(_stepTime, 0))
+                yield return new WaitForSeconds(_stepTime);
+
             //If there is no cell with a low entropy that is not equal to 0,
             // The wave has collapsed, break the loop
         } while (cell.x != -1 || cell.y != -1);
-
-        GenerateSpritesInWorld();
 
         CleanUp();
     }
@@ -69,11 +128,11 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
     private Vector2Int GetLowestEntropyCell()
     {
-        var _minEntropy = float.MaxValue;
+        var minEntropy = float.MaxValue;
         var lowestEntropyCell = new Vector2Int(-1, -1);
 
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var y = 0; y < _mapSize.y; y++)
             {
                 float newEntropy = _cells2D[x, y].GetEntropy();
 
@@ -81,9 +140,12 @@ public class WaveFunctionCollapse2D : MonoBehaviour
                 if (Mathf.Approximately(newEntropy, 0f))
                     continue;
 
-                if (newEntropy < _minEntropy)
+                //Add some randomness in case there would be multiple cells with the same entropy
+                newEntropy += Random.Range(0f, 0.1f);
+
+                if (newEntropy < minEntropy)
                 {
-                    _minEntropy = newEntropy;
+                    minEntropy = newEntropy;
                     lowestEntropyCell = new Vector2Int(x, y);
                 }
             }
@@ -102,7 +164,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
             var currentCell = changedCells.Pop();
 
 
-            //Get it's neighbours
+            //Get it's neighbors
             var neighborList = GetNeighbors(currentCell);
 
             foreach (var neighbor in neighborList)
@@ -124,10 +186,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
     bool CompareCells(Vector2Int currentCellIdx, Vector2Int neighborIdx)
     {
-        bool changed = false;
-
-
-        int sampleStep = (int)_tileSize / 20;
+        var changed = false;
 
         Vector2Int samplePoint1 = new();
         Vector2Int samplePoint2 = new();
@@ -141,81 +200,81 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         if (neighborIdx.x - currentCellIdx.x == 1)
         {
             //RIGHT 
-            samplePoint1.x = 19 * sampleStep;
-            samplePoint2.x = 19 * sampleStep;
-            samplePoint3.x = 19 * sampleStep;
+            samplePoint1.x = (int)_tileSize - 1;
+            samplePoint2.x = (int)_tileSize - 1;
+            samplePoint3.x = (int)_tileSize - 1;
 
-            neighborSamplePoint1.x = sampleStep;
-            neighborSamplePoint2.x = sampleStep;
-            neighborSamplePoint3.x = sampleStep;
+            neighborSamplePoint1.x = 1;
+            neighborSamplePoint2.x = 1;
+            neighborSamplePoint3.x = 1;
 
-            samplePoint1.y = 5 * sampleStep;
-            samplePoint2.y = 10 * sampleStep;
-            samplePoint3.y = 15 * sampleStep;
+            samplePoint1.y = 1 * (int)_tileSize / 4;
+            samplePoint2.y = 2 * (int)_tileSize / 4;
+            samplePoint3.y = 3 * (int)_tileSize / 4;
 
-            neighborSamplePoint1.y = 5 * sampleStep;
-            neighborSamplePoint2.y = 10 * sampleStep;
-            neighborSamplePoint3.y = 15 * sampleStep;
+            neighborSamplePoint1.y = 1 * (int)_tileSize / 4;
+            neighborSamplePoint2.y = 2 * (int)_tileSize / 4;
+            neighborSamplePoint3.y = 3 * (int)_tileSize / 4;
 
         }
         else if (neighborIdx.x - currentCellIdx.x == -1)
         {
             //LEFT 
 
-            samplePoint1.x = sampleStep;
-            samplePoint2.x = sampleStep;
-            samplePoint3.x = sampleStep;
+            samplePoint1.x = 1;
+            samplePoint2.x = 1;
+            samplePoint3.x = 1;
 
-            neighborSamplePoint1.x = 3 * sampleStep;
-            neighborSamplePoint2.x = 3 * sampleStep;
-            neighborSamplePoint3.x = 3 * sampleStep;
+            neighborSamplePoint1.x = (int)_tileSize - 1;
+            neighborSamplePoint2.x = (int)_tileSize - 1;
+            neighborSamplePoint3.x = (int)_tileSize - 1;
 
-            samplePoint1.y = 1 * sampleStep;
-            samplePoint2.y = 2 * sampleStep;
-            samplePoint3.y = 3 * sampleStep;
+            samplePoint1.y = 1 * (int)_tileSize / 4;
+            samplePoint2.y = 2 * (int)_tileSize / 4;
+            samplePoint3.y = 3 * (int)_tileSize / 4;
 
-            neighborSamplePoint1.y = 1 * sampleStep;
-            neighborSamplePoint2.y = 2 * sampleStep;
-            neighborSamplePoint3.y = 3 * sampleStep;
+            neighborSamplePoint1.y = 1 * (int)_tileSize / 4;
+            neighborSamplePoint2.y = 2 * (int)_tileSize / 4;
+            neighborSamplePoint3.y = 3 * (int)_tileSize / 4;
         }
 
         if (neighborIdx.y - currentCellIdx.y == 1)
         {
             //UP 
-            samplePoint1.y = 19 * sampleStep;
-            samplePoint2.y = 19 * sampleStep;
-            samplePoint3.y = 19 * sampleStep;
+            samplePoint1.y = (int)_tileSize - 1;
+            samplePoint2.y = (int)_tileSize - 1;
+            samplePoint3.y = (int)_tileSize - 1;
 
-            neighborSamplePoint1.y = sampleStep;
-            neighborSamplePoint2.y = sampleStep;
-            neighborSamplePoint3.y = sampleStep;
+            neighborSamplePoint1.y = 1;
+            neighborSamplePoint2.y = 1;
+            neighborSamplePoint3.y = 1;
 
-            samplePoint1.x = 5 * sampleStep;
-            samplePoint2.x = 10 * sampleStep;
-            samplePoint3.x = 15 * sampleStep;
+            samplePoint1.x = 1 * (int)_tileSize / 4;
+            samplePoint2.x = 2 * (int)_tileSize / 4;
+            samplePoint3.x = 3 * (int)_tileSize / 4;
 
-            neighborSamplePoint1.x = 5 * sampleStep;
-            neighborSamplePoint2.x = 10 * sampleStep;
-            neighborSamplePoint3.x = 15 * sampleStep;
+            neighborSamplePoint1.x = 1 * (int)_tileSize / 4;
+            neighborSamplePoint2.x = 2 * (int)_tileSize / 4;
+            neighborSamplePoint3.x = 3 * (int)_tileSize / 4;
         }
         else if (neighborIdx.y - currentCellIdx.y == -1)
         {
             //DOWN
-            samplePoint1.y = sampleStep;
-            samplePoint2.y = sampleStep;
-            samplePoint3.y = sampleStep;
+            samplePoint1.y = 1;
+            samplePoint2.y = 1;
+            samplePoint3.y = 1;
 
-            neighborSamplePoint1.y = 19 * sampleStep;
-            neighborSamplePoint2.y = 19 * sampleStep;
-            neighborSamplePoint3.y = 19 * sampleStep;
+            neighborSamplePoint1.y = (int)_tileSize - 1;
+            neighborSamplePoint2.y = (int)_tileSize - 1;
+            neighborSamplePoint3.y = (int)_tileSize - 1;
 
-            samplePoint1.x = 5 * sampleStep;
-            samplePoint2.x = 10 * sampleStep;
-            samplePoint3.x = 15 * sampleStep;
+            samplePoint1.x = 1 * (int)_tileSize / 4;
+            samplePoint2.x = 2 * (int)_tileSize / 4;
+            samplePoint3.x = 3 * (int)_tileSize / 4;
 
-            neighborSamplePoint1.x = 5 * sampleStep;
-            neighborSamplePoint2.x = 10 * sampleStep;
-            neighborSamplePoint3.x = 15 * sampleStep;
+            neighborSamplePoint1.x = 1 * (int)_tileSize / 4;
+            neighborSamplePoint2.x = 2 * (int)_tileSize / 4;
+            neighborSamplePoint3.x = 3 * (int)_tileSize / 4;
         }
 
 
@@ -276,41 +335,16 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         return changed;
     }
 
-    private void GenerateSpritesInWorld()
-    {
-        var parent = new GameObject
-        {
-            name = "Result"
-        };
-
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int y = 0; y < _mapSize.y; y++)
-            {
-                var go = new GameObject();
-                var spriteRenderer = go.AddComponent<SpriteRenderer>();
-                spriteRenderer.sprite = _cells2D[x, y].CollapsedTile;
-
-                _cells2D[x, y].transform.parent = go.transform;
-
-                var pos = new Vector3(x * _tileSize / 100.0f, y * _tileSize / 100.0f, 0);
-                go.transform.position = pos;
-                go.transform.name = $"Tile x:{x} y:{y}";
-                go.transform.parent = parent.transform;
-            }
-
-        transform.parent = null;
-    }
-
     private List<Vector2Int> GetNeighbors(Vector2Int cellCoords)
     {
         List<Vector2Int> neighbors = new();
 
 
-        if (cellCoords.x - 1 > 0)
+        if (cellCoords.x - 1 >= 0)
             neighbors.Add(new Vector2Int(cellCoords.x - 1, cellCoords.y));
         if (cellCoords.x + 1 < _mapSize.x)
             neighbors.Add(new Vector2Int(cellCoords.x + 1, cellCoords.y));
-        if (cellCoords.y - 1 > 0)
+        if (cellCoords.y - 1 >= 0)
             neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y - 1));
         if (cellCoords.y + 1 < _mapSize.y)
             neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y + 1));

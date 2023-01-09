@@ -10,6 +10,11 @@ public class WFC_3D : MonoBehaviour
 {
     [Header("Wave parameters")]
     [SerializeField] private Vector3Int _mapSize = new(10, 10, 10);
+    public Vector3Int MapSize
+    {
+        set=> _mapSize = value;
+    }
+
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result. a")]
@@ -18,6 +23,12 @@ public class WFC_3D : MonoBehaviour
 
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
+
+    public float StepTime
+    {
+        set => _stepTime = value;
+    }
+
     private WFCCell3D[,,] _cells3D;
     private GameObject _generatedMap = null;
 
@@ -26,41 +37,19 @@ public class WFC_3D : MonoBehaviour
         Assert.AreNotEqual(null, _modules, "3D WFC: Module Collection not assigned!");
     }
 
-    private void Update()
+    public void AttemptDestroyResult()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            ClearLog();
-            Debug.Log($"Generating map of size: {_mapSize.ToString()}");
-            AttemptDestroyResult();
-            StopAllCoroutines();
-            GenerateLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("Destroying generated level");
-            AttemptDestroyResult();
-            StopAllCoroutines();
-        }
-    }
-
-    public void ClearLog()
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
-    }
-
-    private void AttemptDestroyResult()
-    {
+        Debug.Log("Destroying generated level");
         if (_generatedMap != null)
             Destroy(_generatedMap);
     }
 
-    [ContextMenu("Click me to generate a map!")]
     public void GenerateLevel()
     {
+        Debug.Log($"Generating map of size: {_mapSize}");
+        AttemptDestroyResult();
+        StopAllCoroutines();
+
         InitializeWave();
         StartCoroutine(CollapseWave());
     }
@@ -73,12 +62,17 @@ public class WFC_3D : MonoBehaviour
         resultObject.transform.parent = gameObject.transform;
         _generatedMap = resultObject;
 
-        for (int col = 0; col < _mapSize.x; col++)
-            for (int row = 0; row < _mapSize.y; row++)
-                for (int layer = 0; layer < _mapSize.z; layer++)
+        for (var col = 0; col < _mapSize.x; col++)
+            for (var row = 0; row < _mapSize.y; row++)
+                for (var layer = 0; layer < _mapSize.z; layer++)
                 {
-                    var go = new GameObject($"x = {col}, y = {row}, z = {layer}");
-                    go.transform.parent = resultObject.transform;
+                    var go = new GameObject($"x = {col}, y = {row}, z = {layer}")
+                    {
+                        transform =
+                        {
+                            parent = resultObject.transform
+                        }
+                    };
 
                     var targetPos = originalPos;
                     targetPos.x += col * _tileSize;
@@ -98,7 +92,7 @@ public class WFC_3D : MonoBehaviour
         var cell = GetLowestEntropyCell();
         if (cell.x == -1 || cell.y == -1 || cell.z == -1)
         {
-            Debug.LogError("No cell with entropy found, before algorithm start?");
+            Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
             yield break;
         }
 
@@ -115,13 +109,13 @@ public class WFC_3D : MonoBehaviour
             //Collapse the cell
             _cells3D[cell.x, cell.y, cell.z].CollapseCell();
 
-            //Propogate the changes to the other cells
-            PropogateChanges(cell);
+            //Propagate the changes to the other cells
+            PropagateChanges(cell);
 
             //Get the next cell with the lowest entropy
             cell = GetLowestEntropyCell();
 
-            //Wait the coroutine
+            //Wait the co routine
             if (!Mathf.Approximately(_stepTime, 0))
                 yield return new WaitForSeconds(_stepTime);
 
@@ -144,7 +138,7 @@ public class WFC_3D : MonoBehaviour
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
 
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
 
         for (int y = 0; y < _mapSize.y; y++)
@@ -155,7 +149,7 @@ public class WFC_3D : MonoBehaviour
 
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
 
         //2. Collapse all cells along the Y faces to empty
@@ -168,7 +162,7 @@ public class WFC_3D : MonoBehaviour
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
 
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
 
         for (int x = 0; x < _mapSize.x; x++)
@@ -180,7 +174,7 @@ public class WFC_3D : MonoBehaviour
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
 
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
 
         //3. Collapse all cells along the Z faces to empty
@@ -193,7 +187,7 @@ public class WFC_3D : MonoBehaviour
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
 
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
 
         for (int x = 0; x < _mapSize.x; x++)
@@ -205,7 +199,7 @@ public class WFC_3D : MonoBehaviour
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_emptyTileName);
 
-                PropogateChanges(cellIdx);
+                PropagateChanges(cellIdx);
             }
     }
 
@@ -247,7 +241,7 @@ public class WFC_3D : MonoBehaviour
         return lowestEntropyCell;
     }
 
-    private void PropogateChanges(Vector3Int originalCell)
+    private void PropagateChanges(Vector3Int originalCell)
     {
         Stack<Vector3Int> changedCells = new();
         changedCells.Push(originalCell);
@@ -257,21 +251,21 @@ public class WFC_3D : MonoBehaviour
             //Get the current cell
             var currentCell = changedCells.Pop();
 
-            //Get it's neighbours
-            var neighbourList = GetNeighbours(currentCell);
+            //Get it's neighbors
+            var neighborList = GetNeighbors(currentCell);
 
-            foreach (var neighbour in neighbourList)
+            foreach (var neighbor in neighborList)
             {
                 //Disregard cells that have already been collapsed
-                if (_cells3D[neighbour.x, neighbour.y, neighbour.z].IsCollapsed)
+                if (_cells3D[neighbor.x, neighbor.y, neighbor.z].IsCollapsed)
                     continue;
 
                 //Detect the compatibilities and checked if something changed
-                var somethingChanged = CompareCells(currentCell, neighbour);
+                var somethingChanged = CompareCells(currentCell, neighbor);
 
                 if (somethingChanged)
                 {
-                    changedCells.Push(neighbour);
+                    changedCells.Push(neighbor);
                 }
             }
         }
@@ -539,24 +533,24 @@ public class WFC_3D : MonoBehaviour
         return neighbourTilesCopy;
     }
 
-    List<Vector3Int> GetNeighbours(Vector3Int cellCoords)
+    List<Vector3Int> GetNeighbors(Vector3Int cellCoords)
     {
-        List<Vector3Int> neighbours = new();
+        List<Vector3Int> neighbors = new();
 
 
         if (cellCoords.x - 1 >= 0)
-            neighbours.Add(new Vector3Int(cellCoords.x - 1, cellCoords.y, cellCoords.z));
+            neighbors.Add(new Vector3Int(cellCoords.x - 1, cellCoords.y, cellCoords.z));
         if (cellCoords.x + 1 < _mapSize.x)
-            neighbours.Add(new Vector3Int(cellCoords.x + 1, cellCoords.y, cellCoords.z));
+            neighbors.Add(new Vector3Int(cellCoords.x + 1, cellCoords.y, cellCoords.z));
         if (cellCoords.y - 1 >= 0)
-            neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y - 1, cellCoords.z));
+            neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y - 1, cellCoords.z));
         if (cellCoords.y + 1 < _mapSize.y)
-            neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y + 1, cellCoords.z));
+            neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y + 1, cellCoords.z));
         if (cellCoords.z - 1 >= 0)
-            neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z - 1));
+            neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z - 1));
         if (cellCoords.z + 1 < _mapSize.z)
-            neighbours.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z + 1));
-        return neighbours;
+            neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z + 1));
+        return neighbors;
     }
 
 }

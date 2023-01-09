@@ -33,13 +33,17 @@ public class CameraMovement : MonoBehaviour
         {
             velocity += transform.up * (Input.GetAxis("Vertical") * _movementSpeed);
         }
-        if (Input.GetAxis("Sprint") != 0)
+        if (Input.GetAxisRaw("Sprint") != 0)
         {
             velocity *= _sprintScale;
         }
 
         _rigidbody.velocity = velocity;
 
+
+
+        if (Input.GetAxisRaw("EnableCameraRotation") == 0)
+            return;
 
         //Rotate the camera
         _turn.x += Input.GetAxis("Mouse X");

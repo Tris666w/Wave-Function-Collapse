@@ -25,10 +25,16 @@ public class WFCCell2D : MonoBehaviour
     public void CollapseCell()
     {
         //Get random tile from the remaining ones
-        int randomIndex = Random.Range(0, _possibleTiles.Count);
-        _collapsedTile = _possibleTiles[randomIndex];
+        var randomIndex = Random.Range(0, _possibleTiles.Count);
 
+        //Save the collapsed info
+        _collapsedTile = _possibleTiles[randomIndex];
         _isCollapsed = true;
+
+        //Render the sprite
+        var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = _collapsedTile;
+
 
         //Clear the possible tiles list as the cell has been collapsed
         _possibleTiles.Clear();
