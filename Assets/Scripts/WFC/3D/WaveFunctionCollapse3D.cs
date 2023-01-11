@@ -16,7 +16,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result. a")]
-    [SerializeField] private bool _addEmptyBorder = true;
+    public bool AddEmptyBorder = true;
+
+
     [SerializeField] private string _emptyTileName = "Empty_i";
 
     [Header("Visualization properties")]
@@ -40,27 +42,37 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         _modules.CreateModules();
     }
 
+    /// <summary>
+    /// Stop any running co routines on this script and delete a generated map (if any).
+    /// </summary>
     public void AttemptDestroyResult()
     {
-        Debug.Log("Destroying generated level");
+        StopAllCoroutines();
         if (_generatedMap != null)
             Destroy(_generatedMap);
     }
 
+    /// <summary>
+    /// Deletes the previously generated level (if any), stops current co routines and start the generation of a new level.
+    /// </summary>
     public void GenerateLevel()
     {
         Debug.Log($"Generating map of size: {_mapSize}");
         AttemptDestroyResult();
-        StopAllCoroutines();
 
         InitializeWave();
         StartCoroutine(CollapseWave());
     }
 
+    /// <summary>
+    /// Initialize the wave object with WFCCell3D components and make the result game object.
+    /// </summary>
     private void InitializeWave()
     {
+        //Create the wave
         _cells3D = new WFCCell3D[_mapSize.x, _mapSize.y, _mapSize.z];
-        var originalPos = transform.position;
+
+        //Make a game object to hold the generated result and make it a child object of the wave
         var resultObject = new GameObject("Result")
         {
             transform =
@@ -68,12 +80,15 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 parent = gameObject.transform
             }
         };
+
+        //Save the game object in the generated map field
         _generatedMap = resultObject;
 
         for (var col = 0; col < _mapSize.x; col++)
             for (var row = 0; row < _mapSize.y; row++)
                 for (var layer = 0; layer < _mapSize.z; layer++)
                 {
+                    //Create the game object that will hold this cell and parent it's transform to the result
                     var go = new GameObject($"x = {col}, y = {row}, z = {layer}")
                     {
                         transform =
@@ -82,18 +97,24 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                         }
                     };
 
-                    var targetPos = originalPos;
+                    //Translate the cell to the correct position
+                    var targetPos = transform.position;
                     targetPos.x += col * _tileSize;
                     targetPos.y += row * _tileSize;
                     targetPos.z += layer * _tileSize;
                     go.transform.position = targetPos;
 
-                    _cells3D[col, row, layer] = go.AddComponent<WFCCell3D>();
 
-                    _cells3D[col, row, layer]._modules = new List<Module>(_modules.Modules);
+                    //Add the cell class, save the component in the wave and add all the possible modules
+                    _cells3D[col, row, layer] = go.AddComponent<WFCCell3D>();
+                    _cells3D[col, row, layer].Modules = new List<Module>(_modules.Modules);
                 }
     }
 
+    /// <summary>
+    /// Collapses the wave and generates the map. This is a co routine!
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator CollapseWave()
     {
         //Get the cell with the lowest entropy to start the algorithm
@@ -106,9 +127,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
         // Add a border of empty tiles around the generated map, if preferred
         // This makes the outside of the generated map better
-        if (_addEmptyBorder)
+        if (AddEmptyBorder)
         {
-            AddEmptyBorder();
+            GenerateEmptyBorder();
         }
 
         //Start collapsing the wave
@@ -134,11 +155,11 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         CleanUp();
     }
 
-    private void AddEmptyBorder()
+    private void GenerateEmptyBorder()
     {
         //1. Collapse all cells along the X faces to empty
-        for (int y = 0; y < _mapSize.y; y++)
-            for (int z = 0; z < _mapSize.z; z++)
+        for (var y = 0; y < _mapSize.y; y++)
+            for (var z = 0; z < _mapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(0, y, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -149,8 +170,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (int y = 0; y < _mapSize.y; y++)
-            for (int z = 0; z < _mapSize.z; z++)
+        for (var y = 0; y < _mapSize.y; y++)
+            for (var z = 0; z < _mapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(_mapSize.x - 1, y, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -161,8 +182,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             }
 
         //2. Collapse all cells along the Y faces to empty
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var z = 0; z < _mapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(x, 0, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -173,8 +194,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var z = 0; z < _mapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(x, _mapSize.y - 1, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -186,8 +207,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             }
 
         //3. Collapse all cells along the Z faces to empty
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var y = 0; y < _mapSize.y; y++)
             {
                 var cellIdx = new Vector3Int(x, y, 0);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -198,8 +219,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var y = 0; y < _mapSize.y; y++)
             {
                 var cellIdx = new Vector3Int(x, y, _mapSize.z - 1);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -213,9 +234,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private void CleanUp()
     {
-        for (int col = 0; col < _mapSize.x; col++)
-            for (int row = 0; row < _mapSize.y; row++)
-                for (int layer = 0; layer < _mapSize.z; layer++)
+        for (var col = 0; col < _mapSize.x; col++)
+            for (var row = 0; row < _mapSize.y; row++)
+                for (var layer = 0; layer < _mapSize.z; layer++)
                 {
                     Destroy(_cells3D[col, row, layer]);
                 }
@@ -223,12 +244,12 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private Vector3Int GetLowestEntropyCell()
     {
-        float _minEntropy = float.MaxValue;
+        var minEntropy = float.MaxValue;
         var lowestEntropyCell = new Vector3Int(-1, -1, -1);
 
-        for (int x = 0; x < _mapSize.x; x++)
-            for (int y = 0; y < _mapSize.y; y++)
-                for (int z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < _mapSize.x; x++)
+            for (var y = 0; y < _mapSize.y; y++)
+                for (var z = 0; z < _mapSize.z; z++)
                 {
                     float newEntropy = _cells3D[x, y, z].GetEntropy();
 
@@ -239,9 +260,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     //Add some randomness in case there would be multiple cells with the same entropy
                     newEntropy += Random.Range(0f, 0.1f);
 
-                    if (newEntropy < _minEntropy)
+                    if (newEntropy < minEntropy)
                     {
-                        _minEntropy = newEntropy;
+                        minEntropy = newEntropy;
                         lowestEntropyCell = new Vector3Int(x, y, z);
                     }
                 }
@@ -291,39 +312,39 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         None
     }
 
-    bool CompareCells(Vector3Int currentIdx, Vector3Int neighbourIdx)
+    private bool CompareCells(Vector3Int currentIdx, Vector3Int neighborIdx)
     {
-        bool changed = false;
-        bool horizontalCompare = true;
-        CompareDirection compareDirection = CompareDirection.None;
+        var changed = false;
+        var horizontalCompare = true;
+        var compareDirection = CompareDirection.None;
 
-        if (neighbourIdx.x - currentIdx.x == 1)
+        if (neighborIdx.x - currentIdx.x == 1)
         {
             //Pos X 
             compareDirection = CompareDirection.PosX;
         }
-        else if (neighbourIdx.x - currentIdx.x == -1)
+        else if (neighborIdx.x - currentIdx.x == -1)
         {
             //Neg X
             compareDirection = CompareDirection.NegX;
         }
-        else if (neighbourIdx.z - currentIdx.z == 1)
+        else if (neighborIdx.z - currentIdx.z == 1)
         {
             //Pos Z
             compareDirection = CompareDirection.PosZ;
         }
-        else if (neighbourIdx.z - currentIdx.z == -1)
+        else if (neighborIdx.z - currentIdx.z == -1)
         {
             //Neg Z
             compareDirection = CompareDirection.NegZ;
         }
-        else if (neighbourIdx.y - currentIdx.y == 1)
+        else if (neighborIdx.y - currentIdx.y == 1)
         {
             //Pos Y
             compareDirection = CompareDirection.PosY;
             horizontalCompare = false;
         }
-        else if (neighbourIdx.y - currentIdx.y == -1)
+        else if (neighborIdx.y - currentIdx.y == -1)
         {
             //Neg Y
             compareDirection = CompareDirection.NegY;
@@ -335,20 +356,20 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
         if (horizontalCompare)
         {
-            WFCCell3D currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
+            var currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
 
-            WFCCell3D neighborCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
-            var neighborTilesCopy = new List<Module>(neighborCell._modules);
+            var neighborCell = _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z];
+            var neighborTilesCopy = new List<Module>(neighborCell.Modules);
 
             if (!currentCell.IsCollapsed)
-                neighborTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCell._modules, neighborTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighborTilesHorizontal(currentCell.Modules, neighborTilesCopy, compareDirection);
             else
             {
                 var currentCellList = new List<Module>
                 {
                     currentCell.CollapsedData
                 };
-                neighborTilesCopy = GetDeprecatedNeighbourTilesHorizontal(currentCellList, neighborTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighborTilesHorizontal(currentCellList, neighborTilesCopy, compareDirection);
             }
 
             //If there are tiles remaining in tile copy
@@ -357,42 +378,42 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 changed = true;
 
             //All the tiles that remain in the copy are not correct anymore
-            //Delete them from the neighbour 
-            foreach (var neighbourTile in neighborTilesCopy)
+            //Delete them from the neighbor 
+            foreach (var neighborTile in neighborTilesCopy)
             {
-                _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z]._modules.Remove(neighbourTile);
+                _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z].Modules.Remove(neighborTile);
             }
 
         }
         else
         {
-            WFCCell3D currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
+            var currentCell = _cells3D[currentIdx.x, currentIdx.y, currentIdx.z];
 
-            WFCCell3D neighbourCell = _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z];
-            var neighbourTilesCopy = new List<Module>(neighbourCell._modules);
+            var neighborCell = _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z];
+            var neighborTilesCopy = new List<Module>(neighborCell.Modules);
 
 
             if (!currentCell.IsCollapsed)
-                neighbourTilesCopy = GetDeprecatedNeighbourTilesVertical(currentCell._modules, neighbourTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighborTilesVertical(currentCell.Modules, neighborTilesCopy, compareDirection);
             else
             {
                 var currentCellList = new List<Module>
                 {
                     currentCell.CollapsedData
                 };
-                neighbourTilesCopy = GetDeprecatedNeighbourTilesVertical(currentCellList, neighbourTilesCopy, compareDirection);
+                neighborTilesCopy = GetDeprecatedNeighborTilesVertical(currentCellList, neighborTilesCopy, compareDirection);
             }
 
-            //If there are tiles remaining in tilecopy
-            //then the propogation changed something in this neighbour
-            if (neighbourTilesCopy.Count > 0)
+            //If there are tiles remaining in tile copy
+            //then the propagation changed something in this neighbor
+            if (neighborTilesCopy.Count > 0)
                 changed = true;
 
             //All the tiles that remain in the copy are not correct anymore
-            //Delete them from the neighbour 
-            foreach (var neighbourTile in neighbourTilesCopy)
+            //Delete them from the neighbor 
+            foreach (var neighborTile in neighborTilesCopy)
             {
-                _cells3D[neighbourIdx.x, neighbourIdx.y, neighbourIdx.z]._modules.Remove(neighbourTile);
+                _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z].Modules.Remove(neighborTile);
             }
         }
 
@@ -400,7 +421,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         return changed;
     }
 
-    private List<Module> GetDeprecatedNeighbourTilesHorizontal(List<Module> currentCellTiles, List<Module> neighbourTilesCopy, CompareDirection compareDirection)
+    private List<Module> GetDeprecatedNeighborTilesHorizontal(List<Module> currentCellTiles, List<Module> neighborTilesCopy, CompareDirection compareDirection)
     {
         foreach (var module in currentCellTiles)
         {
@@ -425,22 +446,22 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     continue;
             }
 
-            foreach (var neighbourModule in neighbourTilesCopy)
+            foreach (var neighborModule in neighborTilesCopy)
             {
-                HorizontalFaceData neighbourCellFace;
+                HorizontalFaceData neighborCellFace;
                 switch (compareDirection)
                 {
                     case CompareDirection.PosX:
-                        neighbourCellFace = neighbourModule._tile._negX;
+                        neighborCellFace = neighborModule._tile._negX;
                         break;
                     case CompareDirection.NegX:
-                        neighbourCellFace = neighbourModule._tile._posX;
+                        neighborCellFace = neighborModule._tile._posX;
                         break;
                     case CompareDirection.PosZ:
-                        neighbourCellFace = neighbourModule._tile._negZ;
+                        neighborCellFace = neighborModule._tile._negZ;
                         break;
                     case CompareDirection.NegZ:
-                        neighbourCellFace = neighbourModule._tile._posZ;
+                        neighborCellFace = neighborModule._tile._posZ;
                         break;
                     default:
                         continue;
@@ -456,30 +477,30 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 //   OR
                 //  -> Both socket id's are 0 (empty faces)
 
-                if (currentCellFace._socketID != neighbourCellFace._socketID)
+                if (currentCellFace._socketID != neighborCellFace._socketID)
                     continue;
-                if ((currentCellFace._isSymmetric && neighbourCellFace._isSymmetric) ||
-                    (currentCellFace._isFlipped != neighbourCellFace._isFlipped))
+                if ((currentCellFace._isSymmetric && neighborCellFace._isSymmetric) ||
+                    (currentCellFace._isFlipped != neighborCellFace._isFlipped))
                 {
-                    compatibleTiles.Add(neighbourModule);
+                    compatibleTiles.Add(neighborModule);
                 }
-                if (currentCellFace._socketID == 0 && neighbourCellFace._socketID == 0)
-                    compatibleTiles.Add(neighbourModule);
+                if (currentCellFace._socketID == 0 && neighborCellFace._socketID == 0)
+                    compatibleTiles.Add(neighborModule);
 
             }
 
             //Remove all compatible tiles as to not double check them
             foreach (var compatibleTile in compatibleTiles)
             {
-                neighbourTilesCopy.Remove(compatibleTile);
+                neighborTilesCopy.Remove(compatibleTile);
             }
 
         }
 
-        return neighbourTilesCopy;
+        return neighborTilesCopy;
     }
 
-    private List<Module> GetDeprecatedNeighbourTilesVertical(List<Module> currentCellTiles, List<Module> neighbourTilesCopy, CompareDirection compareDirection)
+    private List<Module> GetDeprecatedNeighborTilesVertical(List<Module> currentCellTiles, List<Module> neighborTilesCopy, CompareDirection compareDirection)
     {
         foreach (var module in currentCellTiles)
         {
@@ -499,16 +520,16 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     continue;
             }
 
-            foreach (var neighbourTile in neighbourTilesCopy)
+            foreach (var neighborTile in neighborTilesCopy)
             {
-                VerticalFaceData neighbourCellFace;
+                VerticalFaceData neighborCellFace;
                 switch (compareDirection)
                 {
                     case CompareDirection.PosY:
-                        neighbourCellFace = neighbourTile._tile._negY;
+                        neighborCellFace = neighborTile._tile._negY;
                         break;
                     case CompareDirection.NegY:
-                        neighbourCellFace = neighbourTile._tile._posY;
+                        neighborCellFace = neighborTile._tile._posY;
                         break;
                     default:
                         continue;
@@ -522,23 +543,23 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 //   OR
                 //  -> Both have the same rotation index
 
-                if (currentCellFace._socketID != neighbourCellFace._socketID)
+                if (currentCellFace._socketID != neighborCellFace._socketID)
                     continue;
-                if ((currentCellFace._isInvariant && neighbourCellFace._isInvariant) ||
-                    (currentCellFace._rotationIndex == neighbourCellFace._rotationIndex))
+                if ((currentCellFace._isInvariant && neighborCellFace._isInvariant) ||
+                    (currentCellFace._rotationIndex == neighborCellFace._rotationIndex))
                 {
-                    compatibleTiles.Add(neighbourTile);
+                    compatibleTiles.Add(neighborTile);
                 }
             }
 
             //Remove all compatible tiles as to not double check them
             foreach (var compatibleTile in compatibleTiles)
             {
-                neighbourTilesCopy.Remove(compatibleTile);
+                neighborTilesCopy.Remove(compatibleTile);
             }
         }
 
-        return neighbourTilesCopy;
+        return neighborTilesCopy;
     }
 
     List<Vector3Int> GetNeighbors(Vector3Int cellCoords)

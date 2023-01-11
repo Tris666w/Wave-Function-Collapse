@@ -73,6 +73,8 @@ public class GeneratorWindow : MonoBehaviour
         {
             _3DGenerator.AttemptDestroyResult();
         }
+        _3DGenerator.AddEmptyBorder = GUILayout.Toggle(_3DGenerator.AddEmptyBorder, "Add empty border");
+
 
         GUILayout.BeginHorizontal();
 
@@ -91,6 +93,7 @@ public class GeneratorWindow : MonoBehaviour
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
         GUILayout.Label($"Current:{_stepTime}");
+
 
         GUILayout.EndVertical();
         GUILayout.EndArea();

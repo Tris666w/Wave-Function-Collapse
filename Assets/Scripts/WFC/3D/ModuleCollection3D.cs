@@ -33,7 +33,11 @@ public class ModuleCollection3D : ScriptableObject
             var tileDataArray = child.GetComponents<TileData>().ToList();
             if (tileDataArray.Count > 1)
             {
-                tileDataArray.RemoveRange(1, tileDataArray.Count - 1);
+                for (var index = 1; index < tileDataArray.Count; index++)
+                {
+                    DestroyImmediate(tileDataArray[index], true);
+                }
+
             }
 
             string name;

@@ -55,7 +55,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
     }
 
     /// <summary>
-    /// Initialize the wave object with WFCCell3D components and make the result game object.
+    /// Initialize the wave object with WFCCell2D components and make the result game object.
     /// </summary>
     private void InitializeWave()
     {

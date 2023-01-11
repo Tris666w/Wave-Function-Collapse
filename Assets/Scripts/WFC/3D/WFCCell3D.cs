@@ -4,34 +4,27 @@ using UnityEngine;
 
 public class WFCCell3D : MonoBehaviour
 {
-    public List<Module> _modules = new();
+    public List<Module> Modules = new();
 
-    private Module _collapsedModule = null;
-    public Module CollapsedData
-    {
-        get
-        {
-            return _collapsedModule;
-        }
-    }
+    public Module CollapsedData { get; private set; } = null;
 
-    private bool _isCollapsed = false;
-    public bool IsCollapsed
-    {
-        get
-        {
-            return _isCollapsed;
-        }
-    }
+    public bool IsCollapsed { get; private set; } = false;
 
+    /// <summary>
+    /// Check how many possible states this cell can be in and return the entropy.
+    /// </summary>
+    /// <returns>An integer value representing the entropy of this cell.</returns>
     public int GetEntropy()
     {
-        return _modules.Count;
+        return Modules.Count;
     }
 
+    /// <summary>
+    /// Collapses the cell into an empty module.
+    /// </summary>
     public void CollapseCell(string moduleName)
     {
-        var desiredModule = _modules.Find(x => moduleName == x.name);
+        var desiredModule = Modules.Find(x => moduleName == x.name);
 
         if (desiredModule == null)
             return;
@@ -41,32 +34,35 @@ public class WFCCell3D : MonoBehaviour
         spawnedTile.transform.localPosition = Vector3.zero;
 
         //Add local rotation
-        Quaternion newRot = Quaternion.Euler(0, desiredModule._tile._negY._rotationIndex * 90, 0);
+        var newRot = Quaternion.Euler(0, desiredModule._tile._negY._rotationIndex * 90, 0);
         spawnedTile.transform.localRotation = newRot;
 
-        _collapsedModule = desiredModule;
-        _isCollapsed = true;
+        CollapsedData = desiredModule;
+        IsCollapsed = true;
 
-        _modules.Clear();
+        Modules.Clear();
 
     }
 
+    /// <summary>
+    /// Collapses the cell into its final state (tile).
+    /// </summary>
     public void CollapseCell()
     {
-        if (_isCollapsed)
+        if (IsCollapsed)
         {
             Debug.LogWarning($"{nameof(WFCCell3D)}, CollapseCell(): Trying to collapse an already collapsed cell!!");
             return;
         }
 
-        if (_modules.Count <= 0)
+        if (Modules.Count <= 0)
         {
             throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
         }
 
         //Get random tile from the remaining ones
-        int randomIndex = Random.Range(0, _modules.Count);
-        var chosenTile = _modules[randomIndex];
+        var randomIndex = Random.Range(0, Modules.Count);
+        var chosenTile = Modules[randomIndex];
 
 
         //Instantiate prefab
@@ -74,12 +70,12 @@ public class WFCCell3D : MonoBehaviour
         spawnedTile.transform.localPosition = Vector3.zero;
 
         //Add local rotation
-        Quaternion newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex * 90, 0);
+        var newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex * 90, 0);
         spawnedTile.transform.localRotation = newRot;
 
-        _collapsedModule = chosenTile;
-        _isCollapsed = true;
+        CollapsedData = chosenTile;
+        IsCollapsed = true;
 
-        _modules.Clear();
+        Modules.Clear();
     }
 }

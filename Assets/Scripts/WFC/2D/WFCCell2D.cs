@@ -5,17 +5,9 @@ public class WFCCell2D : MonoBehaviour
 {
     public List<Sprite> PossibleTiles = new();
 
-    private Sprite _collapsedTile = null;
-    public Sprite CollapsedTile
-    {
-        get => _collapsedTile;
-    }
+    public Sprite CollapsedTile { get; private set; } = null;
 
-    private bool _isCollapsed = false;
-    public bool IsCollapsed
-    {
-        get => _isCollapsed;
-    }
+    public bool IsCollapsed { get; private set; } = false;
 
     /// <summary>
     /// Check how many possible states this cell can be in and return the entropy.
@@ -35,12 +27,12 @@ public class WFCCell2D : MonoBehaviour
         var randomIndex = Random.Range(0, PossibleTiles.Count);
 
         //Save the collapsed info
-        _collapsedTile = PossibleTiles[randomIndex];
-        _isCollapsed = true;
+        CollapsedTile = PossibleTiles[randomIndex];
+        IsCollapsed = true;
 
         //Render the sprite
         var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = _collapsedTile;
+        spriteRenderer.sprite = CollapsedTile;
 
         //Clear the possible tiles list as the cell has been collapsed
         PossibleTiles.Clear();
