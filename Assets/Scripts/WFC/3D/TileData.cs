@@ -71,6 +71,7 @@ public class TileData : MonoBehaviour
         return clone;
     }
 
+    [Header("Tile data face parameters")]
     public HorizontalFaceData _posX;
     public HorizontalFaceData _negX;
     public HorizontalFaceData _posZ;
@@ -78,35 +79,13 @@ public class TileData : MonoBehaviour
     public VerticalFaceData _posY;
     public VerticalFaceData _negY;
 
+    [Header("Tile data general parameters")]
     public float _tileSize = 2.0f;
 
     [Tooltip("This assures that rotated variants of this tile are generated, even if both vertical faces are invariant.")]
     public bool _generateRotatedVariants = false;
-    public Mesh GetMesh()
-    {
-        var _tileMesh = GetComponent<MeshFilter>();
-        if (_tileMesh)
-            return _tileMesh.sharedMesh;
-        else
-        {
-            Debug.Log("No mesh available");
-            return new Mesh();
-        }
-    }
 
-    public Material[] GetMaterials()
-    {
-        var renderer = GetComponent<MeshRenderer>();
-        if (renderer)
-            return renderer.sharedMaterials;
-        else
-        {
-            Debug.LogWarning("No materials found on renderer.");
-            return null;
-        }
-
-    }
-
+    public int Weight = 1;
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
@@ -116,11 +95,28 @@ public class TileData : MonoBehaviour
         pos.y += _tileSize / 2.0f;
         Gizmos.DrawWireCube(pos, new Vector3(_tileSize, _tileSize, _tileSize));
         DrawSocketIDs();
+        DrawWeight();
+    }
+
+    private void DrawWeight()
+    {
+        var style = new GUIStyle
+        {
+            normal =
+            {
+                textColor = Color.red
+            },
+            fontStyle = FontStyle.Bold
+        };
+
+        var currentDrawPos = transform.position;
+        currentDrawPos.y += _tileSize / 2.0f;
+        Handles.Label(currentDrawPos, Weight.ToString(), style);
     }
 
     private void DrawSocketIDs()
     {
-        GUIStyle style = new GUIStyle();
+        var style = new GUIStyle();
         style.normal.textColor = Color.black;
 
         var currentDrawPos = transform.position;

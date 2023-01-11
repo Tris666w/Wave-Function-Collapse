@@ -8,11 +8,7 @@ using UnityEngine;
 public class WaveFunctionCollapse2D : MonoBehaviour
 {
     [Header("Output Parameters")]
-    [Tooltip("Desired output size.")][SerializeField] private Vector2Int _mapSize = new(10, 10);
-    public Vector2Int MapSize
-    {
-        set => _mapSize = value;
-    }
+    [Tooltip("Desired output size.")] public Vector2Int MapSize = new(10, 10);
 
     [Space(10f)]
     [Header("Input parameters")]
@@ -35,7 +31,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
     /// </summary>
     public void GenerateLevel()
     {
-        Debug.Log($"Generating 2D map of size: {_mapSize}");
+        Debug.Log($"Generating 2D map of size: {MapSize}");
 
         //Reset the script
         AttemptDestroyResult();
@@ -60,7 +56,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
     private void InitializeWave()
     {
         //Create the wave
-        _cells2D = new WFCCell2D[_mapSize.x, _mapSize.y];
+        _cells2D = new WFCCell2D[MapSize.x, MapSize.y];
 
         //Make a game object to hold the generated result and make it a child object of the wave
         var resultObject = new GameObject("Result")
@@ -74,8 +70,8 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         //Save the game object in the generated map field
         _generatedMap = resultObject;
 
-        for (var col = 0; col < _mapSize.x; col++)
-            for (var row = 0; row < _mapSize.y; row++)
+        for (var col = 0; col < MapSize.x; col++)
+            for (var row = 0; row < MapSize.y; row++)
             {
                 //Create the game object that will hold this cell and parent it's transform to the result
                 var go = new GameObject($"x = {col}, y = {row}")
@@ -141,8 +137,8 @@ public class WaveFunctionCollapse2D : MonoBehaviour
     /// </summary>
     private void CleanUp()
     {
-        for (var col = 0; col < _mapSize.x; col++)
-            for (var row = 0; row < _mapSize.y; row++)
+        for (var col = 0; col < MapSize.x; col++)
+            for (var row = 0; row < MapSize.y; row++)
             {
                 DestroyImmediate(_cells2D[col, row]);
             }
@@ -159,8 +155,8 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         var lowestEntropyCell = new Vector2Int(-1, -1);
 
         //Loop over all the cells in the wave
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var y = 0; y < MapSize.y; y++)
             {
                 //Ignore collapsed cells
                 if (_cells2D[x, y].IsCollapsed)
@@ -386,11 +382,11 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
         if (cellCoords.x - 1 >= 0)
             neighbors.Add(new Vector2Int(cellCoords.x - 1, cellCoords.y));
-        if (cellCoords.x + 1 < _mapSize.x)
+        if (cellCoords.x + 1 < MapSize.x)
             neighbors.Add(new Vector2Int(cellCoords.x + 1, cellCoords.y));
         if (cellCoords.y - 1 >= 0)
             neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y - 1));
-        if (cellCoords.y + 1 < _mapSize.y)
+        if (cellCoords.y + 1 < MapSize.y)
             neighbors.Add(new Vector2Int(cellCoords.x, cellCoords.y + 1));
 
         return neighbors;

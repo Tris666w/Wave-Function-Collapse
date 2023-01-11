@@ -3,18 +3,16 @@ using UnityEngine.Assertions;
 
 public class GeneratorWindow : MonoBehaviour
 {
-    [SerializeField] private WaveFunctionCollapse2D _2DGenerator = null;
+    [Header("Generator")]
+    public WaveFunctionCollapse2D _2DGenerator = null;
+    [Space(2)]
     [SerializeField] private WaveFunctionCollapse3D _3DGenerator = null;
-    [SerializeField] private Vector2Int _windowOffset = new Vector2Int(10, 10);
+    [Space(10)]
+    [Header("Window parameters")]
+    [SerializeField] private Vector2Int _windowOffset = new(10, 10);
     [SerializeField][Range(0f, 1f)] private float _windowHeightPercentage = 0.55f;
 
-    private float _stepTime = 0.25f;
-    private string _2DSizeX = "10";
-    private string _2DSizeY = "10";
-
-    private string _3DSizeX = "10";
-    private string _3DSizeY = "10";
-    private string _3DSizeZ = "10";
+    private float _stepTime = 0.15f;
 
     private void OnValidate()
     {
@@ -53,11 +51,13 @@ public class GeneratorWindow : MonoBehaviour
         }
         GUILayout.BeginHorizontal();
 
-        _2DSizeX = GUILayout.TextField(_2DSizeX);
-        _2DSizeY = GUILayout.TextField(_2DSizeY);
+        var sizeX2D = _2DGenerator.MapSize.x.ToString();
+        var sizeY2D = _2DGenerator.MapSize.y.ToString();
+        sizeX2D = GUILayout.TextField(sizeX2D);
+        sizeY2D = GUILayout.TextField(sizeY2D);
 
-        if (_2DSizeX.Length > 0 && _2DSizeY.Length > 0)
-            _2DGenerator.MapSize = new Vector2Int(int.Parse(_2DSizeX), int.Parse(_2DSizeY));
+        if (sizeX2D.Length > 0 && sizeY2D.Length > 0)
+            _2DGenerator.MapSize = new Vector2Int(int.Parse(sizeX2D), int.Parse(sizeY2D));
 
         GUILayout.EndHorizontal();
 
@@ -74,16 +74,21 @@ public class GeneratorWindow : MonoBehaviour
             _3DGenerator.AttemptDestroyResult();
         }
         _3DGenerator.AddEmptyBorder = GUILayout.Toggle(_3DGenerator.AddEmptyBorder, "Add empty border");
+        _3DGenerator.UseTileWeights = GUILayout.Toggle(_3DGenerator.UseTileWeights, "Use tile weights");
 
 
         GUILayout.BeginHorizontal();
 
-        _3DSizeX = GUILayout.TextField(_3DSizeX);
-        _3DSizeY = GUILayout.TextField(_3DSizeY);
-        _3DSizeZ = GUILayout.TextField(_3DSizeZ);
+        var sizeX3D = _3DGenerator.MapSize.x.ToString();
+        var sizeY3D = _3DGenerator.MapSize.y.ToString();
+        var sizeZ3D = _3DGenerator.MapSize.z.ToString();
 
-        if (_3DSizeX.Length > 0 && _3DSizeY.Length > 0 && _3DSizeZ.Length > 0)
-            _3DGenerator.MapSize = new Vector3Int(int.Parse(_3DSizeX), int.Parse(_3DSizeY), int.Parse(_3DSizeZ));
+        sizeX3D = GUILayout.TextField(sizeX3D);
+        sizeY3D = GUILayout.TextField(sizeY3D);
+        sizeZ3D = GUILayout.TextField(sizeZ3D);
+
+        if (sizeX3D.Length > 0 && sizeY3D.Length > 0 && sizeZ3D.Length > 0)
+            _3DGenerator.MapSize = new Vector3Int(int.Parse(sizeX3D), int.Parse(sizeY3D), int.Parse(sizeZ3D));
 
         GUILayout.EndHorizontal();
 

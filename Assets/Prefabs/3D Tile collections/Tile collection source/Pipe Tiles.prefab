@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1784342198966232405}
   - component: {fileID: 4948319636480979278}
   - component: {fileID: 8450533047369332088}
-  - component: {fileID: -4381122935280502644}
-  - component: {fileID: 1271876062574927794}
-  - component: {fileID: -8167923874180287194}
+  - component: {fileID: -335970253201323886}
+  - component: {fileID: -3991604177923203977}
+  - component: {fileID: 1550991361044456399}
   m_Layer: 0
   m_Name: Pipe Arc Vertical 2
   m_TagString: Untagged
@@ -125,7 +125,8 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
---- !u!114 &-4381122935280502644
+  Weight: 50
+--- !u!114 &-335970253201323886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +164,8 @@ MonoBehaviour:
     _rotationIndex: 1
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &1271876062574927794
+  Weight: 10
+--- !u!114 &-3991604177923203977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,7 +203,8 @@ MonoBehaviour:
     _rotationIndex: 2
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &-8167923874180287194
+  Weight: 10
+--- !u!114 &1550991361044456399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,6 +242,7 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &2271809591782979362
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,9 +255,9 @@ GameObject:
   - component: {fileID: 1450143800445661724}
   - component: {fileID: 9061528484402705946}
   - component: {fileID: 7569578455445100752}
-  - component: {fileID: 5971945681732970208}
-  - component: {fileID: 7575125918589428939}
-  - component: {fileID: 2997427427659838723}
+  - component: {fileID: -5236872171073064829}
+  - component: {fileID: -3005813581635927327}
+  - component: {fileID: 8559576867108994617}
   m_Layer: 0
   m_Name: Pipe Arc Vertical 1
   m_TagString: Untagged
@@ -364,7 +368,8 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
---- !u!114 &5971945681732970208
+  Weight: 50
+--- !u!114 &-5236872171073064829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,7 +407,8 @@ MonoBehaviour:
     _rotationIndex: 1
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &7575125918589428939
+  Weight: 10
+--- !u!114 &-3005813581635927327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -440,7 +446,8 @@ MonoBehaviour:
     _rotationIndex: 2
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &2997427427659838723
+  Weight: 10
+--- !u!114 &8559576867108994617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -478,6 +485,7 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &2603312779584313845
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,9 +498,9 @@ GameObject:
   - component: {fileID: 2603312779584313841}
   - component: {fileID: 2603312779584313842}
   - component: {fileID: 2603312779584313843}
-  - component: {fileID: 6070035145078849037}
-  - component: {fileID: 3871293176799956403}
-  - component: {fileID: -7536816716579958833}
+  - component: {fileID: 3823107583399643531}
+  - component: {fileID: -8176432809179847003}
+  - component: {fileID: 8455292652572177507}
   m_Layer: 0
   m_Name: Pipe T Vertical
   m_TagString: Untagged
@@ -603,7 +611,8 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
---- !u!114 &6070035145078849037
+  Weight: 10
+--- !u!114 &3823107583399643531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -641,7 +650,8 @@ MonoBehaviour:
     _rotationIndex: 1
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &3871293176799956403
+  Weight: 10
+--- !u!114 &-8176432809179847003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,7 +689,8 @@ MonoBehaviour:
     _rotationIndex: 2
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &-7536816716579958833
+  Weight: 10
+--- !u!114 &8455292652572177507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -717,6 +728,7 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &2603312779694711669
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +799,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &2603312779846340911
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +922,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 35
 --- !u!1 &2603312780067270770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1045,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 35
 --- !u!1 &2603312780077467343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1118,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 45
 --- !u!23 &2603312780077467340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1318,6 +1334,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 35
 --- !u!1 &2603312780877770882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,9 +1347,9 @@ GameObject:
   - component: {fileID: 2603312780877770910}
   - component: {fileID: 2603312780877770911}
   - component: {fileID: 2603312780877770880}
-  - component: {fileID: -4300534234957263524}
-  - component: {fileID: -9029327312511770079}
-  - component: {fileID: 1242499815051308519}
+  - component: {fileID: -7211561728285118013}
+  - component: {fileID: 3262844504290470286}
+  - component: {fileID: 8695009360472589325}
   m_Layer: 0
   m_Name: Pipe T Horizontal
   m_TagString: Untagged
@@ -1443,7 +1460,8 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
---- !u!114 &-4300534234957263524
+  Weight: 10
+--- !u!114 &-7211561728285118013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1481,7 +1499,8 @@ MonoBehaviour:
     _rotationIndex: 1
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &-9029327312511770079
+  Weight: 10
+--- !u!114 &3262844504290470286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1519,7 +1538,8 @@ MonoBehaviour:
     _rotationIndex: 2
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &1242499815051308519
+  Weight: 10
+--- !u!114 &8695009360472589325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1557,6 +1577,7 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &2603312780891679507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,6 +1700,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 45
 --- !u!1 &4046175847896150708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1801,6 +1823,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 45
 --- !u!1 &6137591964000238781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,9 +1836,9 @@ GameObject:
   - component: {fileID: 1702069135367652294}
   - component: {fileID: 4889228973226743230}
   - component: {fileID: 3346863519851095128}
-  - component: {fileID: 1865849869352716790}
-  - component: {fileID: 1947088056477397447}
-  - component: {fileID: 7544541376139806873}
+  - component: {fileID: -4999160446411580054}
+  - component: {fileID: 2735120749671365486}
+  - component: {fileID: 6399252081962347473}
   m_Layer: 0
   m_Name: Pipe Arc Horizontal
   m_TagString: Untagged
@@ -1926,7 +1949,8 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
---- !u!114 &1865849869352716790
+  Weight: 50
+--- !u!114 &-4999160446411580054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1964,7 +1988,8 @@ MonoBehaviour:
     _rotationIndex: 1
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &1947088056477397447
+  Weight: 10
+--- !u!114 &2735120749671365486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2002,7 +2027,8 @@ MonoBehaviour:
     _rotationIndex: 2
   _tileSize: 2
   _generateRotatedVariants: 0
---- !u!114 &7544541376139806873
+  Weight: 10
+--- !u!114 &6399252081962347473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2040,3 +2066,4 @@ MonoBehaviour:
     _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10

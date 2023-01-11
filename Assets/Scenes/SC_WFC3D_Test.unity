@@ -312,18 +312,10 @@ PrefabInstance:
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _modules
       value: 
-      objectReference: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
+      objectReference: {fileID: 11400000, guid: 6f6e19dcec936984dbc562bdd8346653, type: 2}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
-      propertyPath: _mapSize.x
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
-      propertyPath: _mapSize.y
+      propertyPath: UseTileWeights
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
-      propertyPath: _mapSize.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _addEmptyBorder

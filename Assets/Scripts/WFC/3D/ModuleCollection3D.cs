@@ -25,7 +25,7 @@ public class ModuleCollection3D : ScriptableObject
         //Loop over each  child object
         foreach (Transform child in _tilesPrefab.transform)
         {
-            //If no tiledata component is found or the tile is disabled, disregard this object
+            //If no tile data component is found or the tile is disabled, disregard this object
             var tileData = child.gameObject.GetComponent<TileData>();
             if (tileData == null || tileData.gameObject.activeSelf == false)
                 continue;

@@ -7,19 +7,16 @@ using static TileData;
 public class WaveFunctionCollapse3D : MonoBehaviour
 {
     [Header("Wave parameters")]
-    [SerializeField] private Vector3Int _mapSize = new(10, 10, 10);
-    public Vector3Int MapSize
-    {
-        set => _mapSize = value;
-    }
-
+    public Vector3Int MapSize = new(10, 10, 10);
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
-    [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result. a")]
-    public bool AddEmptyBorder = true;
-
-
     [SerializeField] private string _emptyTileName = "Empty_i";
+
+    [Header("Generator options")]
+    [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result.")]
+    public bool AddEmptyBorder = true;
+    public bool UseTileWeights = true;
+
 
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
@@ -57,7 +54,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     /// </summary>
     public void GenerateLevel()
     {
-        Debug.Log($"Generating map of size: {_mapSize}");
+        Debug.Log($"Generating map of size: {MapSize}");
         AttemptDestroyResult();
 
         InitializeWave();
@@ -70,7 +67,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     private void InitializeWave()
     {
         //Create the wave
-        _cells3D = new WFCCell3D[_mapSize.x, _mapSize.y, _mapSize.z];
+        _cells3D = new WFCCell3D[MapSize.x, MapSize.y, MapSize.z];
 
         //Make a game object to hold the generated result and make it a child object of the wave
         var resultObject = new GameObject("Result")
@@ -84,9 +81,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         //Save the game object in the generated map field
         _generatedMap = resultObject;
 
-        for (var col = 0; col < _mapSize.x; col++)
-            for (var row = 0; row < _mapSize.y; row++)
-                for (var layer = 0; layer < _mapSize.z; layer++)
+        for (var col = 0; col < MapSize.x; col++)
+            for (var row = 0; row < MapSize.y; row++)
+                for (var layer = 0; layer < MapSize.z; layer++)
                 {
                     //Create the game object that will hold this cell and parent it's transform to the result
                     var go = new GameObject($"x = {col}, y = {row}, z = {layer}")
@@ -136,7 +133,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         do
         {
             //Collapse the cell
-            _cells3D[cell.x, cell.y, cell.z].CollapseCell();
+            _cells3D[cell.x, cell.y, cell.z].CollapseCell(UseTileWeights);
 
             //Propagate the changes to the other cells
             PropagateChanges(cell);
@@ -158,8 +155,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     private void GenerateEmptyBorder()
     {
         //1. Collapse all cells along the X faces to empty
-        for (var y = 0; y < _mapSize.y; y++)
-            for (var z = 0; z < _mapSize.z; z++)
+        for (var y = 0; y < MapSize.y; y++)
+            for (var z = 0; z < MapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(0, y, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -170,10 +167,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (var y = 0; y < _mapSize.y; y++)
-            for (var z = 0; z < _mapSize.z; z++)
+        for (var y = 0; y < MapSize.y; y++)
+            for (var z = 0; z < MapSize.z; z++)
             {
-                var cellIdx = new Vector3Int(_mapSize.x - 1, y, z);
+                var cellIdx = new Vector3Int(MapSize.x - 1, y, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
                 if (!cell.IsCollapsed)
@@ -182,8 +179,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             }
 
         //2. Collapse all cells along the Y faces to empty
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var z = 0; z < MapSize.z; z++)
             {
                 var cellIdx = new Vector3Int(x, 0, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -194,10 +191,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var z = 0; z < MapSize.z; z++)
             {
-                var cellIdx = new Vector3Int(x, _mapSize.y - 1, z);
+                var cellIdx = new Vector3Int(x, MapSize.y - 1, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
                 if (!cell.IsCollapsed)
@@ -207,8 +204,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             }
 
         //3. Collapse all cells along the Z faces to empty
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var y = 0; y < MapSize.y; y++)
             {
                 var cellIdx = new Vector3Int(x, y, 0);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
@@ -219,10 +216,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var y = 0; y < _mapSize.y; y++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var y = 0; y < MapSize.y; y++)
             {
-                var cellIdx = new Vector3Int(x, y, _mapSize.z - 1);
+                var cellIdx = new Vector3Int(x, y, MapSize.z - 1);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
                 if (!cell.IsCollapsed)
@@ -234,9 +231,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private void CleanUp()
     {
-        for (var col = 0; col < _mapSize.x; col++)
-            for (var row = 0; row < _mapSize.y; row++)
-                for (var layer = 0; layer < _mapSize.z; layer++)
+        for (var col = 0; col < MapSize.x; col++)
+            for (var row = 0; row < MapSize.y; row++)
+                for (var layer = 0; layer < MapSize.z; layer++)
                 {
                     Destroy(_cells3D[col, row, layer]);
                 }
@@ -247,9 +244,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         var minEntropy = float.MaxValue;
         var lowestEntropyCell = new Vector3Int(-1, -1, -1);
 
-        for (var x = 0; x < _mapSize.x; x++)
-            for (var y = 0; y < _mapSize.y; y++)
-                for (var z = 0; z < _mapSize.z; z++)
+        for (var x = 0; x < MapSize.x; x++)
+            for (var y = 0; y < MapSize.y; y++)
+                for (var z = 0; z < MapSize.z; z++)
                 {
                     float newEntropy = _cells3D[x, y, z].GetEntropy();
 
@@ -569,15 +566,15 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
         if (cellCoords.x - 1 >= 0)
             neighbors.Add(new Vector3Int(cellCoords.x - 1, cellCoords.y, cellCoords.z));
-        if (cellCoords.x + 1 < _mapSize.x)
+        if (cellCoords.x + 1 < MapSize.x)
             neighbors.Add(new Vector3Int(cellCoords.x + 1, cellCoords.y, cellCoords.z));
         if (cellCoords.y - 1 >= 0)
             neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y - 1, cellCoords.z));
-        if (cellCoords.y + 1 < _mapSize.y)
+        if (cellCoords.y + 1 < MapSize.y)
             neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y + 1, cellCoords.z));
         if (cellCoords.z - 1 >= 0)
             neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z - 1));
-        if (cellCoords.z + 1 < _mapSize.z)
+        if (cellCoords.z + 1 < MapSize.z)
             neighbors.Add(new Vector3Int(cellCoords.x, cellCoords.y, cellCoords.z + 1));
         return neighbors;
     }

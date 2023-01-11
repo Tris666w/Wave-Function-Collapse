@@ -47,7 +47,9 @@ public class WFCCell3D : MonoBehaviour
     /// <summary>
     /// Collapses the cell into its final state (tile).
     /// </summary>
-    public void CollapseCell()
+    /// <param name="useTileWeights"> Do you want to use weighted choice to collapse the tile?</param>
+    /// <exception cref="UnityException"> No modules available.</exception>
+    public void CollapseCell(bool useTileWeights)
     {
         if (IsCollapsed)
         {
@@ -60,22 +62,34 @@ public class WFCCell3D : MonoBehaviour
             throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
         }
 
-        //Get random tile from the remaining ones
-        var randomIndex = Random.Range(0, Modules.Count);
-        var chosenTile = Modules[randomIndex];
+        if (useTileWeights)
+        {
+            //Get the total weight of the remaining tiles
+            var totalWeight = 0;
+            Modules.ForEach(i => totalWeight += i._tile.Weight);
 
+            //Get random number in the range [1,totalWeight]
+            var targetWeight = Random.Range(1, totalWeight);
 
-        //Instantiate prefab
-        var spawnedTile = Instantiate(chosenTile._prefab, this.transform);
-        spawnedTile.transform.localPosition = Vector3.zero;
+            //
+            foreach (var module in Modules)
+            {
+                if (targetWeight <= module._tile.Weight)
+                {
+                    CollapseCell(module.name);
+                    return;
+                }
 
-        //Add local rotation
-        var newRot = Quaternion.Euler(0, chosenTile._tile._negY._rotationIndex * 90, 0);
-        spawnedTile.transform.localRotation = newRot;
+                targetWeight -= module._tile.Weight;
+            }
+        }
+        else
+        {
+            //Get random tile from the remaining ones
+            var randomIndex = Random.Range(0, Modules.Count);
+            var chosenTile = Modules[randomIndex];
 
-        CollapsedData = chosenTile;
-        IsCollapsed = true;
-
-        Modules.Clear();
+            CollapseCell(chosenTile.name);
+        }
     }
 }
