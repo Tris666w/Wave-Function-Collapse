@@ -44,22 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3144ae8f702199e4990df4aecf31deaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapSize: {x: 10, y: 10}
-  _tileSize: 1024
+  MapSize: {x: 10, y: 10}
+  _tileSizePx: 1024
   _tiles:
-  - {fileID: 21300000, guid: 0a197a24ed251d14bb510d5c0a9b7033, type: 3}
-  - {fileID: 21300000, guid: 7ea784d8bf77fea4ba7a1476cbd03572, type: 3}
-  - {fileID: 21300000, guid: 5d87419548decb342aaab0bed7e895f0, type: 3}
-  - {fileID: 21300000, guid: cf1f51bb93f946c408f7047f0962e26a, type: 3}
-  - {fileID: 21300000, guid: 95d7cc6939fa2134796f47d5a6db2225, type: 3}
-  - {fileID: 21300000, guid: f8d9f290ee753a94d92b80bcab698994, type: 3}
-  - {fileID: 21300000, guid: 1bede7f3be985874aae14e0c7dae4f8f, type: 3}
-  - {fileID: 21300000, guid: 5c51a2b76c2296e4c81506844ee231d4, type: 3}
-  - {fileID: 21300000, guid: 18e6300f2e8b4fb4e8cf0e6ccb7615ae, type: 3}
-  - {fileID: 21300000, guid: 65ac86b9954882d43bad039068b042a3, type: 3}
-  - {fileID: 21300000, guid: 7d4e682a57af0334db63eb4f4ed3d30e, type: 3}
-  - {fileID: 21300000, guid: a564ac92f1e1b6044b588c293efd4ddf, type: 3}
-  - {fileID: 21300000, guid: 8406f0015f013ba468ece07a00e8d723, type: 3}
-  - {fileID: 21300000, guid: f421e803619e1e040b0ee70a555bce99, type: 3}
-  - {fileID: 21300000, guid: 2352c9c34586b5c418ff739e8ae455d3, type: 3}
-  - {fileID: 21300000, guid: f1a9e284d1e70244791491a66a9ea65d, type: 3}
+  - _tileSprite: {fileID: 21300000, guid: 442962ba6590d844ab6256879e550575, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: cceb56dc4ba029a469bd2951a79402e8, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: c69ceffd9a358ec4b8cbd0050a14435b, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: 31df6811b3aaf7e4eb53d069f6b60d70, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: 08f6060a7be758147b81aa1ce13b5db7, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: 600542c66ba6b9741803b7df3fd3800e, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: 4c394fc762a551840b6402b654691a90, type: 3}
+    Weight: 0
+  - _tileSprite: {fileID: 21300000, guid: 5a410c77c6e3fc04ab29e83b020df049, type: 3}
+    Weight: 0
+  temp: 0
+  _stepTime: 1

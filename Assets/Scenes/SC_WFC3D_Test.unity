@@ -195,19 +195,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
       propertyPath: _mapSize.x
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
       propertyPath: _mapSize.y
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
-      propertyPath: _tileSizePx
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
-      propertyPath: _tiles.Array.size
-      value: 8
+      propertyPath: UseTileWeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
       propertyPath: _tiles.Array.data[0]
@@ -241,6 +237,42 @@ PrefabInstance:
       propertyPath: _tiles.Array.data[7]
       value: 
       objectReference: {fileID: 21300000, guid: 5a410c77c6e3fc04ab29e83b020df049, type: 3}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[0].Weight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[1].Weight
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[2].Weight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[3].Weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[4].Weight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[5].Weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[6].Weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tiles.Array.data[7].Weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654325760661527165, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
+      propertyPath: _tihehehehehles2D.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff28614de5beed449d6bb234b3f4aa9, type: 3}
 --- !u!114 &851397181 stripped
@@ -312,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _modules
       value: 
-      objectReference: {fileID: 11400000, guid: 6f6e19dcec936984dbc562bdd8346653, type: 2}
+      objectReference: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: UseTileWeights
       value: 1

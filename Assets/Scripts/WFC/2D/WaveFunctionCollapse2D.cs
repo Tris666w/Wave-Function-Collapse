@@ -13,7 +13,11 @@ public class WaveFunctionCollapse2D : MonoBehaviour
     [Space(10f)]
     [Header("Input parameters")]
     [Tooltip(" The size of a tile sprite in pixels.")][SerializeField] private float _tileSizePx = 1024;
-    [Tooltip("The list of tiles to use with WFC.")][SerializeField] private List<Sprite> _tiles = new();
+    [Tooltip("The list of tiles to use with WFC.")][SerializeField] private List<TileData2D> _tiles = new();
+
+    [Space(10f)]
+    [Header("Generator options")]
+    public bool UseTileWeight = true;
 
     [Space(10f)]
     [Header("Visualization parameters")]
@@ -91,7 +95,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
 
                 //Add the cell class, save the component in the wave and add all the possible sprites
                 _cells2D[col, row] = go.AddComponent<WFCCell2D>();
-                _cells2D[col, row].PossibleTiles = new List<Sprite>(_tiles);
+                _cells2D[col, row].PossibleTiles = new List<TileData2D>(_tiles);
             }
     }
 
@@ -113,7 +117,7 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         do
         {
             //Collapse the cell
-            _cells2D[cell.x, cell.y].CollapseCell();
+            _cells2D[cell.x, cell.y].CollapseCell(UseTileWeight);
 
             //Propagate the changes to the other cells
             PropagateChanges(cell);
@@ -314,10 +318,10 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         }
 
         //Make a copy of the neighbors possible tiles
-        var tilesCopy = new List<Sprite>(_cells2D[neighborIdx.x, neighborIdx.y].PossibleTiles);
+        var tilesCopy = new List<TileData2D>(_cells2D[neighborIdx.x, neighborIdx.y].PossibleTiles);
 
         var currentCell = _cells2D[currentCellIdx.x, currentCellIdx.y];
-        var currentCellTiles = new List<Sprite>();
+        var currentCellTiles = new List<TileData2D>();
 
         if (!currentCell.IsCollapsed)
             currentCellTiles = currentCell.PossibleTiles;
@@ -328,19 +332,19 @@ public class WaveFunctionCollapse2D : MonoBehaviour
         foreach (var tile in currentCellTiles)
         {
             //Sample the colors
-            var color1 = tile.texture.GetPixel(samplePoint1.x, samplePoint1.y);
-            var color2 = tile.texture.GetPixel(samplePoint2.x, samplePoint2.y);
-            var color3 = tile.texture.GetPixel(samplePoint3.x, samplePoint3.y);
+            var color1 = tile._tileSprite.texture.GetPixel(samplePoint1.x, samplePoint1.y);
+            var color2 = tile._tileSprite.texture.GetPixel(samplePoint2.x, samplePoint2.y);
+            var color3 = tile._tileSprite.texture.GetPixel(samplePoint3.x, samplePoint3.y);
 
-            List<Sprite> compatibleSprite = new();
+            List<TileData2D> compatibleSprite = new();
 
             //Loop over the remaining tiles in the copy of neighborIdx
             foreach (var neighborTile in tilesCopy)
             {
                 //Sample the colors
-                var neighborColor1 = neighborTile.texture.GetPixel(neighborSamplePoint1.x, neighborSamplePoint1.y);
-                var neighborColor2 = neighborTile.texture.GetPixel(neighborSamplePoint2.x, neighborSamplePoint2.y);
-                var neighborColor3 = neighborTile.texture.GetPixel(neighborSamplePoint3.x, neighborSamplePoint3.y);
+                var neighborColor1 = neighborTile._tileSprite.texture.GetPixel(neighborSamplePoint1.x, neighborSamplePoint1.y);
+                var neighborColor2 = neighborTile._tileSprite.texture.GetPixel(neighborSamplePoint2.x, neighborSamplePoint2.y);
+                var neighborColor3 = neighborTile._tileSprite.texture.GetPixel(neighborSamplePoint3.x, neighborSamplePoint3.y);
 
                 //If the colors match, delete the tile from the copy
                 if (color1 == neighborColor1 && color2 == neighborColor2 && color3 == neighborColor3)

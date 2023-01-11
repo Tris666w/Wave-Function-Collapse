@@ -122,6 +122,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931165284044779
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931165490267237
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +369,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931165836136384
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +492,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931166077222995
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +616,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931166204658032
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +687,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931166660033463
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +849,7 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &5748931167001943986
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,3 +973,4 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
+  Weight: 10

@@ -71,7 +71,7 @@ public class WFCCell3D : MonoBehaviour
             //Get random number in the range [1,totalWeight]
             var targetWeight = Random.Range(1, totalWeight);
 
-            //
+            //Loop over all the tiles
             foreach (var module in Modules)
             {
                 if (targetWeight <= module._tile.Weight)

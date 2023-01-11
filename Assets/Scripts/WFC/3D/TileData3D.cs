@@ -1,13 +1,10 @@
 using System;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public class TileData : MonoBehaviour
+public class TileData3D : MonoBehaviour
 {
     public class FaceData
     {
@@ -58,9 +55,9 @@ public class TileData : MonoBehaviour
         }
     }
 
-    public TileData Clone()
+    public TileData3D Clone()
     {
-        TileData clone = gameObject.AddComponent<TileData>();
+        TileData3D clone = gameObject.AddComponent<TileData3D>();
         clone._posX = this._posX.Clone();
         clone._negX = this._negX.Clone();
         clone._posZ = this._posZ.Clone();

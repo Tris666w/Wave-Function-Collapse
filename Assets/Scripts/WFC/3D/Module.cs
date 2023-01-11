@@ -8,15 +8,15 @@ using UnityEngine;
 public class Module
 {
     public string name = "Module";
-    public TileData _tile;
+    public TileData3D _tile;
     public GameObject _prefab;
 
     public Module(string name,
-           TileData tileData,
+           TileData3D tileData3D,
            GameObject prefab)
     {
         this.name = name;
-        this._tile = tileData;
+        this._tile = tileData3D;
         this._prefab = prefab;
     }
 

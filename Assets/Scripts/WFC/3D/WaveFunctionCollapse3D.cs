@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
-using static TileData;
+using static TileData3D;
 
 public class WaveFunctionCollapse3D : MonoBehaviour
 {

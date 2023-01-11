@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "new collection", menuName = "WFC/ 3D Module collection")]
 public class ModuleCollection3D : ScriptableObject
 {
-    [Tooltip("This prefab should contain all preferred tiles and each tile should have filled in TileData!")]
+    [Tooltip("This prefab should contain all preferred tiles and each tile should have filled in TileData3D!")]
     [SerializeField] private GameObject _tilesPrefab;
 
     [SerializeField] private List<Module> _modules;
@@ -26,11 +26,11 @@ public class ModuleCollection3D : ScriptableObject
         foreach (Transform child in _tilesPrefab.transform)
         {
             //If no tile data component is found or the tile is disabled, disregard this object
-            var tileData = child.gameObject.GetComponent<TileData>();
+            var tileData = child.gameObject.GetComponent<TileData3D>();
             if (tileData == null || tileData.gameObject.activeSelf == false)
                 continue;
 
-            var tileDataArray = child.GetComponents<TileData>().ToList();
+            var tileDataArray = child.GetComponents<TileData3D>().ToList();
             if (tileDataArray.Count > 1)
             {
                 for (var index = 1; index < tileDataArray.Count; index++)
@@ -69,48 +69,48 @@ public class ModuleCollection3D : ScriptableObject
 
     }
 
-    private void GenerateRotationVariants(string name, TileData originalTileData, GameObject prefab)
+    private void GenerateRotationVariants(string name, TileData3D originalTileData3D, GameObject prefab)
     {
         //1 rotation index added == 90 degrees rotation around Y-axis
 
         //Generate rotation one
         string rot1name = name + "1";
-        TileData rot1TileData = originalTileData.Clone();
+        TileData3D rot1TileData3D = originalTileData3D.Clone();
 
-        rot1TileData._posX = originalTileData._posZ;
-        rot1TileData._negZ = originalTileData._posX;
-        rot1TileData._negX = originalTileData._negZ;
-        rot1TileData._posZ = originalTileData._negX;
-        rot1TileData._negY._rotationIndex = 1;
-        rot1TileData._posY._rotationIndex = 1;
+        rot1TileData3D._posX = originalTileData3D._posZ;
+        rot1TileData3D._negZ = originalTileData3D._posX;
+        rot1TileData3D._negX = originalTileData3D._negZ;
+        rot1TileData3D._posZ = originalTileData3D._negX;
+        rot1TileData3D._negY._rotationIndex = 1;
+        rot1TileData3D._posY._rotationIndex = 1;
 
-        _modules.Add(new Module(rot1name, rot1TileData, prefab));
+        _modules.Add(new Module(rot1name, rot1TileData3D, prefab));
 
         //Generate rotation two
         string rot2name = name + "2";
-        TileData rot2TileData = originalTileData.Clone();
+        TileData3D rot2TileData3D = originalTileData3D.Clone();
 
-        rot2TileData._posX = rot1TileData._posZ;
-        rot2TileData._negZ = rot1TileData._posX;
-        rot2TileData._negX = rot1TileData._negZ;
-        rot2TileData._posZ = rot1TileData._negX;
-        rot2TileData._negY._rotationIndex = 2;
-        rot2TileData._posY._rotationIndex = 2;
+        rot2TileData3D._posX = rot1TileData3D._posZ;
+        rot2TileData3D._negZ = rot1TileData3D._posX;
+        rot2TileData3D._negX = rot1TileData3D._negZ;
+        rot2TileData3D._posZ = rot1TileData3D._negX;
+        rot2TileData3D._negY._rotationIndex = 2;
+        rot2TileData3D._posY._rotationIndex = 2;
 
-        _modules.Add(new Module(rot2name, rot2TileData, prefab));
+        _modules.Add(new Module(rot2name, rot2TileData3D, prefab));
 
         //Generate rotation three
         string rot3name = name + "3";
-        TileData rot3TileData = originalTileData.Clone();
+        TileData3D rot3TileData3D = originalTileData3D.Clone();
 
-        rot3TileData._posX = rot2TileData._posZ;
-        rot3TileData._negZ = rot2TileData._posX;
-        rot3TileData._negX = rot2TileData._negZ;
-        rot3TileData._posZ = rot2TileData._negX;
-        rot3TileData._negY._rotationIndex = 3;
-        rot3TileData._posY._rotationIndex = 3;
+        rot3TileData3D._posX = rot2TileData3D._posZ;
+        rot3TileData3D._negZ = rot2TileData3D._posX;
+        rot3TileData3D._negX = rot2TileData3D._negZ;
+        rot3TileData3D._posZ = rot2TileData3D._negX;
+        rot3TileData3D._negY._rotationIndex = 3;
+        rot3TileData3D._posY._rotationIndex = 3;
 
-        _modules.Add(new Module(rot3name, rot3TileData, prefab));
+        _modules.Add(new Module(rot3name, rot3TileData3D, prefab));
     }
 
     public void ResetModules()
