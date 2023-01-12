@@ -22,6 +22,7 @@ public class ModuleCollection3D : ScriptableObject
         if (_tilesPrefab == null)
             return;
 
+
         //Loop over each  child object
         foreach (Transform child in _tilesPrefab.transform)
         {
@@ -113,8 +114,26 @@ public class ModuleCollection3D : ScriptableObject
         _modules.Add(new Module(rot3name, rot3TileData3D, prefab));
     }
 
+
+    private void RemoveGeneratedTileDate()
+    {
+        foreach (Transform child in _tilesPrefab.transform)
+        {
+            var tileDataArray = child.GetComponents<TileData3D>().ToList();
+            if (tileDataArray.Count > 1)
+            {
+                for (var index = 1; index < tileDataArray.Count; index++)
+                {
+                    DestroyImmediate(tileDataArray[index] .gameObject, true);
+                }
+
+            }
+        }
+    }
+
     public void ResetModules()
     {
+        RemoveGeneratedTileDate();
         _modules.Clear();
     }
 }

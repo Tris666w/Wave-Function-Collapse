@@ -12,6 +12,7 @@ public class GeneratorWindow : MonoBehaviour
     [SerializeField] private Vector2Int _windowOffset = new(10, 10);
     [SerializeField][Range(0f, 1f)] private float _windowHeightPercentage = 0.55f;
 
+
     private float _stepTime = 0.15f;
 
     private void OnValidate()
@@ -49,6 +50,9 @@ public class GeneratorWindow : MonoBehaviour
         {
             _2DGenerator.AttemptDestroyResult();
         }
+
+        _2DGenerator.UseTileWeight = GUILayout.Toggle(_2DGenerator.UseTileWeight, "Use tile weights");
+
         GUILayout.BeginHorizontal();
 
         var sizeX2D = _2DGenerator.MapSize.x.ToString();
@@ -97,7 +101,6 @@ public class GeneratorWindow : MonoBehaviour
         _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 1f);
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
-        GUILayout.Label($"Current:{_stepTime}");
 
 
         GUILayout.EndVertical();
