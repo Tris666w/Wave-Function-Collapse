@@ -22,6 +22,8 @@ public class ModuleCollection3D : ScriptableObject
         if (_tilesPrefab == null)
             return;
 
+        ResetModules();
+
 
         //Loop over each  child object
         foreach (Transform child in _tilesPrefab.transform)
@@ -124,7 +126,8 @@ public class ModuleCollection3D : ScriptableObject
             {
                 for (var index = 1; index < tileDataArray.Count; index++)
                 {
-                    DestroyImmediate(tileDataArray[index] .gameObject, true);
+                    Debug.Log($"Deleting: {tileDataArray[index].gameObject.name} copy");
+                    DestroyImmediate(tileDataArray[index], true);
                 }
 
             }
