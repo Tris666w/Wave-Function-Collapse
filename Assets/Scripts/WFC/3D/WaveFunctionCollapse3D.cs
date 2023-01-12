@@ -17,7 +17,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     public bool AddEmptyBorder = true;
     public bool UseTileWeights = true;
 
-
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
 

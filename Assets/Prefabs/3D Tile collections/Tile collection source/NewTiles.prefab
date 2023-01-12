@@ -117,7 +117,7 @@ MonoBehaviour:
     _isInvariant: 1
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -680,7 +680,7 @@ MonoBehaviour:
     _isInvariant: 1
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -803,7 +803,7 @@ MonoBehaviour:
     _isInvariant: 1
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _posX:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negX:
@@ -1049,7 +1049,7 @@ MonoBehaviour:
     _isInvariant: 0
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _posX:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negX:
@@ -1160,7 +1160,7 @@ MonoBehaviour:
     _isFlipped: 1
     _isSymmetric: 0
   _posZ:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negZ:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
     _isInvariant: 0
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _posX:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negX:
@@ -1295,7 +1295,7 @@ MonoBehaviour:
     _isInvariant: 0
     _rotationIndex: 0
   _negY:
-    _socketID: 9
+    _socketID: 0
     _isInvariant: 1
     _rotationIndex: 0
   _tileSize: 2
@@ -1448,15 +1448,15 @@ MonoBehaviour:
     _isSymmetric: 1
   _negX:
     _socketID: 0
-    _isFlipped: 1
-    _isSymmetric: 0
+    _isFlipped: 0
+    _isSymmetric: 1
   _posZ:
     _socketID: 6
-    _isFlipped: 0
+    _isFlipped: 1
     _isSymmetric: 0
   _negZ:
     _socketID: 6
-    _isFlipped: 1
+    _isFlipped: 0
     _isSymmetric: 0
   _posY:
     _socketID: 0
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _posX:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negX:
@@ -1574,7 +1574,7 @@ MonoBehaviour:
     _isFlipped: 1
     _isSymmetric: 0
   _posZ:
-    _socketID: 9
+    _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
   _negZ:
