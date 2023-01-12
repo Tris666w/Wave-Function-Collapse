@@ -57,7 +57,7 @@ public class TileData3D : MonoBehaviour
 
     public TileData3D Clone()
     {
-        TileData3D clone = gameObject.AddComponent<TileData3D>();
+        var clone = gameObject.AddComponent<TileData3D>();
         clone._posX = this._posX.Clone();
         clone._negX = this._negX.Clone();
         clone._posZ = this._posZ.Clone();

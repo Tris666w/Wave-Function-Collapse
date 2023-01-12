@@ -11,6 +11,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [SerializeField] private string _emptyTileName = "Empty_i";
+    [SerializeField] private string _simpleFloorTileName = "Grass_i";
 
     [Header("Generator options")]
     [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result.")]
@@ -126,6 +127,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         if (AddEmptyBorder)
         {
             GenerateEmptyBorder();
+            GenerateFlatBorder();
         }
 
         //Start collapsing the wave
@@ -148,34 +150,87 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
         Debug.Log("Outside wave Loop");
 
-        CleanUp();
+        //CleanUp();
+    }
+
+    private void GenerateFlatBorder()
+    {
+        //Along z-faces
+        for (var z = 0; z < MapSize.z; z++)
+        {
+            var cellIdx = new Vector3Int(0, 1, z);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (cell.IsCollapsed)
+                continue;
+
+            cell.CollapseCell(_simpleFloorTileName);
+            PropagateChanges(cellIdx);
+        }
+
+        for (var z = 0; z < MapSize.z; z++)
+        {
+            var cellIdx = new Vector3Int(MapSize.x - 1, 1, z);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (cell.IsCollapsed)
+                continue;
+
+            cell.CollapseCell(_simpleFloorTileName);
+            PropagateChanges(cellIdx);
+        }
+
+        //Along x-faces
+        for (var x = 0; x < MapSize.z; x++)
+        {
+            var cellIdx = new Vector3Int(x, 1, 0);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (cell.IsCollapsed)
+                continue;
+
+            cell.CollapseCell(_simpleFloorTileName);
+            PropagateChanges(cellIdx);
+        }
+
+        for (var x = 0; x < MapSize.z; x++)
+        {
+            var cellIdx = new Vector3Int(x, 1, MapSize.z - 1);
+            var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+            if (cell.IsCollapsed)
+                continue;
+
+            cell.CollapseCell(_simpleFloorTileName);
+            PropagateChanges(cellIdx);
+        }
     }
 
     private void GenerateEmptyBorder()
     {
-        //1. Collapse all cells along the X faces to empty
-        for (var y = 0; y < MapSize.y; y++)
-            for (var z = 0; z < MapSize.z; z++)
-            {
-                var cellIdx = new Vector3Int(0, y, z);
-                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+        ////1. Collapse all cells along the X faces to empty
+        //for (var y = 0; y < MapSize.y; y++)
+        //    for (var z = 0; z < MapSize.z; z++)
+        //    {
+        //        var cellIdx = new Vector3Int(0, y, z);
+        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
-                if (!cell.IsCollapsed)
-                    cell.CollapseCell(_emptyTileName);
+        //        if (!cell.IsCollapsed)
+        //            cell.CollapseCell(_emptyTileName);
 
-                PropagateChanges(cellIdx);
-            }
+        //        PropagateChanges(cellIdx);
+        //    }
 
-        for (var y = 0; y < MapSize.y; y++)
-            for (var z = 0; z < MapSize.z; z++)
-            {
-                var cellIdx = new Vector3Int(MapSize.x - 1, y, z);
-                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+        //for (var y = 0; y < MapSize.y; y++)
+        //    for (var z = 0; z < MapSize.z; z++)
+        //    {
+        //        var cellIdx = new Vector3Int(MapSize.x - 1, y, z);
+        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
-                if (!cell.IsCollapsed)
-                    cell.CollapseCell(_emptyTileName);
-                PropagateChanges(cellIdx);
-            }
+        //        if (!cell.IsCollapsed)
+        //            cell.CollapseCell(_emptyTileName);
+        //        PropagateChanges(cellIdx);
+        //    }
 
         //2. Collapse all cells along the Y faces to empty
         for (var x = 0; x < MapSize.x; x++)
@@ -202,30 +257,30 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        //3. Collapse all cells along the Z faces to empty
-        for (var x = 0; x < MapSize.x; x++)
-            for (var y = 0; y < MapSize.y; y++)
-            {
-                var cellIdx = new Vector3Int(x, y, 0);
-                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+        ////3. Collapse all cells along the Z faces to empty
+        //for (var x = 0; x < MapSize.x; x++)
+        //    for (var y = 0; y < MapSize.y; y++)
+        //    {
+        //        var cellIdx = new Vector3Int(x, y, 0);
+        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
-                if (!cell.IsCollapsed)
-                    cell.CollapseCell(_emptyTileName);
+        //        if (!cell.IsCollapsed)
+        //            cell.CollapseCell(_emptyTileName);
 
-                PropagateChanges(cellIdx);
-            }
+        //        PropagateChanges(cellIdx);
+        //    }
 
-        for (var x = 0; x < MapSize.x; x++)
-            for (var y = 0; y < MapSize.y; y++)
-            {
-                var cellIdx = new Vector3Int(x, y, MapSize.z - 1);
-                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+        //for (var x = 0; x < MapSize.x; x++)
+        //    for (var y = 0; y < MapSize.y; y++)
+        //    {
+        //        var cellIdx = new Vector3Int(x, y, MapSize.z - 1);
+        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
-                if (!cell.IsCollapsed)
-                    cell.CollapseCell(_emptyTileName);
+        //        if (!cell.IsCollapsed)
+        //            cell.CollapseCell(_emptyTileName);
 
-                PropagateChanges(cellIdx);
-            }
+        //        PropagateChanges(cellIdx);
+        //    }
     }
 
     private void CleanUp()
@@ -254,7 +309,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                         continue;
 
                     //Add some randomness in case there would be multiple cells with the same entropy
-                    newEntropy += Random.Range(0f, 0.1f);
+                    //newEntropy += Random.Range(0f, 0.1f);
 
                     if (newEntropy < minEntropy)
                     {
