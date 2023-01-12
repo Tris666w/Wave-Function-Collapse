@@ -9,10 +9,10 @@ FBXHeaderExtension:  {
 		Year: 2023
 		Month: 1
 		Day: 12
-		Hour: 15
-		Minute: 31
-		Second: 49
-		Millisecond: 880
+		Hour: 22
+		Minute: 12
+		Second: 13
+		Millisecond: 106
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.3.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -34,15 +34,15 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2023"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "12/01/2023 14:31:49.879"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "12/01/2023 21:12:13.105"
 			P: "Original|FileName", "KString", "", "", "C:\Users\TEST SSD\Desktop\WaveFunctionCollapse\WaveFunctionCollapse\Assets\Tiles\3D\SM_FinalTiles.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2023"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "12/01/2023 14:31:49.879"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "12/01/2023 21:12:13.105"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\TEST SSD\Documents\3ds Max 2023"
-			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\TEST SSD\Desktop\WFC\Source\SM_NewTiles02.max"
+			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\TEST SSD\Desktop\WFC\Source\SM_NewTiles05.max"
 		}
 	}
 }
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 2825675820960, "", "Scene" {
+	Document: 2825675797664, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -97,12 +97,12 @@ References:  {
 
 Definitions:  {
 	Version: 100
-	Count: 25
+	Count: 27
 	ObjectType: "GlobalSettings" {
 		Count: 1
 	}
 	ObjectType: "Model" {
-		Count: 12
+		Count: 13
 		PropertyTemplate: "FbxNode" {
 			Properties70:  {
 				P: "QuaternionInterpolate", "enum", "", "",0
@@ -180,7 +180,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "Geometry" {
-		Count: 12
+		Count: 13
 		PropertyTemplate: "FbxMesh" {
 			Properties70:  {
 				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
@@ -198,7 +198,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 2825233654768, "Geometry::", "Mesh" {
+	Geometry: 2825233673968, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -245,7 +245,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233669168, "Geometry::", "Mesh" {
+	Geometry: 2825233688848, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -292,7 +292,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233685008, "Geometry::", "Mesh" {
+	Geometry: 2825233689328, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -339,7 +339,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233679728, "Geometry::", "Mesh" {
+	Geometry: 2825233659568, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -386,7 +386,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233686448, "Geometry::", "Mesh" {
+	Geometry: 2825233660048, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -433,7 +433,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233686928, "Geometry::", "Mesh" {
+	Geometry: 2825233709488, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -480,7 +480,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233668208, "Geometry::", "Mesh" {
+	Geometry: 2825233714288, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -527,7 +527,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233673968, "Geometry::", "Mesh" {
+	Geometry: 2825233717648, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -574,7 +574,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233667728, "Geometry::", "Mesh" {
+	Geometry: 2825233716688, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -621,7 +621,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233673008, "Geometry::", "Mesh" {
+	Geometry: 2825233707088, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -668,7 +668,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233665808, "Geometry::", "Mesh" {
+	Geometry: 2825233689808, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -715,7 +715,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 2825233663408, "Geometry::", "Mesh" {
+	Geometry: 2825233707568, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -762,7 +762,54 @@ Objects:  {
 			}
 		}
 	}
-	Model: 2824314729472, "Model::Grass", "Mesh" {
+	Geometry: 2825233709968, "Geometry::", "Mesh" {
+		Properties70:  {
+			P: "Color", "ColorRGB", "Color", "",0.603921568627451,0.725490196078431,0.898039215686275
+		}
+		Vertices: *24 {
+			a: -10,-10,0,10,-10,0,-10,10,0,10,10,0,-10,-10,20,10,-10,20,-10,10,20,10,10,20
+		} 
+		PolygonVertexIndex: *24 {
+			a: 0,2,3,-2,4,5,7,-7,0,1,5,-5,1,3,7,-6,3,2,6,-8,2,0,4,-7
+		} 
+		Edges: *12 {
+			a: 0,1,2,3,4,5,6,7,9,11,13,17
+		} 
+		GeometryVersion: 124
+		LayerElementNormal: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "Direct"
+			Normals: *72 {
+				a: 0,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,1,0,0,1,0,0,1,0,0,1,0,-1,0,0,-1,0,0,-1,0,0,-1,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0
+			} 
+		}
+		LayerElementUV: 0 {
+			Version: 101
+			Name: "UVChannel_1"
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "IndexToDirect"
+			UV: *48 {
+				a: 1,0,0,0,1,1,0,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1
+			} 
+			UVIndex: *24 {
+				a: 0,2,3,1,4,5,7,6,8,9,11,10,12,13,15,14,16,17,19,18,20,21,23,22
+			} 
+		}
+		Layer: 0 {
+			Version: 100
+			LayerElement:  {
+				Type: "LayerElementNormal"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementUV"
+				TypedIndex: 0
+			}
+		}
+	}
+	Model: 2826415659904, "Model::Grass", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -779,7 +826,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314731664, "Model::Grass_Water", "Mesh" {
+	Model: 2826415640176, "Model::Grass_Water", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -796,7 +843,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314733856, "Model::Grass_WaterEnd", "Mesh" {
+	Model: 2826415664288, "Model::Grass_WaterEnd", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -813,7 +860,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314736048, "Model::Wall_Up", "Mesh" {
+	Model: 2826415662096, "Model::Wall_Up", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -830,7 +877,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314738240, "Model::Wall_OuterCorner", "Mesh" {
+	Model: 2826415635792, "Model::Wall_OuterCorner", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -847,7 +894,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314740432, "Model::Wall_OuterCorner_Extension", "Mesh" {
+	Model: 2826415637984, "Model::Wall_OuterCorner_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -864,7 +911,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314742624, "Model::Wall_Up_Extension", "Mesh" {
+	Model: 2826415642368, "Model::Wall_Up_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -881,7 +928,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314747008, "Model::Wall_Up_Finish", "Mesh" {
+	Model: 2826415644560, "Model::Wall_Up_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -897,7 +944,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824314751392, "Model::Wall_OuterCorner_Finish", "Mesh" {
+	Model: 2826415648944, "Model::Wall_OuterCorner_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -913,7 +960,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824315201328, "Model::Wall_InnerCorner", "Mesh" {
+	Model: 2826415651136, "Model::Wall_InnerCorner", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -930,7 +977,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824315192560, "Model::Wall_InnerCorner_Extension", "Mesh" {
+	Model: 2826415653328, "Model::Wall_InnerCorner_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -946,7 +993,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 2824315212288, "Model::Wall_InnerCorner_Finish", "Mesh" {
+	Model: 2826415655520, "Model::Wall_InnerCorner_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -962,6 +1009,22 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
+	Model: 2826415745088, "Model::Solid", "Mesh" {
+		Version: 232
+		Properties70:  {
+			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "RotationActive", "bool", "", "",1
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A",40,0,-9.99999904632568
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
+			P: "MaxHandle", "int", "Integer", "UH",80
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
 }
 
 ; Object connections
@@ -970,74 +1033,80 @@ Objects:  {
 Connections:  {
 	
 	;Model::Grass, Model::RootNode
-	C: "OO",2824314729472,0
+	C: "OO",2826415659904,0
 	
 	;Model::Grass_Water, Model::RootNode
-	C: "OO",2824314731664,0
+	C: "OO",2826415640176,0
 	
 	;Model::Grass_WaterEnd, Model::RootNode
-	C: "OO",2824314733856,0
+	C: "OO",2826415664288,0
 	
 	;Model::Wall_Up, Model::RootNode
-	C: "OO",2824314736048,0
+	C: "OO",2826415662096,0
 	
 	;Model::Wall_OuterCorner, Model::RootNode
-	C: "OO",2824314738240,0
+	C: "OO",2826415635792,0
 	
 	;Model::Wall_OuterCorner_Extension, Model::RootNode
-	C: "OO",2824314740432,0
+	C: "OO",2826415637984,0
 	
 	;Model::Wall_Up_Extension, Model::RootNode
-	C: "OO",2824314742624,0
+	C: "OO",2826415642368,0
 	
 	;Model::Wall_Up_Finish, Model::RootNode
-	C: "OO",2824314747008,0
+	C: "OO",2826415644560,0
 	
 	;Model::Wall_OuterCorner_Finish, Model::RootNode
-	C: "OO",2824314751392,0
+	C: "OO",2826415648944,0
 	
 	;Model::Wall_InnerCorner, Model::RootNode
-	C: "OO",2824315201328,0
+	C: "OO",2826415651136,0
 	
 	;Model::Wall_InnerCorner_Extension, Model::RootNode
-	C: "OO",2824315192560,0
+	C: "OO",2826415653328,0
 	
 	;Model::Wall_InnerCorner_Finish, Model::RootNode
-	C: "OO",2824315212288,0
+	C: "OO",2826415655520,0
+	
+	;Model::Solid, Model::RootNode
+	C: "OO",2826415745088,0
 	
 	;Geometry::, Model::Grass
-	C: "OO",2825233654768,2824314729472
+	C: "OO",2825233673968,2826415659904
 	
 	;Geometry::, Model::Grass_Water
-	C: "OO",2825233669168,2824314731664
+	C: "OO",2825233688848,2826415640176
 	
 	;Geometry::, Model::Grass_WaterEnd
-	C: "OO",2825233685008,2824314733856
+	C: "OO",2825233689328,2826415664288
 	
 	;Geometry::, Model::Wall_Up
-	C: "OO",2825233679728,2824314736048
+	C: "OO",2825233659568,2826415662096
 	
 	;Geometry::, Model::Wall_OuterCorner
-	C: "OO",2825233686448,2824314738240
+	C: "OO",2825233660048,2826415635792
 	
 	;Geometry::, Model::Wall_OuterCorner_Extension
-	C: "OO",2825233686928,2824314740432
+	C: "OO",2825233709488,2826415637984
 	
 	;Geometry::, Model::Wall_Up_Extension
-	C: "OO",2825233668208,2824314742624
+	C: "OO",2825233714288,2826415642368
 	
 	;Geometry::, Model::Wall_Up_Finish
-	C: "OO",2825233673968,2824314747008
+	C: "OO",2825233717648,2826415644560
 	
 	;Geometry::, Model::Wall_OuterCorner_Finish
-	C: "OO",2825233667728,2824314751392
+	C: "OO",2825233716688,2826415648944
 	
 	;Geometry::, Model::Wall_InnerCorner
-	C: "OO",2825233673008,2824315201328
+	C: "OO",2825233707088,2826415651136
 	
 	;Geometry::, Model::Wall_InnerCorner_Extension
-	C: "OO",2825233665808,2824315192560
+	C: "OO",2825233689808,2826415653328
 	
 	;Geometry::, Model::Wall_InnerCorner_Finish
-	C: "OO",2825233663408,2824315212288
+	C: "OO",2825233707568,2826415655520
+	
+	;Geometry::, Model::Solid
+	C: "OO",2825233709968,2826415745088
 }
