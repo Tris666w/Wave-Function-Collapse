@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -6,8 +7,18 @@ using UnityEngine;
 [Serializable]
 public class TileData3D : MonoBehaviour
 {
+    public enum TileMaterial
+    {
+        Grass, Sand, Rock
+    }
+
+    [Header("Tile material info")]
+    public TileMaterial OwnMaterial;
+    public List<TileMaterial> CompatibleMaterials = new();
+
     public class FaceData
     {
+        [Header("Socket Info")]
         public int _socketID = 0;
     }
     [Serializable]
@@ -65,6 +76,9 @@ public class TileData3D : MonoBehaviour
         clone._posY = this._posY.Clone();
         clone._negY = this._negY.Clone();
         clone._tileSize = this._tileSize;
+        clone.OwnMaterial = this.OwnMaterial;
+        clone.CompatibleMaterials = this.CompatibleMaterials;
+        clone.Weight = this.Weight;
         return clone;
     }
 

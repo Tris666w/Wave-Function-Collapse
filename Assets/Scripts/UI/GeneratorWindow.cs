@@ -10,8 +10,6 @@ public class GeneratorWindow : MonoBehaviour
     [Space(10)]
     [Header("Window parameters")]
     [SerializeField] private Vector2Int _windowOffset = new(10, 10);
-    [SerializeField][Range(0f, 1f)] private float _windowHeightPercentage = 0.55f;
-
 
     private float _stepTime = 0.15f;
 
@@ -23,7 +21,9 @@ public class GeneratorWindow : MonoBehaviour
 
     private void OnGUI()
     {
-        var targetRect = new Rect(_windowOffset.x, _windowOffset.y, 200, _windowHeightPercentage * Screen.height - 2 * _windowOffset.y);
+        var windowDimensionPercentage = new Vector2(0.25f, 1f);
+
+        var targetRect = new Rect(_windowOffset.x, _windowOffset.y, windowDimensionPercentage.x * Screen.width, windowDimensionPercentage.y * Screen.height - 2 * _windowOffset.y);
         var titleStyle = new GUIStyle
         {
             alignment = TextAnchor.MiddleCenter,
@@ -101,6 +101,14 @@ public class GeneratorWindow : MonoBehaviour
         _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 1f);
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
+
+        //-------------
+        //DEBUG AREA
+        //-------------
+        GUILayout.Label($"Currently on: {_3DGenerator.CurrentStep}");
+        GUILayout.Label($"Amount of cells collapsed: {_3DGenerator.AmountOfCollapsedCells}");
+        GUILayout.Label($"Amount of open cells remaining: {_3DGenerator.AmountOfCellsRemaining}");
+
 
 
         GUILayout.EndVertical();

@@ -9,10 +9,10 @@ FBXHeaderExtension:  {
 		Year: 2023
 		Month: 1
 		Day: 13
-		Hour: 15
-		Minute: 44
-		Second: 56
-		Millisecond: 796
+		Hour: 16
+		Minute: 38
+		Second: 54
+		Millisecond: 861
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.3.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -34,13 +34,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2023"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "13/01/2023 14:44:56.795"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "13/01/2023 15:38:54.860"
 			P: "Original|FileName", "KString", "", "", "C:\Users\TEST SSD\Desktop\WaveFunctionCollapse\WaveFunctionCollapse\Assets\Tiles\3D\SM_FinalTiles.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2023"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "13/01/2023 14:44:56.795"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "13/01/2023 15:38:54.860"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\TEST SSD\Documents\3ds Max 2023"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\TEST SSD\Desktop\WFC\Source\SM_NewTiles05.max"
 		}
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1795937825232, "", "Scene" {
+	Document: 1795671776912, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -97,12 +97,12 @@ References:  {
 
 Definitions:  {
 	Version: 100
-	Count: 42
+	Count: 48
 	ObjectType: "GlobalSettings" {
 		Count: 1
 	}
 	ObjectType: "Model" {
-		Count: 13
+		Count: 15
 		PropertyTemplate: "FbxNode" {
 			Properties70:  {
 				P: "QuaternionInterpolate", "enum", "", "",0
@@ -180,7 +180,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "Geometry" {
-		Count: 13
+		Count: 14
 		PropertyTemplate: "FbxMesh" {
 			Properties70:  {
 				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
@@ -193,7 +193,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "Material" {
-		Count: 5
+		Count: 6
 		PropertyTemplate: "FbxSurfaceMaterial" {
 			Properties70:  {
 				P: "ShadingModel", "KString", "", "", "Unknown"
@@ -202,7 +202,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "Implementation" {
-		Count: 5
+		Count: 6
 		PropertyTemplate: "FbxImplementation" {
 			Properties70:  {
 				P: "ShaderLanguage", "KString", "", "", "MentalRaySL"
@@ -215,7 +215,7 @@ Definitions:  {
 		}
 	}
 	ObjectType: "BindingTable" {
-		Count: 5
+		Count: 6
 		PropertyTemplate: "FbxBindingTable" {
 			Properties70:  {
 				P: "TargetName", "KString", "", "", ""
@@ -235,7 +235,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1795937523376, "Geometry::", "Mesh" {
+	Geometry: 1795937515696, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -295,7 +295,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937514736, "Geometry::", "Mesh" {
+	Geometry: 1795937536336, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -355,7 +355,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937532976, "Geometry::", "Mesh" {
+	Geometry: 1795937525776, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -415,7 +415,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937524336, "Geometry::", "Mesh" {
+	Geometry: 1795937537776, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -475,7 +475,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937540656, "Geometry::", "Mesh" {
+	Geometry: 1795937531536, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -595,7 +595,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937530096, "Geometry::", "Mesh" {
+	Geometry: 1795937542096, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -715,7 +715,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937543536, "Geometry::", "Mesh" {
+	Geometry: 1795937530096, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -775,7 +775,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937520496, "Geometry::", "Mesh" {
+	Geometry: 1795937538736, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -835,7 +835,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937529136, "Geometry::", "Mesh" {
+	Geometry: 1795937519056, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -895,7 +895,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937535376, "Geometry::", "Mesh" {
+	Geometry: 1795937519536, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
 		}
@@ -955,7 +955,7 @@ Objects:  {
 			}
 		}
 	}
-	Geometry: 1795937531056, "Geometry::", "Mesh" {
+	Geometry: 1795937513776, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.603921568627451,0.725490196078431,0.898039215686275
 		}
@@ -1020,7 +1020,67 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1795951695280, "Model::Grass", "Mesh" {
+	Geometry: 1795937520016, "Geometry::", "Mesh" {
+		Properties70:  {
+			P: "Color", "ColorRGB", "Color", "",0.72156862745098,0.607843137254902,0.898039215686275
+		}
+		Vertices: *12 {
+			a: -10,-10,0,10,-10,0,-10,10,0,10,10,0
+		} 
+		PolygonVertexIndex: *4 {
+			a: 0,1,3,-3
+		} 
+		Edges: *4 {
+			a: 3,2,1,0
+		} 
+		GeometryVersion: 124
+		LayerElementNormal: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "Direct"
+			Normals: *12 {
+				a: 0,0,1,0,0,1,0,0,1,0,0,1
+			} 
+		}
+		LayerElementUV: 0 {
+			Version: 101
+			Name: "UVChannel_1"
+			MappingInformationType: "ByPolygonVertex"
+			ReferenceInformationType: "IndexToDirect"
+			UV: *8 {
+				a: 0,0,1,0,0,1,1,1
+			} 
+			UVIndex: *4 {
+				a: 0,1,3,2
+			} 
+		}
+		LayerElementMaterial: 0 {
+			Version: 101
+			Name: ""
+			MappingInformationType: "AllSame"
+			ReferenceInformationType: "IndexToDirect"
+			Materials: *1 {
+				a: 0
+			} 
+		}
+		Layer: 0 {
+			Version: 100
+			LayerElement:  {
+				Type: "LayerElementNormal"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementMaterial"
+				TypedIndex: 0
+			}
+			LayerElement:  {
+				Type: "LayerElementUV"
+				TypedIndex: 0
+			}
+		}
+	}
+	Model: 1795913262112, "Model::Grass", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1037,7 +1097,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951699664, "Model::Grass_Water", "Mesh" {
+	Model: 1795913268688, "Model::Grass_Water", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1054,7 +1114,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951704048, "Model::Grass_WaterEnd", "Mesh" {
+	Model: 1795913253344, "Model::Grass_WaterEnd", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1071,7 +1131,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951710624, "Model::Wall_Up", "Mesh" {
+	Model: 1795913255536, "Model::Wall_Up", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1088,7 +1148,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951682128, "Model::Wall_OuterCorner", "Mesh" {
+	Model: 1795913257728, "Model::Wall_OuterCorner", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1105,7 +1165,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951684320, "Model::Wall_OuterCorner_Extension", "Mesh" {
+	Model: 1795913264304, "Model::Wall_OuterCorner_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1122,7 +1182,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951836176, "Model::Wall_Up_Extension", "Mesh" {
+	Model: 1795913266496, "Model::Wall_Up_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1139,7 +1199,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951823024, "Model::Wall_Up_Finish", "Mesh" {
+	Model: 1795913240192, "Model::Wall_Up_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1155,7 +1215,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951827408, "Model::Wall_OuterCorner_Finish", "Mesh" {
+	Model: 1795913242384, "Model::Wall_OuterCorner_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1171,7 +1231,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951809872, "Model::Wall_InnerCorner", "Mesh" {
+	Model: 1795913244576, "Model::Wall_InnerCorner", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1188,7 +1248,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951825216, "Model::Wall_InnerCorner_Extension", "Mesh" {
+	Model: 1796066938048, "Model::Wall_InnerCorner_Extension", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1204,7 +1264,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951831792, "Model::Wall_InnerCorner_Finish", "Mesh" {
+	Model: 1796066946816, "Model::Wall_InnerCorner_Finish", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1220,7 +1280,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Model: 1795951833984, "Model::Solid", "Mesh" {
+	Model: 1796066955584, "Model::Solid", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
@@ -1236,7 +1296,40 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1793566141856, "Material::Grass", "" {
+	Model: 1796066949008, "Model::Water", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "RotationActive", "bool", "", "",1
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",0,3.5,-1.52989855450869e-07
+			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "Lcl Translation", "Lcl Translation", "", "A",10,0,30
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
+			P: "MaxHandle", "int", "Integer", "UH",89
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1796066935856, "Model::Sand", "Mesh" {
+		Version: 232
+		Properties70:  {
+			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "RotationActive", "bool", "", "",1
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",0,3.5,-1.52989855450869e-07
+			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A",10,0,30.3382797241211
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
+			P: "MaxHandle", "int", "Integer", "UH",91
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Material: 1795924119504, "Material::Grass", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1371,7 +1464,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Material: 1793566142496, "Material::Water", "" {
+	Material: 1795924113904, "Material::Water", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1506,7 +1599,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Material: 1793566147936, "Material::WaterToGrass", "" {
+	Material: 1795924117744, "Material::WaterToGrass", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1641,7 +1734,142 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Material: 1793566148576, "Material::Rock", "" {
+	Material: 1795924114544, "Material::Sand", "" {
+		Version: 102
+		ShadingModel: "unknown"
+		MultiLayer: 0
+		Properties70:  {
+			P: "ShadingModel", "KString", "", "", "unknown"
+			P: "AmbientColor", "ColorRGB", "Color", "",0.748201429843903,0.733959794044495,0.392160773277283
+			P: "DiffuseColor", "ColorRGB", "Color", "",0.748201429843903,0.733959794044495,0.392160773277283
+			P: "SpecularColor", "ColorRGB", "Color", "",1,1,1
+			P: "SpecularFactor", "double", "Number", "",2
+			P: "ShininessExponent", "double", "Number", "",1024
+			P: "TransparencyFactor", "double", "Number", "",0
+			P: "EmissiveColor", "ColorRGB", "Color", "",0,0,0
+			P: "EmissiveFactor", "double", "Number", "",0
+			P: "3dsMax", "Compound", "", ""
+			P: "3dsMax|ClassIDa", "int", "Integer", "",1030429932
+			P: "3dsMax|ClassIDb", "int", "Integer", "",-559038463
+			P: "3dsMax|SuperClassID", "int", "Integer", "",3072
+			P: "3dsMax|Parameters", "Compound", "", ""
+			P: "3dsMax|ORIGINAL_MTL", "KString", "", "", "PHYSICAL_MTL"
+			P: "3dsMax|Parameters|material_mode", "Integer", "", "A",2
+			P: "3dsMax|Parameters|base_weight", "Float", "", "A",1
+			P: "3dsMax|Parameters|base_color", "ColorAndAlpha", "", "A",0.748201429843903,0.733959794044495,0.392160773277283,1
+			P: "3dsMax|Parameters|reflectivity", "Float", "", "A",1
+			P: "3dsMax|Parameters|roughness", "Float", "", "A",0
+			P: "3dsMax|Parameters|roughness_inv", "Bool", "", "A",0
+			P: "3dsMax|Parameters|metalness", "Float", "", "A",0
+			P: "3dsMax|Parameters|refl_color", "ColorAndAlpha", "", "A",1,1,1,1
+			P: "3dsMax|Parameters|diff_roughness", "Float", "", "A",0
+			P: "3dsMax|Parameters|brdf_mode", "Bool", "", "A",1
+			P: "3dsMax|Parameters|brdf_low", "Float", "", "A",0.05
+			P: "3dsMax|Parameters|brdf_high", "Float", "", "A",1
+			P: "3dsMax|Parameters|brdf_curve", "Float", "", "A",5
+			P: "3dsMax|Parameters|anisotropy", "Float", "", "A",0
+			P: "3dsMax|Parameters|anisoangle", "Float", "", "A",0.25
+			P: "3dsMax|Parameters|aniso_mode", "Integer", "", "A",0
+			P: "3dsMax|Parameters|aniso_channel", "Integer", "", "A",0
+			P: "3dsMax|Parameters|transparency", "Float", "", "A",0
+			P: "3dsMax|Parameters|trans_color", "ColorAndAlpha", "", "A",1,1,1,1
+			P: "3dsMax|Parameters|trans_depth", "Float", "", "A",0
+			P: "3dsMax|Parameters|trans_roughness", "Float", "", "A",0
+			P: "3dsMax|Parameters|trans_roughness_inv", "Bool", "", "A",0
+			P: "3dsMax|Parameters|trans_roughness_lock", "Bool", "", "A",1
+			P: "3dsMax|Parameters|trans_ior", "Float", "", "A",1.52
+			P: "3dsMax|Parameters|thin_walled", "Bool", "", "A",0
+			P: "3dsMax|Parameters|dispersion", "Float", "", "A",0
+			P: "3dsMax|Parameters|trans_scatter_color", "ColorAndAlpha", "", "A",0,0,0,1
+			P: "3dsMax|Parameters|trans_scatter_aniso", "Float", "", "A",0
+			P: "3dsMax|Parameters|scattering", "Float", "", "A",0
+			P: "3dsMax|Parameters|sss_color", "ColorAndAlpha", "", "A",1,1,1,1
+			P: "3dsMax|Parameters|sss_depth", "Float", "", "A",10
+			P: "3dsMax|Parameters|sss_scale", "Float", "", "A",1
+			P: "3dsMax|Parameters|sss_scatter_color", "ColorAndAlpha", "", "A",100,50,25,1
+			P: "3dsMax|Parameters|emission", "Float", "", "A",1
+			P: "3dsMax|Parameters|emit_color", "ColorAndAlpha", "", "A",0,0,0,1
+			P: "3dsMax|Parameters|emit_luminance", "Float", "", "A",1500
+			P: "3dsMax|Parameters|emit_kelvin", "Float", "", "A",6500
+			P: "3dsMax|Parameters|coating", "Float", "", "A",0
+			P: "3dsMax|Parameters|coat_color", "ColorAndAlpha", "", "A",1,1,1,1
+			P: "3dsMax|Parameters|coat_roughness", "Float", "", "A",0
+			P: "3dsMax|Parameters|coat_roughness_inv", "Bool", "", "A",0
+			P: "3dsMax|Parameters|coat_affect_color", "Float", "", "A",0.5
+			P: "3dsMax|Parameters|coat_affect_roughness", "Float", "", "A",0.5
+			P: "3dsMax|Parameters|coat_ior", "Float", "", "A",1.52
+			P: "3dsMax|Parameters|coat_anisotropy", "Float", "", "A",0
+			P: "3dsMax|Parameters|coat_anisoangle", "Float", "", "A",0.25
+			P: "3dsMax|Parameters|sheen", "Float", "", "A",0
+			P: "3dsMax|Parameters|sheen_color", "ColorAndAlpha", "", "A",1,1,1,1
+			P: "3dsMax|Parameters|sheen_roughness", "Float", "", "A",0.3
+			P: "3dsMax|Parameters|thin_film", "Float", "", "A",0
+			P: "3dsMax|Parameters|thin_film_thickness", "Float", "", "A",0
+			P: "3dsMax|Parameters|thin_film_ior", "Float", "", "A",1.3
+			P: "3dsMax|Parameters|base_weight_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|base_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|reflectivity_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|refl_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|roughness_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|metalness_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|diff_rough_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|anisotropy_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|aniso_angle_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|transparency_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|trans_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|trans_rough_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|trans_ior_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|scattering_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|sss_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|sss_scale_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|emission_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|emit_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|coat_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|coat_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|coat_rough_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|displacement_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|cutout_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|coat_aniso_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|coat_aniso_angle_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|sheen_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|sheen_color_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|sheen_rough_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|thin_film_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|thin_film_ior_map", "Reference", "", "A"
+			P: "3dsMax|Parameters|base_weight_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|base_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|reflectivity_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|refl_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|roughness_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|metalness_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|diff_rough_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|anisotropy_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|aniso_angle_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|transparency_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|trans_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|trans_rough_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|trans_ior_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|scattering_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|sss_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|sss_scale_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|emission_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|emit_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|coat_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|coat_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|coat_rough_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|coat_aniso_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|coat_aniso_angle_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|sheen_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|sheen_color_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|sheen_rough_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|thin_film_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|thin_film_ior_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|displacement_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|cutout_map_on", "Bool", "", "A",1
+			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
+		}
+	}
+	Material: 1795924120784, "Material::Rock", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1776,7 +2004,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Material: 1793566165856, "Material::Solid Black", "" {
+	Material: 1795924126224, "Material::Solid Black", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -1911,7 +2139,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Implementation: 1795671258112, "Implementation::Grass_Implementation", "" {
+	Implementation: 1795902131008, "Implementation::Grass_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
@@ -1920,7 +2148,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	Implementation: 1795671258560, "Implementation::Water_Implementation", "" {
+	Implementation: 1795902129216, "Implementation::Water_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
@@ -1929,7 +2157,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	Implementation: 1795671259904, "Implementation::WaterToGrass_Implementation", "" {
+	Implementation: 1795902129888, "Implementation::WaterToGrass_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
@@ -1938,7 +2166,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	Implementation: 1795104782928, "Implementation::Rock_Implementation", "" {
+	Implementation: 1795902128768, "Implementation::Sand_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
@@ -1947,7 +2175,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	Implementation: 1795938678016, "Implementation::Solid Black_Implementation", "" {
+	Implementation: 1795902131232, "Implementation::Rock_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
@@ -1956,7 +2184,16 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	BindingTable: 1793598619648, "BindingTable::root 1", "" {
+	Implementation: 1795901564832, "Implementation::Solid Black_Implementation", "" {
+		Version: 100
+		Properties70:  {
+			P: "ShaderLanguage", "KString", "", "", "StandardSSL"
+			P: "ShaderLanguageVersion", "KString", "", "", "1.0.1"
+			P: "RenderAPI", "KString", "", "", "OSL"
+			P: "RootBindingName", "KString", "", "", "root"
+		}
+	}
+	BindingTable: 1795910278272, "BindingTable::root 18", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2076,7 +2313,7 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	BindingTable: 1793598611872, "BindingTable::root 2", "" {
+	BindingTable: 1795910285760, "BindingTable::root 19", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2196,7 +2433,7 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	BindingTable: 1793598616192, "BindingTable::root 3", "" {
+	BindingTable: 1795910278560, "BindingTable::root 20", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2316,7 +2553,7 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	BindingTable: 1793598632896, "BindingTable::root 4", "" {
+	BindingTable: 1795910279136, "BindingTable::root 21", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2436,7 +2673,127 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	BindingTable: 1793598644704, "BindingTable::root 5", "" {
+	BindingTable: 1795910280864, "BindingTable::root 22", "" {
+		Version: 100
+		Properties70:  {
+			P: "TargetName", "KString", "", "", "root"
+			P: "TargetType", "KString", "", "", "shader"
+		}
+		Entry: "3dsMax|Parameters|material_mode", "FbxPropertyEntry", "material_mode", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_weight", "FbxPropertyEntry", "base", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_color", "FbxPropertyEntry", "base_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|reflectivity", "FbxPropertyEntry", "specular", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|roughness", "FbxPropertyEntry", "specular_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|roughness_inv", "FbxPropertyEntry", "roughness_inv", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|metalness", "FbxPropertyEntry", "metalness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|refl_color", "FbxPropertyEntry", "specular_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|diff_roughness", "FbxPropertyEntry", "diffuse_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|brdf_mode", "FbxPropertyEntry", "brdf_mode", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|brdf_low", "FbxPropertyEntry", "brdf_low", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|brdf_high", "FbxPropertyEntry", "brdf_high", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|brdf_curve", "FbxPropertyEntry", "brdf_curve", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|anisotropy", "FbxPropertyEntry", "specular_anisotropy", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|anisoangle", "FbxPropertyEntry", "specular_rotation", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|aniso_mode", "FbxPropertyEntry", "aniso_mode", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|aniso_channel", "FbxPropertyEntry", "aniso_channel", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|transparency", "FbxPropertyEntry", "transmission", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_color", "FbxPropertyEntry", "transmission_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_depth", "FbxPropertyEntry", "transmission_depth", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_roughness", "FbxPropertyEntry", "transmission_extra_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_roughness_inv", "FbxPropertyEntry", "trans_roughness_inv", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_roughness_lock", "FbxPropertyEntry", "trans_roughness_lock", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_ior", "FbxPropertyEntry", "specular_IOR", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_walled", "FbxPropertyEntry", "thin_walled", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|dispersion", "FbxPropertyEntry", "transmisison_dispersion", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_scatter_color", "FbxPropertyEntry", "transmission_scatter", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_scatter_aniso", "FbxPropertyEntry", "transmission_scatter_anisotropy", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|scattering", "FbxPropertyEntry", "subsurface", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_color", "FbxPropertyEntry", "subsurface_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_depth", "FbxPropertyEntry", "sss_depth", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_scale", "FbxPropertyEntry", "subsurface_scale", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_scatter_color", "FbxPropertyEntry", "subsurface_radius", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emission", "FbxPropertyEntry", "emission", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emit_color", "FbxPropertyEntry", "emission_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emit_luminance", "FbxPropertyEntry", "emit_luminance", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emit_kelvin", "FbxPropertyEntry", "emit_kelvin", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coating", "FbxPropertyEntry", "coat", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_color", "FbxPropertyEntry", "coat_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_roughness", "FbxPropertyEntry", "coat_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_roughness_inv", "FbxPropertyEntry", "coat_roughness_inv", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_affect_color", "FbxPropertyEntry", "coat_affect_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_affect_roughness", "FbxPropertyEntry", "coat_affect_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_ior", "FbxPropertyEntry", "coat_IOR", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_anisotropy", "FbxPropertyEntry", "coat_anisotropy", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_anisoangle", "FbxPropertyEntry", "coat_rotation", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen", "FbxPropertyEntry", "sheen", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_color", "FbxPropertyEntry", "sheen_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_roughness", "FbxPropertyEntry", "sheen_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film", "FbxPropertyEntry", "thin_film", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_thickness", "FbxPropertyEntry", "thin_film_thickness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_ior", "FbxPropertyEntry", "thin_film_IOR", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_weight_map", "FbxPropertyEntry", "base", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_color_map", "FbxPropertyEntry", "base_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|reflectivity_map", "FbxPropertyEntry", "specular", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|refl_color_map", "FbxPropertyEntry", "specular_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|roughness_map", "FbxPropertyEntry", "specular_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|metalness_map", "FbxPropertyEntry", "metalness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|diff_rough_map", "FbxPropertyEntry", "diffuse_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|anisotropy_map", "FbxPropertyEntry", "specular_anisotropy", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|aniso_angle_map", "FbxPropertyEntry", "specular_rotation", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|transparency_map", "FbxPropertyEntry", "transmission", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_color_map", "FbxPropertyEntry", "transmission_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_rough_map", "FbxPropertyEntry", "transmission_extra_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_ior_map", "FbxPropertyEntry", "specular_IOR", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|scattering_map", "FbxPropertyEntry", "subsurface", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_color_map", "FbxPropertyEntry", "subsurface_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_scale_map", "FbxPropertyEntry", "subsurface_scale", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emission_map", "FbxPropertyEntry", "emission", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emit_color_map", "FbxPropertyEntry", "emission_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_map", "FbxPropertyEntry", "coat", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_color_map", "FbxPropertyEntry", "coat_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_rough_map", "FbxPropertyEntry", "coat_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|displacement_map", "FbxPropertyEntry", "displacement_map", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|cutout_map", "FbxPropertyEntry", "opacity", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_aniso_map", "FbxPropertyEntry", "coat_anisotropy", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_aniso_angle_map", "FbxPropertyEntry", "coat_rotation", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_map", "FbxPropertyEntry", "sheen", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_color_map", "FbxPropertyEntry", "sheen_color", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_rough_map", "FbxPropertyEntry", "sheen_roughness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_map", "FbxPropertyEntry", "thin_film_thickness", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_ior_map", "FbxPropertyEntry", "thin_film_IOR", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_weight_map_on", "FbxPropertyEntry", "base_weight_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|base_color_map_on", "FbxPropertyEntry", "base_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|reflectivity_map_on", "FbxPropertyEntry", "reflectivity_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|refl_color_map_on", "FbxPropertyEntry", "refl_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|roughness_map_on", "FbxPropertyEntry", "roughness_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|metalness_map_on", "FbxPropertyEntry", "metalness_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|diff_rough_map_on", "FbxPropertyEntry", "diff_rough_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|anisotropy_map_on", "FbxPropertyEntry", "anisotropy_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|aniso_angle_map_on", "FbxPropertyEntry", "aniso_angle_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|transparency_map_on", "FbxPropertyEntry", "transparency_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_color_map_on", "FbxPropertyEntry", "trans_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_rough_map_on", "FbxPropertyEntry", "trans_rough_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|trans_ior_map_on", "FbxPropertyEntry", "trans_ior_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|scattering_map_on", "FbxPropertyEntry", "scattering_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_color_map_on", "FbxPropertyEntry", "sss_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sss_scale_map_on", "FbxPropertyEntry", "sss_scale_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emission_map_on", "FbxPropertyEntry", "emission_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|emit_color_map_on", "FbxPropertyEntry", "emit_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_map_on", "FbxPropertyEntry", "coat_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_color_map_on", "FbxPropertyEntry", "coat_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_rough_map_on", "FbxPropertyEntry", "coat_rough_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_aniso_map_on", "FbxPropertyEntry", "coat_aniso_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|coat_aniso_angle_map_on", "FbxPropertyEntry", "coat_aniso_angle_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_map_on", "FbxPropertyEntry", "sheen_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_color_map_on", "FbxPropertyEntry", "sheen_color_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|sheen_rough_map_on", "FbxPropertyEntry", "sheen_rough_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_map_on", "FbxPropertyEntry", "thin_film_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|thin_film_ior_map_on", "FbxPropertyEntry", "thin_film_ior_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|displacement_map_on", "FbxPropertyEntry", "displacement_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
+		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
+	}
+	BindingTable: 1795910273952, "BindingTable::root 23", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -2564,170 +2921,188 @@ Objects:  {
 Connections:  {
 	
 	;Model::Grass, Model::RootNode
-	C: "OO",1795951695280,0
+	C: "OO",1795913262112,0
 	
 	;Model::Grass_Water, Model::RootNode
-	C: "OO",1795951699664,0
+	C: "OO",1795913268688,0
 	
 	;Model::Grass_WaterEnd, Model::RootNode
-	C: "OO",1795951704048,0
+	C: "OO",1795913253344,0
 	
 	;Model::Wall_Up, Model::RootNode
-	C: "OO",1795951710624,0
+	C: "OO",1795913255536,0
 	
 	;Model::Wall_OuterCorner, Model::RootNode
-	C: "OO",1795951682128,0
+	C: "OO",1795913257728,0
 	
 	;Model::Wall_OuterCorner_Extension, Model::RootNode
-	C: "OO",1795951684320,0
+	C: "OO",1795913264304,0
 	
 	;Model::Wall_Up_Extension, Model::RootNode
-	C: "OO",1795951836176,0
+	C: "OO",1795913266496,0
 	
 	;Model::Wall_Up_Finish, Model::RootNode
-	C: "OO",1795951823024,0
+	C: "OO",1795913240192,0
 	
 	;Model::Wall_OuterCorner_Finish, Model::RootNode
-	C: "OO",1795951827408,0
+	C: "OO",1795913242384,0
 	
 	;Model::Wall_InnerCorner, Model::RootNode
-	C: "OO",1795951809872,0
+	C: "OO",1795913244576,0
 	
 	;Model::Wall_InnerCorner_Extension, Model::RootNode
-	C: "OO",1795951825216,0
+	C: "OO",1796066938048,0
 	
 	;Model::Wall_InnerCorner_Finish, Model::RootNode
-	C: "OO",1795951831792,0
+	C: "OO",1796066946816,0
 	
 	;Model::Solid, Model::RootNode
-	C: "OO",1795951833984,0
+	C: "OO",1796066955584,0
+	
+	;Model::Water, Model::RootNode
+	C: "OO",1796066949008,0
+	
+	;Model::Sand, Model::RootNode
+	C: "OO",1796066935856,0
 	
 	;Geometry::, Model::Grass
-	C: "OO",1795937523376,1795951695280
+	C: "OO",1795937515696,1795913262112
 	
 	;Material::Grass, Model::Grass
-	C: "OO",1793566141856,1795951695280
+	C: "OO",1795924119504,1795913262112
 	
 	;Geometry::, Model::Grass_Water
-	C: "OO",1795937514736,1795951699664
+	C: "OO",1795937536336,1795913268688
 	
 	;Material::Water, Model::Grass_Water
-	C: "OO",1793566142496,1795951699664
+	C: "OO",1795924113904,1795913268688
 	
 	;Material::WaterToGrass, Model::Grass_Water
-	C: "OO",1793566147936,1795951699664
+	C: "OO",1795924117744,1795913268688
 	
 	;Material::Grass, Model::Grass_Water
-	C: "OO",1793566141856,1795951699664
+	C: "OO",1795924119504,1795913268688
 	
 	;Geometry::, Model::Grass_WaterEnd
-	C: "OO",1795937532976,1795951704048
+	C: "OO",1795937525776,1795913253344
 	
 	;Material::Water, Model::Grass_WaterEnd
-	C: "OO",1793566142496,1795951704048
+	C: "OO",1795924113904,1795913253344
 	
 	;Material::WaterToGrass, Model::Grass_WaterEnd
-	C: "OO",1793566147936,1795951704048
+	C: "OO",1795924117744,1795913253344
 	
 	;Material::Grass, Model::Grass_WaterEnd
-	C: "OO",1793566141856,1795951704048
+	C: "OO",1795924119504,1795913253344
 	
 	;Geometry::, Model::Wall_Up
-	C: "OO",1795937524336,1795951710624
+	C: "OO",1795937537776,1795913255536
 	
-	;Material::Grass, Model::Wall_Up
-	C: "OO",1793566141856,1795951710624
+	;Material::Sand, Model::Wall_Up
+	C: "OO",1795924114544,1795913255536
 	
 	;Material::Rock, Model::Wall_Up
-	C: "OO",1793566148576,1795951710624
+	C: "OO",1795924120784,1795913255536
 	
 	;Geometry::, Model::Wall_OuterCorner
-	C: "OO",1795937540656,1795951682128
+	C: "OO",1795937531536,1795913257728
 	
-	;Material::Grass, Model::Wall_OuterCorner
-	C: "OO",1793566141856,1795951682128
+	;Material::Sand, Model::Wall_OuterCorner
+	C: "OO",1795924114544,1795913257728
 	
 	;Material::Rock, Model::Wall_OuterCorner
-	C: "OO",1793566148576,1795951682128
+	C: "OO",1795924120784,1795913257728
 	
 	;Geometry::, Model::Wall_OuterCorner_Extension
-	C: "OO",1795937522896,1795951684320
+	C: "OO",1795937522896,1795913264304
 	
 	;Material::Rock, Model::Wall_OuterCorner_Extension
-	C: "OO",1793566148576,1795951684320
+	C: "OO",1795924120784,1795913264304
 	
 	;Geometry::, Model::Wall_Up_Extension
-	C: "OO",1795937530096,1795951836176
+	C: "OO",1795937542096,1795913266496
 	
 	;Material::Rock, Model::Wall_Up_Extension
-	C: "OO",1793566148576,1795951836176
+	C: "OO",1795924120784,1795913266496
 	
 	;Geometry::, Model::Wall_Up_Finish
-	C: "OO",1795937533936,1795951823024
+	C: "OO",1795937533936,1795913240192
 	
 	;Material::Rock, Model::Wall_Up_Finish
-	C: "OO",1793566148576,1795951823024
+	C: "OO",1795924120784,1795913240192
 	
 	;Geometry::, Model::Wall_OuterCorner_Finish
-	C: "OO",1795937543536,1795951827408
+	C: "OO",1795937530096,1795913242384
 	
 	;Material::Rock, Model::Wall_OuterCorner_Finish
-	C: "OO",1793566148576,1795951827408
+	C: "OO",1795924120784,1795913242384
 	
 	;Geometry::, Model::Wall_InnerCorner
-	C: "OO",1795937520496,1795951809872
+	C: "OO",1795937538736,1795913244576
 	
-	;Material::Grass, Model::Wall_InnerCorner
-	C: "OO",1793566141856,1795951809872
+	;Material::Sand, Model::Wall_InnerCorner
+	C: "OO",1795924114544,1795913244576
 	
 	;Material::Rock, Model::Wall_InnerCorner
-	C: "OO",1793566148576,1795951809872
+	C: "OO",1795924120784,1795913244576
 	
 	;Geometry::, Model::Wall_InnerCorner_Extension
-	C: "OO",1795937529136,1795951825216
+	C: "OO",1795937519056,1796066938048
 	
 	;Material::Rock, Model::Wall_InnerCorner_Extension
-	C: "OO",1793566148576,1795951825216
+	C: "OO",1795924120784,1796066938048
 	
 	;Geometry::, Model::Wall_InnerCorner_Finish
-	C: "OO",1795937535376,1795951831792
+	C: "OO",1795937519536,1796066946816
 	
 	;Material::Rock, Model::Wall_InnerCorner_Finish
-	C: "OO",1793566148576,1795951831792
+	C: "OO",1795924120784,1796066946816
 	
 	;Geometry::, Model::Solid
-	C: "OO",1795937531056,1795951833984
+	C: "OO",1795937513776,1796066955584
 	
 	;Material::Solid Black, Model::Solid
-	C: "OO",1793566165856,1795951833984
+	C: "OO",1795924126224,1796066955584
+	
+	;Geometry::, Model::Sand
+	C: "OO",1795937520016,1796066935856
+	
+	;Material::Sand, Model::Sand
+	C: "OO",1795924114544,1796066935856
 	
 	;Material::Grass, Implementation::Grass_Implementation
-	C: "OO",1793566141856,1795671258112
+	C: "OO",1795924119504,1795902131008
 	
-	;BindingTable::root 1, Implementation::Grass_Implementation
-	C: "OO",1793598619648,1795671258112
+	;BindingTable::root 18, Implementation::Grass_Implementation
+	C: "OO",1795910278272,1795902131008
 	
 	;Material::Water, Implementation::Water_Implementation
-	C: "OO",1793566142496,1795671258560
+	C: "OO",1795924113904,1795902129216
 	
-	;BindingTable::root 2, Implementation::Water_Implementation
-	C: "OO",1793598611872,1795671258560
+	;BindingTable::root 19, Implementation::Water_Implementation
+	C: "OO",1795910285760,1795902129216
 	
 	;Material::WaterToGrass, Implementation::WaterToGrass_Implementation
-	C: "OO",1793566147936,1795671259904
+	C: "OO",1795924117744,1795902129888
 	
-	;BindingTable::root 3, Implementation::WaterToGrass_Implementation
-	C: "OO",1793598616192,1795671259904
+	;BindingTable::root 20, Implementation::WaterToGrass_Implementation
+	C: "OO",1795910278560,1795902129888
+	
+	;Material::Sand, Implementation::Sand_Implementation
+	C: "OO",1795924114544,1795902128768
+	
+	;BindingTable::root 21, Implementation::Sand_Implementation
+	C: "OO",1795910279136,1795902128768
 	
 	;Material::Rock, Implementation::Rock_Implementation
-	C: "OO",1793566148576,1795104782928
+	C: "OO",1795924120784,1795902131232
 	
-	;BindingTable::root 4, Implementation::Rock_Implementation
-	C: "OO",1793598632896,1795104782928
+	;BindingTable::root 22, Implementation::Rock_Implementation
+	C: "OO",1795910280864,1795902131232
 	
 	;Material::Solid Black, Implementation::Solid Black_Implementation
-	C: "OO",1793566165856,1795938678016
+	C: "OO",1795924126224,1795901564832
 	
-	;BindingTable::root 5, Implementation::Solid Black_Implementation
-	C: "OO",1793598644704,1795938678016
+	;BindingTable::root 23, Implementation::Solid Black_Implementation
+	C: "OO",1795910273952,1795901564832
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "new collection", menuName = "WFC/ 3D Module collection")]
 public class ModuleCollection3D : ScriptableObject
@@ -119,17 +120,26 @@ public class ModuleCollection3D : ScriptableObject
 
     private void RemoveGeneratedTileDate()
     {
-        foreach (Transform child in _tilesPrefab.transform)
+        EditorUtility.SetDirty(_tilesPrefab);
+        var versionObject = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/TileCollections/TileCollectionSource/NewTiles.prefab", typeof(GameObject)) as GameObject;
+
+        if (versionObject == null)
+        {
+            Debug.Log("Not found");
+            return;
+        }
+
+        foreach (Transform child in versionObject.transform)
         {
             var tileDataArray = child.GetComponents<TileData3D>().ToList();
             if (tileDataArray.Count > 1)
             {
                 for (var index = 1; index < tileDataArray.Count; index++)
                 {
-                    Debug.Log($"Deleting: {tileDataArray[index].gameObject.name} copy");
-                    DestroyImmediate(tileDataArray[index], true);
+                    var tileComp = tileDataArray[index];
+                    Debug.Log($"Deleting: {tileComp.gameObject.name} copy");
+                    DestroyImmediate(tileComp, true);
                 }
-
             }
         }
     }

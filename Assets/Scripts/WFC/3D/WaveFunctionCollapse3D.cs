@@ -8,6 +8,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 {
     [Header("Wave parameters")]
     public Vector3Int MapSize = new(10, 10, 10);
+
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [SerializeField] private string _emptyTileName = "Empty_i";
@@ -18,6 +19,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result.")]
     public bool AddEmptyBorder = true;
     public bool UseTileWeights = true;
+    public bool UseMaterialAdjacency = true;
 
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
@@ -29,10 +31,18 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private WFCCell3D[,,] _cells3D;
     private GameObject _generatedMap = null;
+    [HideInInspector] public bool CurrentlyCollapsing { get; private set; }
+
+    //These parameters are used as info, to see how the algorithm is running
+    public int AmountOfCollapsedCells { get; private set; }
+    public int AmountOfCellsRemaining { get; private set; }
+    public string CurrentStep { get; private set; }
 
     private void OnValidate()
     {
         Assert.AreNotEqual(null, _modules, "3D WFC: Module Collection not assigned!");
+
+        AmountOfCellsRemaining = MapSize.x * MapSize.y * MapSize.z;
     }
 
     private void Start()
@@ -107,6 +117,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     _cells3D[col, row, layer] = go.AddComponent<WFCCell3D>();
                     _cells3D[col, row, layer].Modules = new List<Module>(_modules.Modules);
                 }
+
+
+        //DEBUG INFO
+        AmountOfCellsRemaining = MapSize.x * MapSize.y * MapSize.z;
     }
 
     /// <summary>
@@ -115,14 +129,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     /// <returns></returns>
     public IEnumerator CollapseWave()
     {
-        //Get the cell with the lowest entropy to start the algorithm
-        var cell = GetLowestEntropyCell();
-        if (cell.x == -1 || cell.y == -1 || cell.z == -1)
-        {
-            Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
-            yield break;
-        }
-
         // Add a border of empty tiles around the generated map, if preferred
         // This makes the outside of the generated map better
         if (AddEmptyBorder)
@@ -131,16 +137,34 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             GenerateFlatBorder();
         }
 
+        CurrentlyCollapsing = true;
+
+        //Get the cell with the lowest entropy to start the algorithm
+        var cell = GetLowestEntropyCell();
+        if (cell.x == -1 || cell.y == -1 || cell.z == -1)
+        {
+            Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
+            yield break;
+        }
+
+        Debug.Log("Starting the collapsing of the wave");
         //Start collapsing the wave
         do
         {
             //Collapse the cell
+            CurrentStep = $"Collapsing cell: {cell}";
             _cells3D[cell.x, cell.y, cell.z].CollapseCell(UseTileWeights);
 
+            //DEBUG INFO
+            AmountOfCellsRemaining--;
+            AmountOfCollapsedCells++;
+
             //Propagate the changes to the other cells
+            CurrentStep = $"Propagating collapsing of cell: {cell}";
             PropagateChanges(cell);
 
             //Get the next cell with the lowest entropy
+            CurrentStep = "Getting lowest entropy cell";
             cell = GetLowestEntropyCell();
 
             //Wait the co routine
@@ -150,6 +174,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         } while (cell.x != -1 || cell.y != -1 || cell.z != -1);
 
         Debug.Log("Outside wave Loop");
+
+        CurrentlyCollapsing = false;
 
         CleanUp();
     }
@@ -205,6 +231,13 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             cell.CollapseCell(_simpleFloorTileName);
             PropagateChanges(cellIdx);
         }
+
+        //---------
+        //DEBUG
+        //---------
+        AmountOfCellsRemaining -= 2 * MapSize.x + 2 * MapSize.z - 4;
+        AmountOfCollapsedCells += 2 * MapSize.x + 2 * MapSize.z;
+
     }
 
     private void GenerateEmptyBorder()
@@ -216,7 +249,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
                 if (!cell.IsCollapsed)
-                    cell.CollapseCell("_solidTileName");
+                    cell.CollapseCell(_solidTileName);
                 PropagateChanges(cellIdx);
             }
 
@@ -232,6 +265,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
+
+        AmountOfCellsRemaining -= MapSize.x * MapSize.z * 2;
     }
 
     private void CleanUp()
@@ -260,7 +295,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                         continue;
 
                     //Add some randomness in case there would be multiple cells with the same entropy
-                    //newEntropy += Random.Range(0f, 0.1f);
+                    newEntropy += Random.Range(0f, 0.1f);
 
                     if (newEntropy < minEntropy)
                     {
@@ -469,6 +504,13 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                         continue;
                 }
 
+                if ((currentCellFace._socketID == 0 && neighborCellFace._socketID == 0) ||
+                    (currentCellFace._socketID == 9 && neighborCellFace._socketID == 9))
+                {
+                    compatibleTiles.Add(neighborModule);
+                    continue;
+                }
+
                 //Compare the tiles
                 //Horizontal tiles match if:
                 //  -> The socket id's match
@@ -481,14 +523,21 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
                 if (currentCellFace._socketID != neighborCellFace._socketID)
                     continue;
+
                 if ((currentCellFace._isSymmetric && neighborCellFace._isSymmetric) ||
                     (currentCellFace._isFlipped != neighborCellFace._isFlipped))
                 {
-                    compatibleTiles.Add(neighborModule);
+                    if (!UseMaterialAdjacency)
+                    {
+                        compatibleTiles.Add(neighborModule);
+                        continue;
+                    }
+                    if (module._tile.CompatibleMaterials.Contains(neighborModule._tile.OwnMaterial) &&
+                        neighborModule._tile.CompatibleMaterials.Contains(module._tile.OwnMaterial))
+                    {
+                        compatibleTiles.Add(neighborModule);
+                    }
                 }
-                if (currentCellFace._socketID == 0 && neighborCellFace._socketID == 0)
-                    compatibleTiles.Add(neighborModule);
-
             }
 
             //Remove all compatible tiles as to not double check them

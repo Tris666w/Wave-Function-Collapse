@@ -262,8 +262,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c05b160945a49124db10b3c9b13839e3, type: 2}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: MapSize.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: MapSize.y
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: MapSize.z
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: AddEmptyBorder
@@ -271,15 +279,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: UseTileWeights
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _addEmptyBorder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: UseMaterialAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _simpleFloorTileName
-      value: Grass_i
+      value: Sand_i
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
