@@ -80,6 +80,16 @@ public class GeneratorWindow : MonoBehaviour
         _3DGenerator.AddEmptyBorder = GUILayout.Toggle(_3DGenerator.AddEmptyBorder, "Add empty border");
         _3DGenerator.UseTileWeights = GUILayout.Toggle(_3DGenerator.UseTileWeights, "Use tile weights");
 
+        if (_3DGenerator.IsRunning)
+        {
+            //-------------
+            //DEBUG AREA
+            //-------------
+            GUILayout.Label($"Currently on: {_3DGenerator.CurrentStep}");
+            GUILayout.Label($"Amount of cells collapsed: {_3DGenerator.AmountOfCollapsedCells}");
+            GUILayout.Label($"Amount of open cells remaining: {_3DGenerator.AmountOfCellsRemaining}");
+
+        }
 
         GUILayout.BeginHorizontal();
 
@@ -97,17 +107,13 @@ public class GeneratorWindow : MonoBehaviour
         GUILayout.EndHorizontal();
 
         GUILayout.Space(10);
-        GUILayout.Label("StepTime", titleStyle);
+        GUILayout.Label("Shared options", titleStyle);
+        GUILayout.Label("StepTime");
         _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 1f);
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
 
-        //-------------
-        //DEBUG AREA
-        //-------------
-        GUILayout.Label($"Currently on: {_3DGenerator.CurrentStep}");
-        GUILayout.Label($"Amount of cells collapsed: {_3DGenerator.AmountOfCollapsedCells}");
-        GUILayout.Label($"Amount of open cells remaining: {_3DGenerator.AmountOfCellsRemaining}");
+
 
 
 

@@ -102,18 +102,22 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -227,18 +231,22 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -262,6 +270,9 @@ GameObject:
   - component: {fileID: 3230286324892583096}
   - component: {fileID: 691764198473283150}
   - component: {fileID: 1751226117457067733}
+  - component: {fileID: 5735495754089358680}
+  - component: {fileID: -8116150639115918908}
+  - component: {fileID: -5811817067466536372}
   m_Layer: 0
   m_Name: Wall_InnerCorner_Finish
   m_TagString: Untagged
@@ -352,18 +363,34 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
   _negX:
     _socketID: 6
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
   _negZ:
     _socketID: 6
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -372,6 +399,177 @@ MonoBehaviour:
     _socketID: 4
     _isInvariant: 0
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &5735495754089358680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164354177382594991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _negX:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 1
+  _negY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-8116150639115918908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164354177382594991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posZ:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 2
+  _negY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-5811817067466536372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164354177382594991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _negZ:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 3
+  _negY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 10
@@ -477,18 +675,22 @@ MonoBehaviour:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 9
     _isInvariant: 1
@@ -550,18 +752,22 @@ MonoBehaviour:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -585,6 +791,9 @@ GameObject:
   - component: {fileID: 6297019222323973759}
   - component: {fileID: 1279896836976924157}
   - component: {fileID: 1622352180282751663}
+  - component: {fileID: -3297210522617929897}
+  - component: {fileID: -2742522343597722469}
+  - component: {fileID: -4774251672652805228}
   m_Layer: 0
   m_Name: Grass_WaterEnd
   m_TagString: Untagged
@@ -677,18 +886,29 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
   _posZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5157129805422835363}
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
   _negZ:
     _socketID: 2
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -699,6 +919,162 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
+  Weight: 99999
+--- !u!114 &-3297210522617929897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157129805422835363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5157129805422835363}
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 99999
+--- !u!114 &-2742522343597722469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157129805422835363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5157129805422835363}
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 99999
+--- !u!114 &-4774251672652805228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157129805422835363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5157129805422835363}
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
   Weight: 99999
 --- !u!1 &5184926367344623527
 GameObject:
@@ -712,6 +1088,9 @@ GameObject:
   - component: {fileID: 4351094810633383233}
   - component: {fileID: 1200687885227675797}
   - component: {fileID: 639197522585155005}
+  - component: {fileID: 1101960425771038383}
+  - component: {fileID: -3936121595456257120}
+  - component: {fileID: 3978808335692416156}
   m_Layer: 0
   m_Name: Grass_Water
   m_TagString: Untagged
@@ -804,18 +1183,26 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
   _posZ:
     _socketID: 2
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 2
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -826,6 +1213,153 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 1
+  Weight: 99999
+--- !u!114 &1101960425771038383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184926367344623527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 99999
+--- !u!114 &-3936121595456257120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184926367344623527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 99999
+--- !u!114 &3978808335692416156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5184926367344623527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 2
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 5184926367344623527}
+    - {fileID: 5157129805422835363}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
   Weight: 99999
 --- !u!1 &5580199569056694877
 GameObject:
@@ -839,6 +1373,9 @@ GameObject:
   - component: {fileID: 6056227592491110750}
   - component: {fileID: 8512997705444309731}
   - component: {fileID: 1933784314796776563}
+  - component: {fileID: -5813485880163009036}
+  - component: {fileID: -8565737761820909765}
+  - component: {fileID: -7293269179457841732}
   m_Layer: 0
   m_Name: Wall_OuterCorner
   m_TagString: Untagged
@@ -930,18 +1467,22 @@ MonoBehaviour:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 7
     _isInvariant: 0
@@ -950,6 +1491,141 @@ MonoBehaviour:
     _socketID: 9
     _isInvariant: 1
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &-5813485880163009036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580199569056694877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &-8565737761820909765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580199569056694877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &-7293269179457841732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580199569056694877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 2
@@ -965,6 +1641,9 @@ GameObject:
   - component: {fileID: 4392231172495145867}
   - component: {fileID: 4830034874427370736}
   - component: {fileID: 3467838040325504511}
+  - component: {fileID: 2807739295972577287}
+  - component: {fileID: 2969676833056171626}
+  - component: {fileID: 7468737275821764965}
   m_Layer: 0
   m_Name: Wall_InnerCorner
   m_TagString: Untagged
@@ -1056,18 +1735,22 @@ MonoBehaviour:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 4
     _isInvariant: 0
@@ -1076,6 +1759,141 @@ MonoBehaviour:
     _socketID: 9
     _isInvariant: 1
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &2807739295972577287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324270188819643650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &2969676833056171626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324270188819643650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 2
+--- !u!114 &7468737275821764965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6324270188819643650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 2
@@ -1091,6 +1909,9 @@ GameObject:
   - component: {fileID: 5877956632420571583}
   - component: {fileID: 8512387662469292806}
   - component: {fileID: 4585667117373747224}
+  - component: {fileID: -8395299193410233137}
+  - component: {fileID: -1071649412650743570}
+  - component: {fileID: -974043377278235046}
   m_Layer: 0
   m_Name: Wall_Up
   m_TagString: Untagged
@@ -1182,18 +2003,28 @@ MonoBehaviour:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 8
     _isInvariant: 0
@@ -1204,7 +2035,160 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
-  Weight: 2
+  Weight: 10
+--- !u!114 &-8395299193410233137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436035358185092825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-1071649412650743570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436035358185092825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-974043377278235046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436035358185092825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 1
+  CompatibleMaterials: 0100000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
 --- !u!1 &6444291608049692712
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +2201,9 @@ GameObject:
   - component: {fileID: 6298206930534172513}
   - component: {fileID: 801685371687741919}
   - component: {fileID: 8309302087480204477}
+  - component: {fileID: 3955037849970175861}
+  - component: {fileID: 7057842568589008216}
+  - component: {fileID: 698869757942673134}
   m_Layer: 0
   m_Name: Wall_OuterCorner_Grass
   m_TagString: Untagged
@@ -1308,18 +2295,26 @@ MonoBehaviour:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
   _negZ:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 7
     _isInvariant: 0
@@ -1328,6 +2323,153 @@ MonoBehaviour:
     _socketID: 9
     _isInvariant: 1
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &3955037849970175861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444291608049692712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &7057842568589008216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444291608049692712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &698869757942673134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6444291608049692712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors:
+    - {fileID: 5580199569056694877}
+    - {fileID: 6444291608049692712}
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 1
@@ -1343,6 +2485,9 @@ GameObject:
   - component: {fileID: 8766928593339889161}
   - component: {fileID: 5194178767093085455}
   - component: {fileID: 3669782377850751627}
+  - component: {fileID: -6627449238652102753}
+  - component: {fileID: -3364466549139841044}
+  - component: {fileID: 8954221513676964275}
   m_Layer: 0
   m_Name: Wall_Up Grass
   m_TagString: Untagged
@@ -1434,18 +2579,22 @@ MonoBehaviour:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 8
     _isInvariant: 0
@@ -1456,7 +2605,142 @@ MonoBehaviour:
     _rotationIndex: 0
   _tileSize: 2
   _generateRotatedVariants: 0
-  Weight: 1
+  Weight: 5
+--- !u!114 &-6627449238652102753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835756377357510098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 5
+--- !u!114 &-3364466549139841044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835756377357510098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 5
+--- !u!114 &8954221513676964275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835756377357510098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 5
 --- !u!1 &7276411999032948894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +2799,9 @@ GameObject:
   - component: {fileID: 860787892507291202}
   - component: {fileID: 7647610326595775172}
   - component: {fileID: 6602640931975022458}
+  - component: {fileID: 5062403771593127344}
+  - component: {fileID: -2781801920106613880}
+  - component: {fileID: -1051498055209473054}
   m_Layer: 0
   m_Name: Wall_InnerCorner Grass
   m_TagString: Untagged
@@ -1606,18 +2893,22 @@ MonoBehaviour:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negX:
     _socketID: 3
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 9
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 3
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 4
     _isInvariant: 0
@@ -1626,6 +2917,141 @@ MonoBehaviour:
     _socketID: 9
     _isInvariant: 1
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &5062403771593127344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409100810713587978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 1
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &-2781801920106613880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409100810713587978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 2
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 1
+--- !u!114 &-1051498055209473054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409100810713587978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 0
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 3
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 9
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 3
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 4
+    _isInvariant: 0
+    _rotationIndex: 3
+  _negY:
+    _socketID: 9
+    _isInvariant: 1
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 1
@@ -1641,6 +3067,9 @@ GameObject:
   - component: {fileID: 1788040135521612767}
   - component: {fileID: 7545827913285689613}
   - component: {fileID: 7565302062006397487}
+  - component: {fileID: -5065777765408958403}
+  - component: {fileID: 7091263098881032404}
+  - component: {fileID: 8722161809649333063}
   m_Layer: 0
   m_Name: Wall_Up_Finish
   m_TagString: Untagged
@@ -1731,18 +3160,28 @@ MonoBehaviour:
     _socketID: 1
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
   _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 6
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 6
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -1751,6 +3190,159 @@ MonoBehaviour:
     _socketID: 8
     _isInvariant: 0
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-5065777765408958403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748591880912069654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 1
+  _negY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &7091263098881032404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748591880912069654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _posZ:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 2
+  _negY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &8722161809649333063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8748591880912069654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 1
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors:
+    - {fileID: 6324270188819643650}
+    - {fileID: 5580199569056694877}
+    - {fileID: 6436035358185092825}
+    - {fileID: 6444291608049692712}
+    - {fileID: 7409100810713587978}
+    - {fileID: 6835756377357510098}
+  _negZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 3
+  _negY:
+    _socketID: 8
+    _isInvariant: 0
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 10
@@ -1766,6 +3358,9 @@ GameObject:
   - component: {fileID: 5023902546397414491}
   - component: {fileID: 2134911422802772667}
   - component: {fileID: 3552932611028457228}
+  - component: {fileID: -3902719091427032445}
+  - component: {fileID: -3401417612356269001}
+  - component: {fileID: -2886192439258299498}
   m_Layer: 0
   m_Name: Wall_OuterCorner_Finish
   m_TagString: Untagged
@@ -1856,18 +3451,22 @@ MonoBehaviour:
     _socketID: 6
     _isFlipped: 0
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negX:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posZ:
     _socketID: 6
     _isFlipped: 1
     _isSymmetric: 0
+    ExcludedNeighbors: []
   _negZ:
     _socketID: 0
     _isFlipped: 0
     _isSymmetric: 1
+    ExcludedNeighbors: []
   _posY:
     _socketID: 0
     _isInvariant: 1
@@ -1876,6 +3475,141 @@ MonoBehaviour:
     _socketID: 7
     _isInvariant: 0
     _rotationIndex: 0
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-3902719091427032445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916897484597282612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 1
+  _negY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 1
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-3401417612356269001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916897484597282612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 2
+  _negY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 2
+  _tileSize: 2
+  _generateRotatedVariants: 0
+  Weight: 10
+--- !u!114 &-2886192439258299498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916897484597282612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2173e9389f607cb4c8829ccec5892ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OwnMaterial: 2
+  CompatibleMaterials: 0000000002000000
+  _posX:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _negX:
+    _socketID: 6
+    _isFlipped: 1
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _posZ:
+    _socketID: 6
+    _isFlipped: 0
+    _isSymmetric: 0
+    ExcludedNeighbors: []
+  _negZ:
+    _socketID: 0
+    _isFlipped: 0
+    _isSymmetric: 1
+    ExcludedNeighbors: []
+  _posY:
+    _socketID: 0
+    _isInvariant: 1
+    _rotationIndex: 3
+  _negY:
+    _socketID: 7
+    _isInvariant: 0
+    _rotationIndex: 3
   _tileSize: 2
   _generateRotatedVariants: 0
   Weight: 10

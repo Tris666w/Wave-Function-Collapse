@@ -20,12 +20,15 @@ public class TileData3D : MonoBehaviour
     {
         [Header("Socket Info")]
         public int _socketID = 0;
+
     }
     [Serializable]
     public class HorizontalFaceData : FaceData
     {
         public bool _isFlipped = false;
         public bool _isSymmetric = false;
+
+        public List<GameObject> ExcludedNeighbors = new();
 
         public override string ToString()
         {
@@ -38,6 +41,7 @@ public class TileData3D : MonoBehaviour
             clone._isFlipped = this._isFlipped;
             clone._isSymmetric = this._isSymmetric;
             clone._socketID = this._socketID;
+            clone.ExcludedNeighbors = this.ExcludedNeighbors;
             return clone;
         }
 

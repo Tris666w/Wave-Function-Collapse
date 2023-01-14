@@ -583,7 +583,6 @@ MonoBehaviour:
   _2DGenerator: {fileID: 273108375}
   _3DGenerator: {fileID: 374240804}
   _windowOffset: {x: 10, y: 10}
-  _windowHeightPercentage: 0.55
 --- !u!4 &2100407981
 Transform:
   m_ObjectHideFlags: 0
@@ -606,7 +605,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100407979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e424844e9040de4a99ac3cdca07def9, type: 3}
   m_Name: 

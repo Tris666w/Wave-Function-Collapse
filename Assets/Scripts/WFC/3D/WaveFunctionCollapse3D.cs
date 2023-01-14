@@ -20,6 +20,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     public bool AddEmptyBorder = true;
     public bool UseTileWeights = true;
     public bool UseMaterialAdjacency = true;
+    public bool UseExcludedNeighborsAdjacency = true;
 
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
@@ -31,12 +32,15 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private WFCCell3D[,,] _cells3D;
     private GameObject _generatedMap = null;
-    [HideInInspector] public bool CurrentlyCollapsing { get; private set; }
 
     //These parameters are used as info, to see how the algorithm is running
     public int AmountOfCollapsedCells { get; private set; }
     public int AmountOfCellsRemaining { get; private set; }
     public string CurrentStep { get; private set; }
+
+    public bool IsRunning { get; private set; }
+
+    private Vector3Int _currentCell = new();
 
     private void OnValidate()
     {
@@ -55,6 +59,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     /// </summary>
     public void AttemptDestroyResult()
     {
+        IsRunning = false;
         StopAllCoroutines();
         if (_generatedMap != null)
             Destroy(_generatedMap);
@@ -67,6 +72,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     {
         Debug.Log($"Generating map of size: {MapSize}");
         AttemptDestroyResult();
+
+        IsRunning = true;
 
         InitializeWave();
         StartCoroutine(CollapseWave());
@@ -137,11 +144,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             GenerateFlatBorder();
         }
 
-        CurrentlyCollapsing = true;
-
         //Get the cell with the lowest entropy to start the algorithm
-        var cell = GetLowestEntropyCell();
-        if (cell.x == -1 || cell.y == -1 || cell.z == -1)
+        _currentCell = GetLowestEntropyCell();
+        if (_currentCell.x == -1 || _currentCell.y == -1 || _currentCell.z == -1)
         {
             Debug.LogWarning("No cell with entropy found, before algorithm start? Stopping algorithm.");
             yield break;
@@ -152,30 +157,28 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         do
         {
             //Collapse the cell
-            CurrentStep = $"Collapsing cell: {cell}";
-            _cells3D[cell.x, cell.y, cell.z].CollapseCell(UseTileWeights);
+            _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell(UseTileWeights);
 
             //DEBUG INFO
             AmountOfCellsRemaining--;
             AmountOfCollapsedCells++;
 
             //Propagate the changes to the other cells
-            CurrentStep = $"Propagating collapsing of cell: {cell}";
-            PropagateChanges(cell);
+            PropagateChanges(_currentCell);
 
             //Get the next cell with the lowest entropy
-            CurrentStep = "Getting lowest entropy cell";
-            cell = GetLowestEntropyCell();
+            CurrentStep = $"Current cell {_currentCell}";
+            _currentCell = GetLowestEntropyCell();
 
             //Wait the co routine
             if (!Mathf.Approximately(_stepTime, 0))
                 yield return new WaitForSeconds(_stepTime);
 
-        } while (cell.x != -1 || cell.y != -1 || cell.z != -1);
+        } while (_currentCell.x != -1 || _currentCell.y != -1 || _currentCell.z != -1);
 
         Debug.Log("Outside wave Loop");
 
-        CurrentlyCollapsing = false;
+        IsRunning = false;
 
         CleanUp();
     }
@@ -242,6 +245,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private void GenerateEmptyBorder()
     {
+        //Add solid tiles to the floor
         for (var x = 0; x < MapSize.x; x++)
             for (var z = 0; z < MapSize.z; z++)
             {
@@ -253,17 +257,18 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 PropagateChanges(cellIdx);
             }
 
-        for (var x = 0; x < MapSize.x; x++)
-            for (var z = 0; z < MapSize.z; z++)
-            {
-                var cellIdx = new Vector3Int(x, MapSize.y - 1, z);
-                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+        //Add empty tiles to the top
+        //for (var x = 0; x < MapSize.x; x++)
+        //    for (var z = 0; z < MapSize.z; z++)
+        //    {
+        //        var cellIdx = new Vector3Int(x, MapSize.y - 1, z);
+        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
-                if (!cell.IsCollapsed)
-                    cell.CollapseCell(_emptyTileName);
+        //        if (!cell.IsCollapsed)
+        //            cell.CollapseCell(_emptyTileName);
 
-                PropagateChanges(cellIdx);
-            }
+        //        PropagateChanges(cellIdx);
+        //    }
 
 
         AmountOfCellsRemaining -= MapSize.x * MapSize.z * 2;
@@ -509,6 +514,15 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 {
                     compatibleTiles.Add(neighborModule);
                     continue;
+                }
+
+                if (UseExcludedNeighborsAdjacency)
+                {
+
+                    //If the current cell face is in the neighbors excluded list or vise versa, ignore it
+                    if (currentCellFace.ExcludedNeighbors.Contains(neighborModule._prefab) ||
+                       neighborCellFace.ExcludedNeighbors.Contains(module._prefab))
+                        continue;
                 }
 
                 //Compare the tiles
