@@ -44,10 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51366520b865b7244b33f561faebac5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapSize: {x: 10, y: 10, z: 10}
-  _modules: {fileID: 11400000, guid: fa0f629bdb32d69428c0a4a6d93ce3c1, type: 2}
+  MapSize: {x: 50, y: 8, z: 50}
+  _modules: {fileID: 11400000, guid: c05b160945a49124db10b3c9b13839e3, type: 2}
   _tileSize: 2
   _emptyTileName: Empty_i
-  AddEmptyBorder: 1
+  _solidTileName: Solid_i
+  _simpleFloorTileName: Water_i
+  GenerateSolidFloor: 1
   UseTileWeights: 1
+  UseMaterialAdjacency: 1
+  UseExcludedNeighborsAdjacency: 1
   _stepTime: 0.05

@@ -20,14 +20,18 @@ public class WFCCell3D : MonoBehaviour
     }
 
     /// <summary>
-    /// Collapses the cell into an empty module.
+    /// Collapses the cell into the module where module.name == moduleName.
+    /// Note: return without assigning if module was not found.
     /// </summary>
     public void CollapseCell(string moduleName)
     {
         var desiredModule = Modules.Find(x => moduleName == x.name);
 
         if (desiredModule == null)
+        {
+            Debug.LogWarning($"WFCCell3D, CollapseCell(string moduleName): Module with name = {moduleName} was not found. \nExiting function.");
             return;
+        }
 
         //Instantiate prefab
         var spawnedTile = Instantiate(desiredModule._prefab, this.transform);

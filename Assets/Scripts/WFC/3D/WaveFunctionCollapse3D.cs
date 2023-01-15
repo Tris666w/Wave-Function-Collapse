@@ -17,7 +17,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     [Header("Generator options")]
     [Tooltip("Enabling this makes the outside faces of the map empty tiles. This gives a cleaner end result.")]
-    public bool AddEmptyBorder = true;
+    public bool GenerateSolidFloor = true;
     public bool UseTileWeights = true;
     public bool UseMaterialAdjacency = true;
     public bool UseExcludedNeighborsAdjacency = true;
@@ -138,9 +138,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     {
         // Add a border of empty tiles around the generated map, if preferred
         // This makes the outside of the generated map better
-        if (AddEmptyBorder)
+        if (GenerateSolidFloor)
         {
-            GenerateEmptyBorder();
+            GenerateSolidBorder();
             GenerateFlatBorder();
         }
 
@@ -243,7 +243,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     }
 
-    private void GenerateEmptyBorder()
+    private void GenerateSolidBorder()
     {
         //Add solid tiles to the floor
         for (var x = 0; x < MapSize.x; x++)
@@ -271,7 +271,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         //    }
 
 
-        AmountOfCellsRemaining -= MapSize.x * MapSize.z * 2;
+        AmountOfCellsRemaining -= MapSize.x * MapSize.z;
     }
 
     private void CleanUp()
@@ -300,7 +300,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                         continue;
 
                     //Add some randomness in case there would be multiple cells with the same entropy
-                    newEntropy += Random.Range(0f, 0.1f);
+                    //newEntropy += Random.Range(0f, 0.1f);
 
                     if (newEntropy < minEntropy)
                     {

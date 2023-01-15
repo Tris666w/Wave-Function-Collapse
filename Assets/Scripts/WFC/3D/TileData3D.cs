@@ -9,7 +9,7 @@ public class TileData3D : MonoBehaviour
 {
     public enum TileMaterial
     {
-        Grass, Sand, Rock
+        Grass, Sand, Rock, Water
     }
 
     [Header("Tile material info")]

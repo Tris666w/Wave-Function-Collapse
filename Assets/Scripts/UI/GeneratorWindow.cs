@@ -11,7 +11,9 @@ public class GeneratorWindow : MonoBehaviour
     [Header("Window parameters")]
     [SerializeField] private Vector2Int _windowOffset = new(10, 10);
 
-    private float _stepTime = 0.15f;
+    private float _stepTime = 0.05f;
+    private const float MIN_STEP_TIME = 0f;
+    private const float MAX_STEP_TIME = 0.25f;
 
     private void OnValidate()
     {
@@ -33,12 +35,29 @@ public class GeneratorWindow : MonoBehaviour
                 textColor = Color.white
             }
         };
+        var subTitleStyle = new GUIStyle
+        {
+            alignment = TextAnchor.MiddleLeft,
+            fontStyle = FontStyle.Bold,
+            fontSize = 14,
+            normal =
+            {
+                textColor = Color.white
+            },
+            contentOffset = new Vector2(10, 0)
+
+        };
 
         GUI.Box(targetRect, "");
 
         GUILayout.BeginArea(targetRect);
         GUILayout.BeginVertical();
         GUILayout.Space(15);
+
+
+        //----------------------
+        // 2D WFC
+        //----------------------
 
         GUILayout.Label("2D Wave Function Collapse", titleStyle);
 
@@ -68,6 +87,10 @@ public class GeneratorWindow : MonoBehaviour
 
         GUILayout.Space(10);
 
+        //----------------------
+        // 3D WFC
+        //----------------------
+
         GUILayout.Label("3D Wave Function Collapse", titleStyle);
         if (GUILayout.Button("Generate 3D level"))
         {
@@ -77,13 +100,19 @@ public class GeneratorWindow : MonoBehaviour
         {
             _3DGenerator.AttemptDestroyResult();
         }
-        _3DGenerator.AddEmptyBorder = GUILayout.Toggle(_3DGenerator.AddEmptyBorder, "Add empty border");
-        _3DGenerator.UseTileWeights = GUILayout.Toggle(_3DGenerator.UseTileWeights, "Use tile weights");
+
+        GUILayout.Space(5);
+        GUILayout.Label("Additional constraints", subTitleStyle);
+
+        _3DGenerator.GenerateSolidFloor = GUILayout.Toggle(_3DGenerator.GenerateSolidFloor, "Forced solid floor");
+        _3DGenerator.UseTileWeights = GUILayout.Toggle(_3DGenerator.UseTileWeights, "Tile weights");
+        _3DGenerator.UseMaterialAdjacency = GUILayout.Toggle(_3DGenerator.UseMaterialAdjacency, "Material adjacency");
+        _3DGenerator.UseExcludedNeighborsAdjacency = GUILayout.Toggle(_3DGenerator.UseExcludedNeighborsAdjacency, "Neighbor exclusion");
 
         if (_3DGenerator.IsRunning)
         {
             //-------------
-            //DEBUG AREA
+            // DEBUG AREA
             //-------------
             GUILayout.Label($"Currently on: {_3DGenerator.CurrentStep}");
             GUILayout.Label($"Amount of cells collapsed: {_3DGenerator.AmountOfCollapsedCells}");
@@ -107,9 +136,14 @@ public class GeneratorWindow : MonoBehaviour
         GUILayout.EndHorizontal();
 
         GUILayout.Space(10);
+
+        //----------------------
+        // SHARED OPTIONS
+        //----------------------
+
         GUILayout.Label("Shared options", titleStyle);
         GUILayout.Label("StepTime");
-        _stepTime = GUILayout.HorizontalSlider(_stepTime, 0f, 1f);
+        _stepTime = GUILayout.HorizontalSlider(_stepTime, MIN_STEP_TIME, MAX_STEP_TIME);
         _3DGenerator.StepTime = _stepTime;
         _2DGenerator.StepTime = _stepTime;
 
