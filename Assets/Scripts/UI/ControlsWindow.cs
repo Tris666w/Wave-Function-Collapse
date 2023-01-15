@@ -21,7 +21,7 @@ public class ControlsWindow : MonoBehaviour
             wordWrap = true
         };
 
-        var targetRect = new Rect(_windowOffset.x, _windowOffset.y + Screen.height * (1 - _windowHeightPercentage), _windowWidth, Screen.height * _windowHeightPercentage - 2 * _windowOffset.y);
+        var targetRect = new Rect(Screen.width - _windowWidth - _windowOffset.x, _windowOffset.y + Screen.height * (1 - _windowHeightPercentage), _windowWidth, Screen.height * _windowHeightPercentage - 2 * _windowOffset.y);
         GUI.Box(targetRect, "");
 
         GUILayout.BeginArea(targetRect);

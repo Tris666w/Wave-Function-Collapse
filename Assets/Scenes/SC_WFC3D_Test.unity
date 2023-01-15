@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &81945953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 81945955}
+  - component: {fileID: 81945954}
+  m_Layer: 0
+  m_Name: PerformanceTesting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &81945954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81945953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0cdfd8e7361ba478671b09801b793b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wfc: {fileID: 374240804}
+  AmountOfTests: 10
+  TimeBetweenTestIterations: 5
+--- !u!4 &81945955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81945953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.139547, y: 7.5208025, z: 0.28662157}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &273108375 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2890161632497698442, guid: 853306f023351754e824262a3635afd0, type: 3}
@@ -356,18 +403,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: MapSize.x
-      value: 25
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: MapSize.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: MapSize.z
-      value: 25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: AddEmptyBorder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: UseTileWeights
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
       propertyPath: _addEmptyBorder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: GenerateSolidFloor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: UseMaterialAdjacency
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
+      propertyPath: UseExcludedNeighborsAdjacency
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -639,6 +706,7 @@ GameObject:
   - component: {fileID: 2100407981}
   - component: {fileID: 2100407980}
   - component: {fileID: 2100407982}
+  - component: {fileID: 2100407983}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -683,11 +751,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100407979}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e424844e9040de4a99ac3cdca07def9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _windowWidth: 200
+  _windowOffset: {x: 10, y: 10}
+  _windowHeightPercentage: 0.45
+--- !u!114 &2100407983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100407979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8590c22ccb027a54b83ea1a41fa9598c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _performanceTest: {fileID: 81945954}
   _windowWidth: 200
   _windowOffset: {x: 10, y: 10}
   _windowHeightPercentage: 0.45

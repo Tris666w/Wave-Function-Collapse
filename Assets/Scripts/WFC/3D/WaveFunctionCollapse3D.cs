@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using static TileData3D;
 
 public class WaveFunctionCollapse3D : MonoBehaviour
@@ -42,6 +43,15 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     private Vector3Int _currentCell = new();
 
+
+    [Header("Generation events")]
+
+    //These events can be used to add behaviour when generating a map;
+    public UnityEvent OnGeneratingStart;
+    public UnityEvent OnGeneratingEnd;
+
+
+
     private void OnValidate()
     {
         Assert.AreNotEqual(null, _modules, "3D WFC: Module Collection not assigned!");
@@ -70,10 +80,11 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     /// </summary>
     public void GenerateLevel()
     {
-        Debug.Log($"Generating map of size: {MapSize}");
         AttemptDestroyResult();
 
         IsRunning = true;
+
+        OnGeneratingStart.Invoke();
 
         InitializeWave();
         StartCoroutine(CollapseWave());
@@ -152,7 +163,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             yield break;
         }
 
-        Debug.Log("Starting the collapsing of the wave");
         //Start collapsing the wave
         do
         {
@@ -176,11 +186,11 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
         } while (_currentCell.x != -1 || _currentCell.y != -1 || _currentCell.z != -1);
 
-        Debug.Log("Outside wave Loop");
-
         IsRunning = false;
 
         CleanUp();
+
+        OnGeneratingEnd.Invoke();
     }
 
     private void GenerateFlatBorder()
