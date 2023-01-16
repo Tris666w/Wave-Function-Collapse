@@ -12,7 +12,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
-    [SerializeField] private string _emptyTileName = "Empty_i";
     [SerializeField] private string _solidTileName = "Solid_i";
     [SerializeField] private string _simpleFloorTileName = "Grass_i";
 

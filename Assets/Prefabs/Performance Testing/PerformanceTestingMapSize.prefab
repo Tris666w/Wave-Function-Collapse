@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6441924489856892140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6441924489856892130}
+  - component: {fileID: 6441924489856892131}
+  m_Layer: 0
+  m_Name: PerformanceTestingMapSize
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6441924489856892130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441924489856892140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9, y: 0, z: 26.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6441924489856892131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441924489856892140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0cdfd8e7361ba478671b09801b793b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wfc: {fileID: 0}
+  CurrentlyTesting: 0
+  TestRunning: 0
+  AmountOfTests: 12
+  CurrentTestIteration: 0
+  TimeBetweenTestIterations: 1
+  TimeBetweenTestCases: 5
+  _fileName: MapSize_Test
+  _targetPath: PerformanceTests/
+  _testCases:
+  - CaseName: None Small
+    TestMapSize: {x: 15, y: 5, z: 15}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: All smal
+    TestMapSize: {x: 15, y: 5, z: 15}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
+  - CaseName: No Extra medium
+    TestMapSize: {x: 25, y: 8, z: 25}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: All constraints medium
+    TestMapSize: {x: 25, y: 8, z: 25}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
+  - CaseName: All constraints Big
+    TestMapSize: {x: 50, y: 8, z: 50}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
+  - CaseName: None Big
+    TestMapSize: {x: 50, y: 8, z: 50}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  RunningCase:
+    CaseName: 
+    TestMapSize: {x: 0, y: 0, z: 0}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  CurrentTestCase: 0

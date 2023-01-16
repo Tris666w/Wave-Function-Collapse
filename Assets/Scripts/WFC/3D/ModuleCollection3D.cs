@@ -17,14 +17,12 @@ public class ModuleCollection3D : ScriptableObject
 
     public void CreateModules()
     {
+#if(UNITY_EDITOR)
         //Reset modules to assure there are no duplicates form previous generating
         ResetModules();
-
+#endif
         if (_tilesPrefab == null)
             return;
-
-        ResetModules();
-
 
         //Loop over each  child object
         foreach (Transform child in _tilesPrefab.transform)
@@ -117,7 +115,7 @@ public class ModuleCollection3D : ScriptableObject
         _modules.Add(new Module(rot3name, rot3TileData3D, prefab));
     }
 
-
+#if UNITY_EDITOR
     private void RemoveGeneratedTileDate()
     {
         EditorUtility.SetDirty(_tilesPrefab);
@@ -137,7 +135,6 @@ public class ModuleCollection3D : ScriptableObject
                 for (var index = 1; index < tileDataArray.Count; index++)
                 {
                     var tileComp = tileDataArray[index];
-                    Debug.Log($"Deleting: {tileComp.gameObject.name} copy");
                     DestroyImmediate(tileComp, true);
                 }
             }
@@ -149,4 +146,5 @@ public class ModuleCollection3D : ScriptableObject
         RemoveGeneratedTileDate();
         _modules.Clear();
     }
+#endif
 }
