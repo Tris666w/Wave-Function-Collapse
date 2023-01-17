@@ -133,7 +133,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     //Add the cell class, save the component in the wave and add all the possible modules
                     _cells3D[col, row, layer] = go.AddComponent<WFCCell3D>();
                     _cells3D[col, row, layer].Modules = new List<Module>(_modules.Modules);
-                    _cells3D[col, row, layer].RecalculateEntropy();
                 }
 
 
@@ -167,7 +166,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         do
         {
             //Collapse the cell
-            _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell();
+            _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell(UseTileWeights);
 
             //DEBUG INFO
             AmountOfCellsRemaining--;
@@ -303,15 +302,14 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             for (var y = 0; y < MapSize.y; y++)
                 for (var z = 0; z < MapSize.z; z++)
                 {
-                    //Disregard collapsed cells
-                    if (_cells3D[x, y, z].IsCollapsed)
+                    float newEntropy = _cells3D[x, y, z].GetEntropy();
+
+                    //If the entropy is 0, the cell has been collapsed, so we disregard it
+                    if (Mathf.Approximately(newEntropy, 0f))
                         continue;
 
-                    var newEntropy = (float)_cells3D[x, y, z].Entropy;
-
-
                     //Add some randomness in case there would be multiple cells with the same entropy
-                    newEntropy += Random.Range(0f, 1f);
+                    //newEntropy += Random.Range(0f, 0.1f);
 
                     if (newEntropy < minEntropy)
                     {
@@ -468,9 +466,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             {
                 _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z].Modules.Remove(neighborTile);
             }
-
-            if (changed)
-                _cells3D[neighborIdx.x, neighborIdx.y, neighborIdx.z].RecalculateEntropy();
         }
 
 
