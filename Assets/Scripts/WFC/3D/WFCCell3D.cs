@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WFCCell3D : MonoBehaviour
 {
@@ -10,13 +12,25 @@ public class WFCCell3D : MonoBehaviour
 
     public bool IsCollapsed { get; private set; } = false;
 
+    public double Entropy { get; private set; }
+
+    public bool UseTileWeights = false;
+
+
     /// <summary>
-    /// Check how many possible states this cell can be in and return the entropy.
+    /// Recalculates the entropy. Uses Summation of the logarithm (base 2) of the weights if tile weights are enables otherwise uses the count of modules left.
     /// </summary>
-    /// <returns>An integer value representing the entropy of this cell.</returns>
-    public int GetEntropy()
+    public void RecalculateEntropy()
     {
-        return Modules.Count;
+        if (UseTileWeights)
+        {
+            Entropy = 0;
+            Modules.ForEach(x => Entropy += -Math.Log(x._tile.Weight, 2));
+        }
+        else
+        {
+            Entropy = Modules.Count;
+        }
     }
 
     /// <summary>
@@ -53,7 +67,7 @@ public class WFCCell3D : MonoBehaviour
     /// </summary>
     /// <param name="useTileWeights"> Do you want to use weighted choice to collapse the tile?</param>
     /// <exception cref="UnityException"> No modules available.</exception>
-    public void CollapseCell(bool useTileWeights)
+    public void CollapseCell()
     {
         if (IsCollapsed)
         {
@@ -66,34 +80,12 @@ public class WFCCell3D : MonoBehaviour
             throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
         }
 
-        if (useTileWeights)
-        {
-            //Get the total weight of the remaining tiles
-            var totalWeight = 0;
-            Modules.ForEach(i => totalWeight += i._tile.Weight);
+        
+        //Get random tile from the remaining ones
+        var randomIndex = Random.Range(0, Modules.Count);
+        var chosenTile = Modules[randomIndex];
 
-            //Get random number in the range [1,totalWeight]
-            var targetWeight = Random.Range(1, totalWeight);
-
-            //Loop over all the tiles
-            foreach (var module in Modules)
-            {
-                if (targetWeight <= module._tile.Weight)
-                {
-                    CollapseCell(module.name);
-                    return;
-                }
-
-                targetWeight -= module._tile.Weight;
-            }
-        }
-        else
-        {
-            //Get random tile from the remaining ones
-            var randomIndex = Random.Range(0, Modules.Count);
-            var chosenTile = Modules[randomIndex];
-
-            CollapseCell(chosenTile.name);
-        }
+        CollapseCell(chosenTile.name);
+        
     }
 }
