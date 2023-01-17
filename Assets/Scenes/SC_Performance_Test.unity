@@ -694,13 +694,37 @@ PrefabInstance:
       propertyPath: _wfc
       value: 
       objectReference: {fileID: 374240804}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[10].TestMapSize.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[10].TestMapSize.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[10].TestMapSize.z
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[11].TestMapSize.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[11].TestMapSize.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441924489856892131, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
+      propertyPath: _testCases.Array.data[11].TestMapSize.z
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 6441924489856892140, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
       propertyPath: m_Name
       value: PerformanceTestingMapSize
       objectReference: {fileID: 0}
     - target: {fileID: 6441924489856892140, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5175d43fe20d97e43b27718c2d43707f, type: 3}
@@ -717,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7671107003629194972, guid: 8e00cc217eb15994aa893975ef1a98d0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7671107003629194974, guid: 8e00cc217eb15994aa893975ef1a98d0, type: 3}
       propertyPath: m_RootOrder

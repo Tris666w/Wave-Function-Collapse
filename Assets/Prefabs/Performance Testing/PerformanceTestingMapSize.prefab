@@ -54,42 +54,78 @@ MonoBehaviour:
   _fileName: MapSize_Test
   _targetPath: PerformanceTests/
   _testCases:
+  - CaseName: None extra Small
+    TestMapSize: {x: 15, y: 5, z: 15}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: All extra Smal
+    TestMapSize: {x: 15, y: 5, z: 15}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
   - CaseName: None Small
-    TestMapSize: {x: 15, y: 5, z: 15}
+    TestMapSize: {x: 20, y: 8, z: 20}
     GenerateSolidFloor: 0
     UseTileWeights: 0
     UseMaterialAdjacency: 0
     UseExcludedNeighborsAdjacency: 0
-  - CaseName: All smal
-    TestMapSize: {x: 15, y: 5, z: 15}
+  - CaseName: All constraints Smal
+    TestMapSize: {x: 20, y: 8, z: 20}
     GenerateSolidFloor: 1
     UseTileWeights: 1
     UseMaterialAdjacency: 1
     UseExcludedNeighborsAdjacency: 1
-  - CaseName: No Extra medium
+  - CaseName: No Extra Medium
     TestMapSize: {x: 25, y: 8, z: 25}
     GenerateSolidFloor: 0
     UseTileWeights: 0
     UseMaterialAdjacency: 0
     UseExcludedNeighborsAdjacency: 0
-  - CaseName: All constraints medium
+  - CaseName: All constraints Medium
     TestMapSize: {x: 25, y: 8, z: 25}
     GenerateSolidFloor: 1
     UseTileWeights: 1
     UseMaterialAdjacency: 1
     UseExcludedNeighborsAdjacency: 1
-  - CaseName: All constraints Big
-    TestMapSize: {x: 50, y: 8, z: 50}
-    GenerateSolidFloor: 1
-    UseTileWeights: 1
-    UseMaterialAdjacency: 1
-    UseExcludedNeighborsAdjacency: 1
-  - CaseName: None Big
+  - CaseName: None Large
+    TestMapSize: {x: 35, y: 8, z: 35}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: All constraints Large
+    TestMapSize: {x: 35, y: 8, z: 35}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: None extra Large
     TestMapSize: {x: 50, y: 8, z: 50}
     GenerateSolidFloor: 0
     UseTileWeights: 0
     UseMaterialAdjacency: 0
     UseExcludedNeighborsAdjacency: 0
+  - CaseName: All constraints extra Large
+    TestMapSize: {x: 50, y: 8, z: 50}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
+  - CaseName: None 2 extra Large
+    TestMapSize: {x: 75, y: 10, z: 75}
+    GenerateSolidFloor: 0
+    UseTileWeights: 0
+    UseMaterialAdjacency: 0
+    UseExcludedNeighborsAdjacency: 0
+  - CaseName: All constraints 2 extra Large
+    TestMapSize: {x: 75, y: 10, z: 75}
+    GenerateSolidFloor: 1
+    UseTileWeights: 1
+    UseMaterialAdjacency: 1
+    UseExcludedNeighborsAdjacency: 1
   RunningCase:
     CaseName: 
     TestMapSize: {x: 0, y: 0, z: 0}

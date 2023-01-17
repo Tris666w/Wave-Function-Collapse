@@ -191,7 +191,7 @@ public class PerformanceTest : MonoBehaviour
 
     private void WriteCurrentCase()
     {
-        _writer.WriteLine($"Case {CurrentTestCase + 1}: {_testCases[CurrentTestCase].CaseName}");
+        _writer.WriteLine($"Case {CurrentTestCase + 1}:; {_testCases[CurrentTestCase].CaseName}");
 
         WriteAlgorithmContext(_writer);
         WriteTimes(_writer);
