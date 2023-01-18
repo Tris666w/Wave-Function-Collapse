@@ -37,14 +37,17 @@ public class WFCCell3D : MonoBehaviour
     /// Collapses the cell into the module where module.name == moduleName.
     /// Note: return without assigning if module was not found.
     /// </summary>
-    public void CollapseCell(string moduleName)
+    public WfcReturn CollapseCell(string moduleName)
     {
+        WfcReturn result = new();
+
         var desiredModule = Modules.Find(x => moduleName == x.name);
 
         if (desiredModule == null)
         {
-            Debug.LogWarning($"WFCCell3D, CollapseCell(string moduleName): Module with name = {moduleName} was not found. \nExiting function.");
-            return;
+            result.returnState = WfcReturn.WfcReturnState.Error;
+            result.returnContext = $"WFCCell3D, CollapseCell(string moduleName): Module with name = {moduleName} was not found.";
+            return result;
         }
 
         //Instantiate prefab
@@ -60,32 +63,65 @@ public class WFCCell3D : MonoBehaviour
 
         Modules.Clear();
 
+        result.returnState = WfcReturn.WfcReturnState.Succes;
+        return result;
     }
 
     /// <summary>
     /// Collapses the cell into its final state (tile).
     /// </summary>
-    /// <param name="useTileWeights"> Do you want to use weighted choice to collapse the tile?</param>
     /// <exception cref="UnityException"> No modules available.</exception>
-    public void CollapseCell()
+    public WfcReturn CollapseCell()
     {
+        WfcReturn result = new();
+
         if (IsCollapsed)
         {
-            Debug.LogWarning($"{nameof(WFCCell3D)}, CollapseCell(): Trying to collapse an already collapsed cell!!");
-            return;
+            result.returnState = WfcReturn.WfcReturnState.Warning;
+            result.returnContext =$"{nameof(WFCCell3D)}, CollapseCell(): Trying to collapse an already collapsed cell!!";
+            return result;
         }
 
         if (Modules.Count <= 0)
         {
-            throw new UnityException($"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!");
+            result.returnState = WfcReturn.WfcReturnState.Error;
+            result.returnContext =$"{nameof(WFCCell3D)}, cell should get collapsed, but no tiles are possible!";
+            return result;
         }
 
-        
-        //Get random tile from the remaining ones
-        var randomIndex = Random.Range(0, Modules.Count);
-        var chosenTile = Modules[randomIndex];
+        if (UseTileWeights)
+        {
+            //Get the total weight of the remaining tiles
+            var totalWeight = 0;
+            Modules.ForEach(i => totalWeight += i._tile.Weight);
 
-        CollapseCell(chosenTile.name);
-        
+            //Get random number in the range [1,totalWeight]
+            var targetWeight = Random.Range(1, totalWeight);
+
+            //Loop over all the tiles
+            foreach (var module in Modules)
+            {
+                if (targetWeight <= module._tile.Weight)
+                {
+                    result = CollapseCell(module.name);
+                    return result;
+                }
+
+                targetWeight -= module._tile.Weight;
+            }
+        }
+        else
+        {
+            //Get random tile from the remaining ones
+            var randomIndex = Random.Range(0, Modules.Count);
+            var chosenTile = Modules[randomIndex];
+
+            result = CollapseCell(chosenTile.name);
+            return result;
+        }
+
+        result.returnState = WfcReturn.WfcReturnState.Error;
+        result.returnContext = "Failed to assign module to cell";
+        return result;
     }
 }

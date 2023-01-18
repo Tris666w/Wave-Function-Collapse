@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using static TileData3D;
+using Random = UnityEngine.Random;
 
 public class WaveFunctionCollapse3D : MonoBehaviour
 {
@@ -48,6 +50,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     //These events can be used to add behaviour when generating a map;
     public UnityEvent OnGeneratingStart;
     public UnityEvent OnGeneratingEnd;
+    public UnityEvent OnGenerateFailed;
 
 
 
@@ -134,6 +137,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     _cells3D[col, row, layer] = go.AddComponent<WFCCell3D>();
                     _cells3D[col, row, layer].Modules = new List<Module>(_modules.Modules);
                     _cells3D[col, row, layer].RecalculateEntropy();
+                    _cells3D[col, row, layer].UseTileWeights = UseTileWeights;
                 }
 
 
@@ -167,7 +171,20 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         do
         {
             //Collapse the cell
-            _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell();
+            var result = _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell();
+            switch (result.returnState)
+            {
+                case WfcReturn.WfcReturnState.Warning:
+                    Debug.LogWarning(result.returnContext);
+                    break;
+
+                case WfcReturn.WfcReturnState.Error:
+                    Debug.Log(result.returnContext);
+                    IsRunning = false;
+                    AttemptDestroyResult();
+                    OnGenerateFailed.Invoke();
+                    yield break;
+            }
 
             //DEBUG INFO
             AmountOfCellsRemaining--;
@@ -266,20 +283,6 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                     cell.CollapseCell(_solidTileName);
                 PropagateChanges(cellIdx);
             }
-
-        //Add empty tiles to the top
-        //for (var x = 0; x < MapSize.x; x++)
-        //    for (var z = 0; z < MapSize.z; z++)
-        //    {
-        //        var cellIdx = new Vector3Int(x, MapSize.y - 1, z);
-        //        var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
-
-        //        if (!cell.IsCollapsed)
-        //            cell.CollapseCell(_emptyTileName);
-
-        //        PropagateChanges(cellIdx);
-        //    }
-
 
         AmountOfCellsRemaining -= MapSize.x * MapSize.z;
     }

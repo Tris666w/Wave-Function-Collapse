@@ -15,7 +15,7 @@ public class PerformanceTest : MonoBehaviour
     [HideInInspector] public bool TestRunning = false;
     private bool _waitForNextCase = false;
     private Stopwatch _testStopwatch = new();
-
+    private bool _restartFailedGeneration = false;
     public int AmountOfTests = 10;
     [HideInInspector] public int CurrentTestIteration = 0;
 
@@ -33,6 +33,8 @@ public class PerformanceTest : MonoBehaviour
     [SerializeField] private List<WFC_3D_Test_Settings> _testCases = new();
     [HideInInspector] public WFC_3D_Test_Settings RunningCase;
     [HideInInspector] public int CurrentTestCase = 0;
+    [HideInInspector] public int CurrentCaseErrorCount = 0;
+
     public int AmountOfIterations
     {
         get => AmountOfTests;
@@ -58,6 +60,9 @@ public class PerformanceTest : MonoBehaviour
     {
         if (CurrentlyTesting == false)
             return;
+
+        if (_restartFailedGeneration)
+            RestartCurrentIteration();
 
         if (_waitForNextCase)
         {
@@ -89,6 +94,7 @@ public class PerformanceTest : MonoBehaviour
             return;
 
         _wfc.OnGeneratingEnd.AddListener(EndCurrentTest);
+        _wfc.OnGenerateFailed.AddListener(OnGenerationError);
 
 
         //Write the data to a .csv file
@@ -117,11 +123,21 @@ public class PerformanceTest : MonoBehaviour
         StartNextTestCase();
     }
 
+    public void RestartCurrentIteration()
+    {
+        _restartFailedGeneration = false;
+
+        _testStopwatch.Restart();
+        _wfc.StepTime = 0;
+        _wfc.GenerateLevel();
+    }
+
     private void StartNextTestCase()
     {
         RunningCase = _testCases[CurrentTestCase];
         _waitForNextCase = false;
         CurrentTestIteration = 0;
+        CurrentCaseErrorCount = 0;
 
         //Set correct test case settings
         _wfc.StepTime = 0;
@@ -180,6 +196,12 @@ public class PerformanceTest : MonoBehaviour
         }
     }
 
+    public void OnGenerationError()
+    {
+        CurrentCaseErrorCount++;
+        _restartFailedGeneration = true;
+    }
+
     private void EndTests()
     {
         //End the test
@@ -191,7 +213,7 @@ public class PerformanceTest : MonoBehaviour
 
     private void WriteCurrentCase()
     {
-        _writer.WriteLine($"Case {CurrentTestCase + 1}:; {_testCases[CurrentTestCase].CaseName}");
+        _writer.WriteLine($"Case {CurrentTestCase + 1}:; {_testCases[CurrentTestCase].CaseName};;Amount of failed generations: ;{CurrentCaseErrorCount}");
 
         WriteAlgorithmContext(_writer);
         WriteTimes(_writer);
@@ -230,6 +252,10 @@ public class PerformanceTest : MonoBehaviour
             var line = testTime + ";";
             writer.Write(line);
         }
+
+        //Write the average time:
+        var avg = _testTimes.AsQueryable().Average();
+        writer.WriteLine($"Average:;{avg}");
     }
 
 }

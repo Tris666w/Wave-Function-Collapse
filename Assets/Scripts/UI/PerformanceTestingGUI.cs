@@ -53,6 +53,7 @@ public class PerformanceTestingGUI : MonoBehaviour
         GUILayout.Space(10);
         GUILayout.Label("Current case info", titleStyle);
         GUILayout.Label($"Case name: {_performanceTest.RunningCase.CaseName}");
+        GUILayout.Label($"Amount of failed iterations for this case: {_performanceTest.CurrentCaseErrorCount}");
         GUILayout.Label($"Case size: {_performanceTest.RunningCase.TestMapSize}");
         GUILayout.Label($"Assures solid floor: {_performanceTest.RunningCase.GenerateSolidFloor}");
         GUILayout.Label($"Uses tile weights: {_performanceTest.RunningCase.UseTileWeights}");
