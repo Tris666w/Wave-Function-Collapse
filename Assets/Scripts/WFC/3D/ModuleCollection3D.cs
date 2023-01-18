@@ -24,14 +24,13 @@ public class ModuleCollection3D : ScriptableObject
         if (_tilesPrefab == null)
             return;
 
-        //Loop over each  child object
+        List<TileData3D> tileList = new();
         foreach (Transform child in _tilesPrefab.transform)
         {
             //If no tile data component is found or the tile is disabled, disregard this object
             var tileData = child.gameObject.GetComponent<TileData3D>();
             if (tileData == null || tileData.gameObject.activeSelf == false)
                 continue;
-
             var tileDataArray = child.GetComponents<TileData3D>().ToList();
             if (tileDataArray.Count > 1)
             {
@@ -39,9 +38,14 @@ public class ModuleCollection3D : ScriptableObject
                 {
                     DestroyImmediate(tileDataArray[index], true);
                 }
-
             }
 
+            tileList.Add(tileData);
+        }
+
+        //Loop over each  child object
+        foreach (var tileData in tileList)
+        {
             string name;
 
             // Generate rotational variants if
@@ -53,8 +57,10 @@ public class ModuleCollection3D : ScriptableObject
                 //Generate a name and an i to indicate it's invariant
                 name = tileData.name + "_i";
 
+                //Calculate the spawn probability
+
                 //Create a new module for this invariant tile
-                _modules.Add(new Module(name, tileData, child.gameObject));
+                _modules.Add(new Module(name, tileData, tileData.gameObject));
             }
             else
             {
@@ -62,10 +68,13 @@ public class ModuleCollection3D : ScriptableObject
                 name = tileData.name + "_";
 
                 string rotationIdx = "0";
-                _modules.Add(new Module(name + rotationIdx, tileData, child.gameObject));
+
+                //Calculate the spawn probability
+
+                _modules.Add(new Module(name + rotationIdx, tileData, tileData.gameObject));
 
                 //Generate a module for each rotation
-                GenerateRotationVariants(name, tileData, child.gameObject);
+                GenerateRotationVariants(name, tileData, tileData.gameObject);
             }
         }
 
