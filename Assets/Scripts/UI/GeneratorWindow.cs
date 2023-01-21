@@ -13,7 +13,7 @@ public class GeneratorWindow : MonoBehaviour
 
     private float _stepTime = 0.05f;
     private const float MIN_STEP_TIME = 0f;
-    private const float MAX_STEP_TIME = 0.25f;
+    private const float MAX_STEP_TIME = 0.05f;
 
     private void OnValidate()
     {

@@ -253,6 +253,7 @@ public class PerformanceTest : MonoBehaviour
             writer.Write(line);
         }
 
+        writer.WriteLine();
         //Write the average time:
         var avg = _testTimes.AsQueryable().Average();
         writer.WriteLine($"Average:;{avg}");

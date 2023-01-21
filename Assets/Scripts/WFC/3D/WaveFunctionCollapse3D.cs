@@ -15,6 +15,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     [SerializeField] private ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [SerializeField] private string _solidTileName = "Solid_i";
+    [SerializeField] private string _emptyTileName = "Empty_i";
     [SerializeField] private string _simpleFloorTileName = "Grass_i";
 
     [Header("Generator options")]
@@ -23,9 +24,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     public bool UseTileWeights = true;
     public bool UseMaterialAdjacency = true;
     public bool UseExcludedNeighborsAdjacency = true;
-
     [Header("Visualization properties")]
     [SerializeField] private float _stepTime = 1f;
+    public bool UseDebugCube = false;
+    [SerializeField] private GameObject _debugCube = null;
 
     public float StepTime
     {
@@ -57,12 +59,12 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     private void OnValidate()
     {
         Assert.AreNotEqual(null, _modules, "3D WFC: Module Collection not assigned!");
-
         AmountOfCellsRemaining = MapSize.x * MapSize.y * MapSize.z;
     }
 
     private void Start()
     {
+        _debugCube.SetActive(false);
         _modules.CreateModules();
     }
 
@@ -151,11 +153,12 @@ public class WaveFunctionCollapse3D : MonoBehaviour
     /// <returns></returns>
     public IEnumerator CollapseWave()
     {
-        // Add a border of empty tiles around the generated map, if preferred
+        // Add a border of chosen tiles around the generated map, if preferred
         // This makes the outside of the generated map better
         if (GenerateSolidFloor)
         {
-            GenerateSolidBorder();
+            GenerateAllSolidFloor();
+            //GenerateEmptyRoof();
             GenerateFlatBorder();
         }
 
@@ -167,9 +170,20 @@ public class WaveFunctionCollapse3D : MonoBehaviour
             yield break;
         }
 
+        if (UseDebugCube)
+        {
+            _debugCube.SetActive(true);
+        }
+
         //Start collapsing the wave
         do
         {
+            if (UseDebugCube)
+            {
+                var pos = new Vector3(_currentCell.x * _tileSize, _currentCell.y * _tileSize, _currentCell.z * _tileSize);
+                _debugCube.transform.position = pos;
+            }
+
             //Collapse the cell
             var result = _cells3D[_currentCell.x, _currentCell.y, _currentCell.z].CollapseCell();
             switch (result.returnState)
@@ -204,6 +218,8 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         } while (_currentCell.x != -1 || _currentCell.y != -1 || _currentCell.z != -1);
 
         IsRunning = false;
+
+        _debugCube.SetActive(false);
 
         CleanUp();
 
@@ -270,7 +286,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     }
 
-    private void GenerateSolidBorder()
+    private void GenerateAllSolidFloor()
     {
         //Add solid tiles to the floor
         for (var x = 0; x < MapSize.x; x++)
@@ -281,6 +297,23 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
                 if (!cell.IsCollapsed)
                     cell.CollapseCell(_solidTileName);
+                PropagateChanges(cellIdx);
+            }
+
+        AmountOfCellsRemaining -= MapSize.x * MapSize.z;
+    }
+
+    private void GenerateEmptyRoof()
+    {
+        //Add empty tiles to the roof
+        for (var x = 0; x < MapSize.x; x++)
+            for (var z = 0; z < MapSize.z; z++)
+            {
+                var cellIdx = new Vector3Int(x, 0, z);
+                var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
+
+                if (!cell.IsCollapsed)
+                    cell.CollapseCell(_emptyTileName);
                 PropagateChanges(cellIdx);
             }
 
