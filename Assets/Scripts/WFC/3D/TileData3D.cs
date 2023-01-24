@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Holds all the info of the current tile for generating modules and adjacency comparisons.
+/// </summary>
 [Serializable]
 public class TileData3D : MonoBehaviour
 {

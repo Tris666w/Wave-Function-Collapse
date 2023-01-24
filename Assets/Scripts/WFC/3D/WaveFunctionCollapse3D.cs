@@ -7,12 +7,15 @@ using UnityEngine.Events;
 using static TileData3D;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Generates 3D maps 
+/// </summary>
 public class WaveFunctionCollapse3D : MonoBehaviour
 {
     [Header("Wave parameters")]
     public Vector3Int MapSize = new(10, 10, 10);
 
-    [SerializeField] private ModuleCollection3D _modules;
+    [SerializeField] public ModuleCollection3D _modules;
     [SerializeField] private float _tileSize = 2f;
     [SerializeField] private string _solidTileName = "Solid_i";
     [SerializeField] private string _emptyTileName = "Empty_i";
@@ -178,6 +181,7 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         //Start collapsing the wave
         do
         {
+            //Visualize the current cell with a cube
             if (UseDebugCube)
             {
                 var pos = new Vector3(_currentCell.x * _tileSize, _currentCell.y * _tileSize, _currentCell.z * _tileSize);
@@ -226,6 +230,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         OnGeneratingEnd.Invoke();
     }
 
+    /// <summary>
+    /// Assures that all cells along the x and z border with y == 1 are collapsed to _simpleFloorTileName 
+    /// </summary>
     private void GenerateFlatBorder()
     {
         //Along z-faces
@@ -286,6 +293,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Assures that all cells with y == 0 are solid
+    /// </summary>
     private void GenerateAllSolidFloor()
     {
         //Add solid tiles to the floor
@@ -303,13 +314,16 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         AmountOfCellsRemaining -= MapSize.x * MapSize.z;
     }
 
+    /// <summary>
+    /// Assures that all cells with y == MapSize.y - 1 are empty
+    /// </summary>
     private void GenerateEmptyRoof()
     {
         //Add empty tiles to the roof
         for (var x = 0; x < MapSize.x; x++)
             for (var z = 0; z < MapSize.z; z++)
             {
-                var cellIdx = new Vector3Int(x, 0, z);
+                var cellIdx = new Vector3Int(x, MapSize.y - 1, z);
                 var cell = _cells3D[cellIdx.x, cellIdx.y, cellIdx.z];
 
                 if (!cell.IsCollapsed)
@@ -320,6 +334,9 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         AmountOfCellsRemaining -= MapSize.x * MapSize.z;
     }
 
+    /// <summary>
+    /// Remove all used WFCCell3D components
+    /// </summary>
     private void CleanUp()
     {
         for (var col = 0; col < MapSize.x; col++)
@@ -330,6 +347,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
                 }
     }
 
+    /// <summary>
+    /// Return the lowest entropy cell from the entire wave. Uses some small randomness in case of multiple cells with the same entropy.
+    /// </summary>
+    /// <returns>Lowest entropy cell</returns>
     private Vector3Int GetLowestEntropyCell()
     {
         var minEntropy = float.MaxValue;
@@ -359,6 +380,10 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         return lowestEntropyCell;
     }
 
+    /// <summary>
+    /// Conveys all changes of the collapsed cell to all neighbors and updates the possible states of all neighbors.
+    /// </summary>
+    /// <param name="originalCell"> The cell that was just collapsed.</param>
     private void PropagateChanges(Vector3Int originalCell)
     {
         Stack<Vector3Int> changedCells = new();
@@ -401,12 +426,19 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         None
     }
 
+    /// <summary>
+    /// This function compares both cells and updates their possible modules.
+    /// </summary>
+    /// <param name="currentIdx">The current cells</param>
+    /// <param name="neighborIdx">The current neighbor</param>
+    /// <returns>A boolean representing if the possible modules of the neighbor has changed.</returns>
     private bool CompareCells(Vector3Int currentIdx, Vector3Int neighborIdx)
     {
         var changed = false;
         var horizontalCompare = true;
         var compareDirection = CompareDirection.None;
 
+        //Find the orientation of the cells
         if (neighborIdx.x - currentIdx.x == 1)
         {
             //Pos X 
@@ -513,6 +545,13 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         return changed;
     }
 
+    /// <summary>
+    /// Returns all neighborStates that cannot fit anymore for horizontal faces.
+    /// </summary>
+    /// <param name="currentCellTiles">The current cells possible modules</param>
+    /// <param name="neighborTilesCopy">The current neighbors current modules</param>
+    /// <param name="compareDirection">The orientation of both cells</param>
+    /// <returns></returns>
     private List<Module> GetDeprecatedNeighborTilesHorizontal(List<Module> currentCellTiles, List<Module> neighborTilesCopy, CompareDirection compareDirection)
     {
         foreach (var module in currentCellTiles)
@@ -615,6 +654,13 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         return neighborTilesCopy;
     }
 
+    /// <summary>
+    /// Returns all neighborStates that cannot fit anymore for vertical faces.
+    /// </summary>
+    /// <param name="currentCellTiles">The current cells possible modules</param>
+    /// <param name="neighborTilesCopy">The current neighbors current modules</param>
+    /// <param name="compareDirection">The orientation of both cells</param>
+    /// <returns></returns>
     private List<Module> GetDeprecatedNeighborTilesVertical(List<Module> currentCellTiles, List<Module> neighborTilesCopy, CompareDirection compareDirection)
     {
         foreach (var module in currentCellTiles)
@@ -677,7 +723,12 @@ public class WaveFunctionCollapse3D : MonoBehaviour
         return neighborTilesCopy;
     }
 
-    List<Vector3Int> GetNeighbors(Vector3Int cellCoords)
+    /// <summary>
+    /// This functions get's all the cell coordinates of all neighbors to the given cell.
+    /// </summary>
+    /// <param name="cellCoords"> The cell of which te neighbors are wanted</param>
+    /// <returns>A list of the cell coordinates of the neighbors </returns>
+    private List<Vector3Int> GetNeighbors(Vector3Int cellCoords)
     {
         List<Vector3Int> neighbors = new();
 

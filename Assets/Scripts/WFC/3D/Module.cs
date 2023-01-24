@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// This class represents one possible state for a cell in WFC 3D.
+/// </summary>
 [Serializable]
 public class Module
 {

@@ -56,6 +56,11 @@ public class PerformanceTest : MonoBehaviour
 #endif
     }
 
+    private void OnDestroy()
+    {
+        _writer.Close();
+    }
+
     private void Update()
     {
         if (CurrentlyTesting == false)
@@ -142,6 +147,7 @@ public class PerformanceTest : MonoBehaviour
         //Set correct test case settings
         _wfc.StepTime = 0;
         _wfc.MapSize = _testCases[CurrentTestCase].TestMapSize;
+        _wfc._modules = _testCases[CurrentTestCase].InputModules;
         _wfc.UseMaterialAdjacency = _testCases[CurrentTestCase].UseMaterialAdjacency;
         _wfc.UseTileWeights = _testCases[CurrentTestCase].UseTileWeights;
         _wfc.UseExcludedNeighborsAdjacency = _testCases[CurrentTestCase].UseExcludedNeighborsAdjacency;
@@ -219,14 +225,13 @@ public class PerformanceTest : MonoBehaviour
         WriteTimes(_writer);
 
         _writer.WriteLine();
-        _writer.WriteLine();
 
     }
 
     private void WriteAlgorithmContext(StreamWriter writer)
     {
-        writer.WriteLine("Map size (# cells); Solid Floor Assurance; Tile Weights; Material Adjacency; Neighbor exclusion");
-        writer.WriteLine($"{_wfc.MapSize.x * _wfc.MapSize.y * _wfc.MapSize.z}; {_wfc.GenerateSolidFloor}; {_wfc.UseTileWeights}; {_wfc.UseMaterialAdjacency}; {_wfc.UseExcludedNeighborsAdjacency}");
+        writer.WriteLine("Map size (# cells); # Input Modules; Solid Floor Assurance; Tile Weights; Material Adjacency; Neighbor exclusion");
+        writer.WriteLine($"{_wfc.MapSize.x * _wfc.MapSize.y * _wfc.MapSize.z};{_wfc._modules.Modules.Count}; {_wfc.GenerateSolidFloor}; {_wfc.UseTileWeights}; {_wfc.UseMaterialAdjacency}; {_wfc.UseExcludedNeighborsAdjacency}");
     }
 
     private void WriteTimes(StreamWriter writer)

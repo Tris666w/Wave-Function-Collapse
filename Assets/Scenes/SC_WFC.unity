@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &273108375 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2890161632497698442, guid: 853306f023351754e824262a3635afd0, type: 3}
-  m_PrefabInstance: {fileID: 794191163}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3144ae8f702199e4990df4aecf31deaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &374240804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 734785434732083067, guid: 5e685da7e11423c42a00924fbd52c372, type: 3}
@@ -202,6 +191,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 853306f023351754e824262a3635afd0, type: 3}
+--- !u!114 &794191164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2890161632497698442, guid: 853306f023351754e824262a3635afd0, type: 3}
+  m_PrefabInstance: {fileID: 794191163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3144ae8f702199e4990df4aecf31deaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &872006067
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +590,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550280164}
-  m_LocalRotation: {x: 0.36528173, y: -0.0020308977, z: 0.00079692143, w: 0.9308945}
-  m_LocalPosition: {x: 0, y: 0, z: -18.40262}
+  m_LocalRotation: {x: 0.3185454, y: -0.0012408106, z: 0.0004169762, w: 0.94790673}
+  m_LocalPosition: {x: 0, y: 0, z: -18.137306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -601,7 +601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48.67937, y: 50.944912}
+  m_AnchoredPosition: {x: 15.611355, y: 27.66198}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1936345018 stripped
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4ee34f4959b1c4b9ed28498940b2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _2DGenerator: {fileID: 273108375}
+  _2DGenerator: {fileID: 794191164}
   _3DGenerator: {fileID: 374240804}
   _windowOffset: {x: 10, y: 10}
 --- !u!4 &2100407981
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100407979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e424844e9040de4a99ac3cdca07def9, type: 3}
   m_Name: 

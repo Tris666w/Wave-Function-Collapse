@@ -3,6 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEditor;
 
+/// <summary>
+/// This objects holds all modules for a WFC 3D algorithm. It generates the list from a prefab of tiles and generates the rotated variants.
+/// Note: Generating the modules and rotation variants, changes the prefab directly!
+/// </summary>
 [CreateAssetMenu(fileName = "new collection", menuName = "WFC/ 3D Module collection")]
 public class ModuleCollection3D : ScriptableObject
 {
@@ -15,6 +19,9 @@ public class ModuleCollection3D : ScriptableObject
         get => _modules;
     }
 
+    /// <summary>
+    /// Generates the list of modules. Uses all tiles in the _tilesPrefab and generates rotational variants of necessary.
+    /// </summary>
     public void CreateModules()
     {
 #if(UNITY_EDITOR)
@@ -80,6 +87,12 @@ public class ModuleCollection3D : ScriptableObject
 
     }
 
+    /// <summary>
+    /// Generates 3 rotational variants. 
+    /// </summary>
+    /// <param name="name">name of the original variant</param>
+    /// <param name="originalTileData3D">The tile data of the original variant.</param>
+    /// <param name="prefab">The prefab of the 3D mesh of this modules</param>
     private void GenerateRotationVariants(string name, TileData3D originalTileData3D, GameObject prefab)
     {
         //1 rotation index added == 90 degrees rotation around Y-axis
@@ -125,10 +138,13 @@ public class ModuleCollection3D : ScriptableObject
     }
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// Removes all extra tile data objects from a tile prefab. Assures that there is only one when generating starts.
+    /// </summary>
     private void RemoveGeneratedTileDate()
     {
         EditorUtility.SetDirty(_tilesPrefab);
-        var versionObject = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/TileCollections/TileCollectionSource/NewTiles.prefab", typeof(GameObject)) as GameObject;
+        var versionObject = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/TileCollections/TileCollectionSource/Tiles_Night.prefab", typeof(GameObject)) as GameObject;
 
         if (versionObject == null)
         {

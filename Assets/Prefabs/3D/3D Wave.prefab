@@ -49,6 +49,7 @@ MonoBehaviour:
   _modules: {fileID: 11400000, guid: c05b160945a49124db10b3c9b13839e3, type: 2}
   _tileSize: 2
   _solidTileName: Solid_i
+  _emptyTileName: Empty_i
   _simpleFloorTileName: Water_i
   GenerateSolidFloor: 1
   UseTileWeights: 1
@@ -56,7 +57,7 @@ MonoBehaviour:
   UseExcludedNeighborsAdjacency: 1
   _stepTime: 0.05
   UseDebugCube: 0
-  _debugCube: {fileID: 0}
+  _debugCube: {fileID: 8010695088103593215}
   OnGeneratingStart:
     m_PersistentCalls:
       m_Calls: []
